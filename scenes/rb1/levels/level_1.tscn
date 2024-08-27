@@ -168,7 +168,7 @@ size = Vector2(61.6, 163.8)
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_khhe6")
 
-[node name="init" type="Node" parent="."]
+[node name="modules" type="Node" parent="."]
 
 [node name="bg" type="ParallaxBackground" parent="."]
 
@@ -261,21 +261,73 @@ centered = false
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="sound" type="Sprite2D" parent="ui"]
+[node name="music" type="Sprite2D" parent="ui"]
 position = Vector2(40, 40)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("13_kyst1")
+metadata/_edit_group_ = true
 
-[node name="level" type="Label" parent="ui"]
-offset_left = 90.0
-offset_top = 15.0
-offset_right = 570.0
-offset_bottom = 224.0
+[node name="button" type="Button" parent="ui/music"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 27.0
+flat = true
+
+[node name="label" type="Label" parent="ui/music"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 7.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_b66ly")
+theme_override_font_sizes/font_size = 25
+text = "M"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" type="Sprite2D" parent="ui"]
+position = Vector2(100, 40)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("13_kyst1")
+metadata/_edit_group_ = true
+
+[node name="button" type="Button" parent="ui/sfx"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 27.0
+flat = true
+
+[node name="label" type="Label" parent="ui/sfx"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 7.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_b66ly")
+theme_override_font_sizes/font_size = 25
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menu" type="Label" parent="ui"]
+offset_left = 138.0
+offset_top = 14.0
+offset_right = 618.0
+offset_bottom = 223.0
 scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
 theme_override_fonts/font = ExtResource("9_b66ly")
 theme_override_font_sizes/font_size = 150
 text = "Menu"
+metadata/_edit_group_ = true
+
+[node name="button" type="Button" parent="ui/menu"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 220.0
+flat = true
 
 [node name="objects" type="Node2D" parent="."]
 
