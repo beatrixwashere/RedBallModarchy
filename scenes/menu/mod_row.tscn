@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq53f5yx6mk53"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/ui.gdshader" id="1_yeol4"]
+[ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="2_hovt3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8drps"]
+shader = ExtResource("1_yeol4")
+shader_parameter/rwidth = 10.0
+shader_parameter/rheight = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_787y4"]
+shader = ExtResource("1_yeol4")
+shader_parameter/rwidth = 10.0
+shader_parameter/rheight = 1.0
+
+[node name="mod_row" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="left" type="Button" parent="."]
+material = SubResource("ShaderMaterial_8drps")
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 80.0
+
+[node name="label" type="Label" parent="left"]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("2_hovt3")
+theme_override_font_sizes/font_size = 35
+text = "[modname]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="check" type="Label" parent="left"]
+layout_mode = 0
+offset_left = 720.0
+offset_right = 800.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.8, 1, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_hovt3")
+theme_override_font_sizes/font_size = 50
+text = "✓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="right" type="Button" parent="."]
+material = SubResource("ShaderMaterial_787y4")
+layout_mode = 0
+offset_left = 800.0
+offset_right = 1600.0
+offset_bottom = 80.0
+
+[node name="label" type="Label" parent="right"]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("2_hovt3")
+theme_override_font_sizes/font_size = 35
+text = "[modname]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="check" type="Label" parent="right"]
+layout_mode = 0
+offset_left = 720.0
+offset_right = 800.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.8, 1, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_hovt3")
+theme_override_font_sizes/font_size = 50
+text = "✓"
+horizontal_alignment = 1
+vertical_alignment = 1

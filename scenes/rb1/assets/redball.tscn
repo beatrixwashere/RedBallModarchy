@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciigq32r4rwsm"]
+
+[ext_resource type="Texture2D" uid="uid://crdfouj4pxcx7" path="res://images/rb1/sprites/rb1.png" id="1_14i65"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dbst4"]
+bounce = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnthb"]
+radius = 10.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1iarr"]
+size = Vector2(21, 21)
+
+[node name="redball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_dbst4")
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 4
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_14i65")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cnthb")
+
+[node name="floorchecks" type="Node2D" parent="."]
+
+[node name="check0" type="ColorRect" parent="floorchecks"]
+visible = false
+offset_left = -7.0
+offset_top = 10.4
+offset_right = -5.0
+offset_bottom = 12.4
+color = Color(0, 1, 0, 1)
+
+[node name="check1" type="ColorRect" parent="floorchecks"]
+visible = false
+offset_left = -1.0
+offset_top = 11.0
+offset_right = 1.0
+offset_bottom = 13.0
+color = Color(0, 1, 0, 1)
+
+[node name="check2" type="ColorRect" parent="floorchecks"]
+visible = false
+offset_left = 5.0
+offset_top = 10.4
+offset_right = 7.0
+offset_bottom = 12.4
+color = Color(0, 1, 0, 1)
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_1iarr")

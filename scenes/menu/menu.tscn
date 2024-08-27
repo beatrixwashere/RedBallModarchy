@@ -1,0 +1,169 @@
+[gd_scene load_steps=11 format=3 uid="uid://uiuy4f78i2w3"]
+
+[ext_resource type="Script" path="res://scripts/menu/menu.gd" id="1_dxd3e"]
+[ext_resource type="Shader" path="res://scripts/shaders/bg.gdshader" id="1_xou5v"]
+[ext_resource type="Texture2D" uid="uid://dtiktu0cw4aa4" path="res://images/logo.png" id="2_sbe3d"]
+[ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="3_0n56u"]
+[ext_resource type="Shader" path="res://scripts/shaders/modlist.gdshader" id="4_2j84y"]
+[ext_resource type="Shader" path="res://scripts/shaders/ui.gdshader" id="5_il6rp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdggy"]
+shader = ExtResource("1_xou5v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1odrj"]
+shader = ExtResource("4_2j84y")
+shader_parameter/rwidth = 21.0
+shader_parameter/rheight = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tb8lp"]
+shader = ExtResource("5_il6rp")
+shader_parameter/rwidth = 4.0
+shader_parameter/rheight = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_srgux"]
+shader = ExtResource("5_il6rp")
+shader_parameter/rwidth = 6.0
+shader_parameter/rheight = 1.0
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dxd3e")
+
+[node name="bg" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fdggy")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="header" type="Sprite2D" parent="."]
+position = Vector2(240, 160)
+scale = Vector2(0.415394, 0.402672)
+texture = ExtResource("2_sbe3d")
+
+[node name="title" type="Label" parent="header"]
+offset_left = 192.588
+offset_top = -198.673
+offset_right = 2695.59
+offset_bottom = 199.327
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 60
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 240
+text = "Red Ball Modarchy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mods" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1odrj")
+layout_mode = 0
+offset_left = 160.0
+offset_top = 320.0
+offset_right = 1760.0
+offset_bottom = 800.0
+color = Color(0, 0, 0.25098, 1)
+
+[node name="scroll" type="ScrollContainer" parent="mods"]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 480.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="modlist" type="VBoxContainer" parent="mods/scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="modsfolder" type="Button" parent="."]
+material = SubResource("ShaderMaterial_tb8lp")
+layout_mode = 0
+offset_left = 1440.0
+offset_top = 80.0
+offset_right = 1760.0
+offset_bottom = 160.0
+metadata/_edit_group_ = true
+
+[node name="label" type="Label" parent="modsfolder"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 30
+text = "set mods folder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="filedialog" type="FileDialog" parent="modsfolder"]
+title = "select a folder"
+initial_position = 1
+size = Vector2i(1000, 600)
+ok_button_text = "select"
+cancel_button_text = "cancel"
+file_mode = 2
+access = 2
+
+[node name="reload" type="Button" parent="."]
+material = SubResource("ShaderMaterial_tb8lp")
+layout_mode = 0
+offset_left = 1440.0
+offset_top = 200.0
+offset_right = 1760.0
+offset_bottom = 280.0
+metadata/_edit_group_ = true
+
+[node name="label" type="Label" parent="reload"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 35
+text = "reload"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="redball1" type="Button" parent="."]
+material = SubResource("ShaderMaterial_srgux")
+layout_mode = 0
+offset_left = 160.0
+offset_top = 840.0
+offset_right = 640.0
+offset_bottom = 920.0
+metadata/_edit_group_ = true
+
+[node name="label" type="Label" parent="redball1"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 35
+text = "Red Ball 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="comingsoon" type="Button" parent="."]
+material = SubResource("ShaderMaterial_srgux")
+layout_mode = 0
+offset_left = 720.0
+offset_top = 840.0
+offset_right = 1200.0
+offset_bottom = 920.0
+metadata/_edit_group_ = true
+
+[node name="label" type="Label" parent="comingsoon"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 35
+text = "coming soon!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="modsfolder" to="modsfolder/filedialog" method="set_visible" binds= [true]]
+[connection signal="dir_selected" from="modsfolder/filedialog" to="." method="set_mods_folder"]
+[connection signal="button_down" from="redball1" to="." method="load_game" binds= ["res://scenes/rb1/main.tscn"]]
