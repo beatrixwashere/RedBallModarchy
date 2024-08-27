@@ -5,10 +5,15 @@ const mod_row: PackedScene = preload("res://scenes/menu/mod_row.tscn")
 
 
 func _ready() -> void:
-	# reload if mods folder exists
-	var file: FileAccess = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ)
-	if file:
-		reload_mods(file.get_line())
+	# verify mods folder integrity, if it doesn't exist then force the user to set a new one
+	if FileAccess.file_exists("user://modsfolder.modarchy"):
+		var path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_line()
+		if DirAccess.dir_exists_absolute(path):
+			reload_mods()
+		else:
+			$mods_folder_popup.visible = true
+	else:
+		$mods_folder_popup.visible = true
 
 
 ## creates a mod row node
@@ -40,18 +45,23 @@ func load_game(scene_path: String) -> void:
 	for i in %modlist.get_children():
 		for j in i.get_children(): # mod_row buttons
 			if j.get_node("check").visible:
-				ModAPI.load_mod(mods_path + "/" + j.get_node("label").text + ".pck")
-	
-	print(DirAccess.open("res://_mods").get_directories())
+				ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".pck")
 	
 	# load red ball scene
 	get_tree().change_scene_to_file(scene_path)
 
 
 ## initializes the modlist using the mods folder
-func reload_mods(path: String) -> void:
+func reload_mods() -> void:
+	# clear modlist
+	for i in %modlist.get_children():
+		i.free()
+	
+	# get mods folder path
+	var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_line()
+	
 	# iterate through each file in the mods folder
-	var dir: DirAccess = DirAccess.open(path)
+	var dir: DirAccess = DirAccess.open(mods_path)
 	var modfiles: Array[String] = []
 	for i in dir.get_files():
 		# check for pck file extension
@@ -74,4 +84,5 @@ func set_mods_folder(path: String) -> void:
 	# save path to file and reload
 	var file: FileAccess = FileAccess.open("user://modsfolder.modarchy", FileAccess.WRITE)
 	file.store_line(path)
-	reload_mods(path)
+	reload_mods()
+	$mods_folder_popup.visible = false
