@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://brrvpqw5vv4wb"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/ui.gdshader" id="1_ey2di"]
+[ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="2_eo7vj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8cnb"]
+shader = ExtResource("1_ey2di")
+shader_parameter/rwidth = 11.0
+shader_parameter/rheight = 1.0
+
+[node name="level_button" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="button" type="Button" parent="."]
+material = SubResource("ShaderMaterial_j8cnb")
+layout_mode = 0
+offset_right = 880.0
+offset_bottom = 80.0
+
+[node name="label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 840.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("2_eo7vj")
+theme_override_font_sizes/font_size = 40
+text = "level"
+vertical_alignment = 1
