@@ -69,7 +69,7 @@ func _ready() -> void:
 	# set up ui buttons
 	var audio_function: Callable = func _audio_function(s: Sprite2D, bus_idx: int) -> void:
 		AudioHelper.toggle_bus_audio(bus_idx)
-		s.texture = load("res://images/rb1/spriddddates/sound" + ("off" if AudioServer.is_bus_mute(bus_idx) else "on") + ".png")
+		s.texture = load("res://images/rb1/sprites/sound" + ("off" if AudioServer.is_bus_mute(bus_idx) else "on") + ".png")
 		s.get_node("button").release_focus()
 	$ui/music/button.connect("button_down", audio_function.bind($ui/music, 1))
 	$ui/sfx/button.connect("button_down", audio_function.bind($ui/sfx, 2))
