@@ -1,7 +1,6 @@
-[gd_scene load_steps=37 format=3 uid="uid://leu06y3shvxs"]
+[gd_scene load_steps=36 format=3 uid="uid://leu06y3shvxs"]
 
 [ext_resource type="Script" path="res://scripts/rb1/rb1_level.gd" id="1_khhe6"]
-[ext_resource type="Script" path="res://_mods/GravityTools/init.gd" id="2_guwee"]
 [ext_resource type="Texture2D" uid="uid://88iya5idhe3l" path="res://images/rb1/sprites/sky.svg" id="2_t3ql8"]
 [ext_resource type="Texture2D" uid="uid://cikh2c375qqqa" path="res://images/rb1/textures/groundtexture.png" id="3_244gm"]
 [ext_resource type="Texture2D" uid="uid://dkjsvplpfx6a4" path="res://images/rb1/sprites/cloud1.png" id="3_o02jj"]
@@ -170,9 +169,6 @@ size = Vector2(61.6, 163.8)
 script = ExtResource("1_khhe6")
 
 [node name="init" type="Node" parent="."]
-
-[node name="GravityTools" type="Node" parent="init"]
-script = ExtResource("2_guwee")
 
 [node name="bg" type="ParallaxBackground" parent="."]
 
