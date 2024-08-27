@@ -7,6 +7,7 @@ var funcs: Dictionary = {
 	"redball_move": _redball_move,
 	"redball_die": _redball_die,
 	"camera_update": _camera_update,
+	"checkpoint_hit": _checkpoint_hit,
 	"finish_level": _finish_level,
 }
 var loop: Array[String] = [
@@ -47,9 +48,13 @@ var _can_land: bool = false
 
 # sets up the scene
 func _ready() -> void:
-	# set red ball's and the camera's position to the first checkpoint
-	redball.position = $entities/checkpoints.get_child(0).position
-	camera.position = $entities/checkpoints.get_child(0).position
+	# set up datahelper variables
+	if not DataHelper.data.has("cp_index"):
+		DataHelper.data["cp_index"] = 0
+	
+	# set red ball's and the camera's position
+	redball.position = $entities/checkpoints.get_child(DataHelper.data["cp_index"]).position
+	camera.position = $entities/checkpoints.get_child(DataHelper.data["cp_index"]).position
 	
 	# connect signals
 	redball.get_node("hitbox").connect("area_entered", _redball_area_entered)
@@ -60,6 +65,15 @@ func _ready() -> void:
 	AudioHelper.change_volume("rb1_flag", 9)
 	AudioHelper.change_volume("rb1_music", -3)
 	AudioHelper.play("rb1_music", false)
+	
+	# set up ui buttons
+	var audio_function: Callable = func _audio_function(s: Sprite2D, bus_idx: int) -> void:
+		AudioHelper.toggle_bus_audio(bus_idx)
+		s.texture = load("res://images/rb1/spriddddates/sound" + ("off" if AudioServer.is_bus_mute(bus_idx) else "on") + ".png")
+		s.get_node("button").release_focus()
+	$ui/music/button.connect("button_down", audio_function.bind($ui/music, 1))
+	$ui/sfx/button.connect("button_down", audio_function.bind($ui/sfx, 2))
+	$ui/menu/button.connect("button_down", get_tree().change_scene_to_file.bind("res://scenes/rb1/main.tscn"))
 
 
 # loops every physics frame (31 fps)
@@ -73,12 +87,6 @@ func _physics_process(_delta: float) -> void:
 		funcs["redball_die"].call()
 	if InputHelper.pressed[KEY_R]:
 		get_tree().reload_current_scene()
-	
-	# window modes
-	if InputHelper.pressed[KEY_F1]:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	if InputHelper.pressed[KEY_F2]:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 # checks if a point is inside a body
@@ -128,7 +136,6 @@ func _redball_move() -> void:
 		_can_land = true
 	if (InputHelper.keys[KEY_W] or InputHelper.keys[KEY_UP]) and redball.linear_velocity.y < 0:
 		redball.linear_velocity += Vector2(0, jump_slowfall)
-		
 	
 	# adjust hitbox to rotation
 	rbhitbox.rotation = -redball.rotation
@@ -138,18 +145,22 @@ func _redball_move() -> void:
 
 # kills red ball
 func _redball_die() -> void:
-	# generate death parts
-	_is_alive = false
+	# stop red ball
 	AudioHelper.play("rb1_death")
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	_is_alive = false
 	redball.freeze = true
 	redball.get_node("collision").disabled = true
 	redball.get_node("sprite").visible = false
+	
+	# generate death parts
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	for i in 8:
 		var dpart: RigidBody2D = deathpartscene.instantiate()
 		redball.add_child(dpart)
 		dpart.position = Vector2(10 * rng.randf(), 10 * rng.randf())
 		dpart.linear_velocity = redball.linear_velocity / 3
+	
+	# wait and respawn player
 	await get_tree().create_timer(1.0).timeout
 	get_tree().reload_current_scene()
 
@@ -160,6 +171,13 @@ func _camera_update() -> void:
 	#camera.position = redball.position
 	var tween: Tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(camera, "position", redball.position, 1.0)
+
+
+# runs when hitting a checkpoint
+func _checkpoint_hit(area: Area2D) -> void:
+	area.call_deferred("set_monitorable", false)
+	area.get_parent().play("raise")
+	DataHelper.data["cp_index"] = area.get_parent().get_index()
 
 
 # runs when hitting an ending flag
@@ -176,6 +194,7 @@ func _finish_level(area: Area2D) -> void:
 
 # receives hitbox signals
 func _redball_area_entered(area: Area2D) -> void:
+	if area.get_node("../..").name == "checkpoints":
+		funcs["checkpoint_hit"].call(area)
 	if area.get_node("../..").name == "flags":
-		print("yippee!")
 		funcs["finish_level"].call(area)
