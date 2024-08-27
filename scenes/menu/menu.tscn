@@ -99,10 +99,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="filedialog" type="FileDialog" parent="modsfolder"]
-title = "select a folder"
+title = "Open a Directory"
 initial_position = 1
 size = Vector2i(1000, 600)
-ok_button_text = "select"
+ok_button_text = "Select Current Folder"
 cancel_button_text = "cancel"
 file_mode = 2
 access = 2
