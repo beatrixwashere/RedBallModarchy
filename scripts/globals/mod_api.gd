@@ -2,11 +2,6 @@ extends Node
 ## this script is used extensively for loading mods, and can be accessed from anywhere.
 
 
-## loads a mod into the game.
-func load_mod(path: String) -> void:
-	ProjectSettings.load_resource_pack(path)
-
-
 ## adds a function to the level.
 func add_function(func_name: String, func_callable: Callable) -> void:
 	get_tree().current_scene.funcs[func_name] = func_callable
