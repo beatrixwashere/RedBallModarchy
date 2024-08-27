@@ -13,7 +13,6 @@ func _ready() -> void:
 	for i in mods_dir.get_directories():
 		if mods_dir.dir_exists(i + "/levels"):
 			mods_with_levels.append(i)
-	print(mods_with_levels)
 	
 	# set up level select
 	for i in mods_with_levels:
