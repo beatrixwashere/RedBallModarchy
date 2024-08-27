@@ -47,3 +47,8 @@ func stop(aname: String) -> void:
 func change_volume(aname: String, avol: float) -> void:
 	if has_node(aname):
 		get_node(aname).volume_db = avol
+
+
+## toggles bus audio.
+func toggle_bus_audio(bus_idx: int) -> void:
+	AudioServer.set_bus_mute(bus_idx, not AudioServer.is_bus_mute(bus_idx))
