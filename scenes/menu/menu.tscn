@@ -126,6 +126,7 @@ flat = true
 
 [node name="checkall" type="Button" parent="mods"]
 material = SubResource("ShaderMaterial_1djsb")
+layout_mode = 0
 offset_left = 960.0
 offset_top = 400.0
 offset_right = 1280.0
@@ -144,6 +145,7 @@ vertical_alignment = 1
 
 [node name="uncheckall" type="Button" parent="mods"]
 material = SubResource("ShaderMaterial_1djsb")
+layout_mode = 0
 offset_left = 1280.0
 offset_top = 400.0
 offset_right = 1600.0
@@ -219,6 +221,7 @@ vertical_alignment = 1
 
 [node name="modsfolder" type="Button" parent="."]
 material = SubResource("ShaderMaterial_3rjvg")
+layout_mode = 0
 offset_left = 1440.0
 offset_top = 80.0
 offset_right = 1760.0
