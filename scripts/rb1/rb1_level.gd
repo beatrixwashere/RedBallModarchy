@@ -48,7 +48,7 @@ var _can_land: bool = false
 
 # sets up the scene
 func _ready() -> void:
-	# set up datahelper variables
+	# set up datahelper if running scene directly
 	if not DataHelper.data.has("cp_index"):
 		DataHelper.data["cp_index"] = 0
 	

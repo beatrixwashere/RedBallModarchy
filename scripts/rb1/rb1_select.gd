@@ -54,3 +54,6 @@ func _ready() -> void:
 	
 	# connect back button
 	$back.connect("button_down", get_tree().change_scene_to_file.bind("res://scenes/menu/menu.tscn"))
+	
+	# set up datahelper variables
+	DataHelper.data["cp_index"] = 0
