@@ -53,6 +53,8 @@ func _ready() -> void:
 		get_node("outline").free()
 	var outline: Line2D = Line2D.new()
 	outline.points = polygon + PackedVector2Array([polygon[0]])
+	outline.width = 0.75
+	outline.default_color = Color(0, 0, 0, 1)
 	add_child(outline)
 	outline.name = "outline"
 	
