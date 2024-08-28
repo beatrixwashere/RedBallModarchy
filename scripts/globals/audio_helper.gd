@@ -26,6 +26,12 @@ func unload_audio(aname: String) -> void:
 		remove_child(get_node(aname))
 
 
+## unloads all audio.
+func unload_all_audio() -> void:
+	for i in get_children():
+		i.free()
+
+
 ## plays audio.
 func play(aname: String, restart: bool = true) -> void:
 	# play audio node if it exists

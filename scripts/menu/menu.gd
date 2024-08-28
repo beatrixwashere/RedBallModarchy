@@ -14,6 +14,10 @@ func _ready() -> void:
 			$mods_folder_popup.visible = true
 	else:
 		$mods_folder_popup.visible = true
+	
+	# unload mods (only in exported builds)
+	if not OS.has_feature("editor"):
+		ModAPI.unload_all_mods()
 
 
 ## creates a mod row node
@@ -41,18 +45,21 @@ func load_game(scene_path: String) -> void:
 	# get mods folder path
 	var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_line()
 	
-	# iterate through modlist to find enabled mods
+	# iterate through modlist to find enabled mods (only in exported builds)
 	for i in %modlist.get_children():
 		for j in i.get_children(): # mod_row buttons
-			if j.get_node("check").visible:
-				ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".pck")
+			if j.get_node("check").visible and not OS.has_feature("editor"):
+				if FileAccess.file_exists(mods_path + "/" + j.get_node("label").text + ".pck"):
+					ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".pck")
+				else:
+					ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".zip")
 	
 	# load red ball scene
 	get_tree().change_scene_to_file(scene_path)
 
 
 ## initializes the modlist using the mods folder
-func reload_mods() -> void:
+func reload_mods(filter: String = "") -> void:
 	# clear modlist
 	for i in %modlist.get_children():
 		i.free()
@@ -64,8 +71,8 @@ func reload_mods() -> void:
 	var dir: DirAccess = DirAccess.open(mods_path)
 	var modfiles: Array[String] = []
 	for i in dir.get_files():
-		# check for pck file extension
-		if i.get_extension() == "pck":
+		# filter out mods when searching and check for pck/zip file extension
+		if (filter == "" or filter in i) and (i.get_extension() == "pck" or i.get_extension() == "zip"):
 			modfiles.append(i)
 	
 	# iterate through modfiles and generate modlist
@@ -86,3 +93,11 @@ func set_mods_folder(path: String) -> void:
 	file.store_line(path)
 	reload_mods()
 	$mods_folder_popup.visible = false
+
+
+## toggle all mods
+func toggle_all(check: bool) -> void:
+	# iterate through mod buttons
+	for i in %modlist.get_children():
+		for j in i.get_children():
+			j.get_node("check").visible = check

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://uiuy4f78i2w3"]
+[gd_scene load_steps=14 format=3 uid="uid://uiuy4f78i2w3"]
 
 [ext_resource type="Script" path="res://scripts/menu/menu.gd" id="1_dxd3e"]
 [ext_resource type="Shader" path="res://scripts/shaders/bg.gdshader" id="1_xou5v"]
@@ -14,6 +14,11 @@ shader = ExtResource("1_xou5v")
 shader = ExtResource("4_2j84y")
 shader_parameter/rwidth = 21.0
 shader_parameter/rheight = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fhow"]
+shader = ExtResource("5_il6rp")
+shader_parameter/rwidth = 12.0
+shader_parameter/rheight = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1djsb"]
 shader = ExtResource("5_il6rp")
@@ -68,6 +73,19 @@ text = "Red Ball Modarchy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="version" type="Label" parent="header"]
+offset_left = -216.662
+offset_top = 198.673
+offset_right = 168.338
+offset_bottom = 297.673
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 50
+text = "v.1.0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="mods" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_1odrj")
 layout_mode = 0
@@ -80,7 +98,7 @@ color = Color(0, 0, 0.25098, 1)
 [node name="scroll" type="ScrollContainer" parent="mods"]
 layout_mode = 0
 offset_right = 1600.0
-offset_bottom = 480.0
+offset_bottom = 400.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
@@ -88,6 +106,59 @@ vertical_scroll_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 80
+
+[node name="search" type="Panel" parent="mods"]
+material = SubResource("ShaderMaterial_7fhow")
+layout_mode = 2
+offset_top = 400.0
+offset_right = 960.0
+offset_bottom = 480.0
+
+[node name="lineedit" type="LineEdit" parent="mods/search"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 35
+placeholder_text = "< search mods >"
+alignment = 1
+flat = true
+
+[node name="checkall" type="Button" parent="mods"]
+material = SubResource("ShaderMaterial_1djsb")
+offset_left = 960.0
+offset_top = 400.0
+offset_right = 1280.0
+offset_bottom = 480.0
+metadata/_edit_group_ = true
+
+[node name="label" type="Label" parent="mods/checkall"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 35
+text = "check all"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="uncheckall" type="Button" parent="mods"]
+material = SubResource("ShaderMaterial_1djsb")
+offset_left = 1280.0
+offset_top = 400.0
+offset_right = 1600.0
+offset_bottom = 480.0
+metadata/_edit_group_ = true
+
+[node name="label" type="Label" parent="mods/uncheckall"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 35
+text = "uncheck all"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="reload" type="Button" parent="."]
 material = SubResource("ShaderMaterial_1djsb")
@@ -220,6 +291,9 @@ cancel_button_text = "cancel"
 file_mode = 2
 access = 2
 
+[connection signal="text_changed" from="mods/search/lineedit" to="." method="reload_mods"]
+[connection signal="button_down" from="mods/checkall" to="." method="toggle_all" binds= [true]]
+[connection signal="button_down" from="mods/uncheckall" to="." method="toggle_all" binds= [false]]
 [connection signal="button_down" from="reload" to="." method="reload_mods"]
 [connection signal="button_down" from="redball1" to="." method="load_game" binds= ["res://scenes/rb1/main.tscn"]]
 [connection signal="button_down" from="modsfolder" to="modsfolder/filedialog" method="set_visible" binds= [true]]

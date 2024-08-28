@@ -7,6 +7,9 @@ const level_button: PackedScene = preload("res://scenes/menu/level_button.tscn")
 
 # do everything here lmao
 func _ready() -> void:
+	# unload audio if any exists
+	AudioHelper.unload_all_audio()
+	
 	# get mod folders with levels
 	var mods_with_levels: Array[String] = []
 	var mods_dir: DirAccess = DirAccess.open("res://_mods")
@@ -22,22 +25,30 @@ func _ready() -> void:
 		$packs.add_child(_level_tab)
 		
 		# instantiate buttons
+		# note: get_basename is used an extra time in exported builds to remove the .remap extension
 		for j in DirAccess.open("res://_mods/" + i + "/levels").get_files():
 			var _level_button: Control = level_button.instantiate()
-			_level_button.get_node("label").text = j.get_basename()
+			_level_button.get_node("label").text = \
+					j.get_basename() if OS.has_feature("editor") else j.get_basename().get_basename()
 			_level_button.get_node("button").connect(
 					"button_down",
-					get_tree().change_scene_to_file.bind("res://_mods/" + i + "/levels/" + j)
+					get_tree().change_scene_to_file.bind(
+							"res://_mods/" + i + "/levels/" + (j if OS.has_feature("editor") else j.get_basename())
+					)
 			)
 			$packs.get_node(i + "/list").add_child(_level_button)
 	
 	# handle vanilla levels
+	# note: get_basename is used an extra time in exported builds to remove the .remap extension
 	for i in DirAccess.open("res://scenes/rb1/levels").get_files():
 		var _level_button: Control = level_button.instantiate()
-		_level_button.get_node("label").text = i.get_basename()
+		_level_button.get_node("label").text = \
+				i.get_basename() if OS.has_feature("editor") else i.get_basename().get_basename()
 		_level_button.get_node("button").connect(
 				"button_down",
-				get_tree().change_scene_to_file.bind("res://scenes/rb1/levels/" + i)
+				get_tree().change_scene_to_file.bind(
+						"res://scenes/rb1/levels/" + (i if OS.has_feature("editor") else i.get_basename())
+				)
 		)
 		$packs/RB1/list.add_child(_level_button)
 	
