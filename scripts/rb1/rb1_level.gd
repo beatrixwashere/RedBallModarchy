@@ -28,15 +28,20 @@ var audio: Dictionary = {
 var music: Array[String] = [
 	"rb1_music",
 ]
-var speed_cap_floor: float = 150
-var speed_cap_air: float = 75
-var speed_accel_floor: float = 15
-var speed_accel_air: float = 7.5
-var jump_velocity: float = -165
-var jump_slowfall: float = -2.5
-var point0: Vector2 = Vector2(-6, 11.4)
-var point1: Vector2 = Vector2(0, 12)
-var point2: Vector2 = Vector2(6, 11.4)
+@export_group("redball_constants")
+@export var speed_cap_floor: float = 150
+@export var speed_cap_air: float = 75
+@export var speed_accel_floor: float = 15
+@export var speed_accel_air: float = 7.5
+@export var jump_velocity: float = -165
+@export var jump_slowfall: float = -2.5
+@export_group("floor_points")
+@export var point0: Vector2 = Vector2(-6, 11.4)
+@export var point1: Vector2 = Vector2(0, 12)
+@export var point2: Vector2 = Vector2(6, 11.4)
+@export_group("misc")
+@export var death_barrier: float = 550
+@export var load_next: String = ""
 
 var _is_alive: bool = true
 var _can_land: bool = false
@@ -83,7 +88,7 @@ func _physics_process(_delta: float) -> void:
 		funcs[i].call()
 	
 	# check death barrier
-	if redball.position.y > 550 and _is_alive:
+	if redball.position.y > death_barrier and _is_alive:
 		funcs["redball_die"].call()
 	if InputHelper.pressed[KEY_R]:
 		get_tree().reload_current_scene()
@@ -175,6 +180,7 @@ func _camera_update() -> void:
 
 # runs when hitting a checkpoint
 func _checkpoint_hit(area: Area2D) -> void:
+	# disable collision and set new cp_index
 	area.call_deferred("set_monitorable", false)
 	area.get_parent().play("raise")
 	DataHelper.data["cp_index"] = area.get_parent().get_index()
@@ -182,14 +188,22 @@ func _checkpoint_hit(area: Area2D) -> void:
 
 # runs when hitting an ending flag
 func _finish_level(area: Area2D) -> void:
+	# play audio and disable flag collision
 	AudioHelper.play("rb1_flag")
 	area.call_deferred("set_monitorable", false)
 	area.get_parent().play("raise")
+	
+	# slow down red ball and reset input
 	redball.linear_damp = 3
 	redball.angular_damp = 3
 	InputHelper.reset_all_inputs()
+	
+	# wait and load next scene
 	await get_tree().create_timer(2.871).timeout
-	get_tree().reload_current_scene()
+	if load_next != "":
+		get_tree().change_scene_to_file(load_next)
+	else:
+		get_tree().reload_current_scene()
 
 
 # receives hitbox signals
