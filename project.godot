@@ -25,6 +25,7 @@ ModAPI="*res://scripts/globals/mod_api.gd"
 InputHelper="*res://scripts/globals/input_helper.gd"
 AudioHelper="*res://scripts/globals/audio_helper.gd"
 DataHelper="*res://scripts/globals/data_helper.gd"
+DebugTools="*res://scenes/globals/debug.tscn"
 
 [display]
 
