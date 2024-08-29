@@ -6,6 +6,8 @@ i'll finish this later
 
 tutorial: https://docs.google.com/document/d/1ryYJRndgc2W2dc2x0xG70FB9CzoLK2_v90-as7DETOE/edit?usp=sharing
 
+discord server: https://discord.gg/HQ3TsCHZAx
+
 ---
 
 ## credits
