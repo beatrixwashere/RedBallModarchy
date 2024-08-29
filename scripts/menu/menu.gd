@@ -7,8 +7,8 @@ const mod_row: PackedScene = preload("res://scenes/menu/mod_row.tscn")
 func _ready() -> void:
 	# verify mods folder integrity, if it doesn't exist then force the user to set a new one
 	if FileAccess.file_exists("user://modsfolder.modarchy"):
-		var path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_line()
-		if DirAccess.dir_exists_absolute(path):
+		var path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_pascal_string()
+		if path != "" and DirAccess.dir_exists_absolute(path):
 			reload_mods()
 		else:
 			$mods_folder_popup.visible = true
@@ -43,7 +43,7 @@ func create_mod_row(left: String, right: String = "") -> void:
 ## loads mods and enters the game
 func load_game(scene_path: String) -> void:
 	# get mods folder path
-	var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_line()
+	var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_pascal_string()
 	
 	# iterate through modlist to find enabled mods (only in exported builds)
 	for i in %modlist.get_children():
@@ -65,7 +65,7 @@ func reload_mods(filter: String = "") -> void:
 		i.free()
 	
 	# get mods folder path
-	var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_line()
+	var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_pascal_string()
 	
 	# iterate through each file in the mods folder
 	var dir: DirAccess = DirAccess.open(mods_path)
@@ -90,7 +90,7 @@ func reload_mods(filter: String = "") -> void:
 func set_mods_folder(path: String) -> void:
 	# save path to file and reload
 	var file: FileAccess = FileAccess.open("user://modsfolder.modarchy", FileAccess.WRITE)
-	file.store_line(path)
+	file.store_pascal_string(path)
 	reload_mods()
 	$mods_folder_popup.visible = false
 
