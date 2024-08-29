@@ -91,6 +91,7 @@ func set_mods_folder(path: String) -> void:
 	# save path to file and reload
 	var file: FileAccess = FileAccess.open("user://modsfolder.modarchy", FileAccess.WRITE)
 	file.store_pascal_string(path)
+	file.flush()
 	reload_mods()
 	$mods_folder_popup.visible = false
 
