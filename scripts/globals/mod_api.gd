@@ -1,10 +1,20 @@
 extends Node
 ## this script is used extensively for loading mods, and can be accessed from anywhere.
 
+## stores global modules.
+var global_modules: Array[String] = [
+	
+]
+
 
 ## adds a function to the level.
 func add_function(func_name: String, func_callable: Callable) -> void:
 	get_tree().current_scene.funcs[func_name] = func_callable
+
+
+## adds en entity to check for in the level. func_name must already be added, and must have an area2d argument.
+func add_entity(entity_name: String, func_name: String) -> void:
+	get_tree().current_scene.entities[entity_name] = func_name
 
 
 ## adds a function to the loop.
@@ -20,6 +30,27 @@ func add_audio(audio_name: String, audio_path: String) -> void:
 ## tags audio as music.
 func add_to_music(audio_name: String) -> void:
 	get_tree().current_scene.music.append(audio_name)
+
+
+## adds a global module.
+func add_global_module(mod_name: String) -> void:
+	# check for global.tscn
+	#if FileAccess.file_exists("res://_mods/" + mod_name + "/global.tscn"):
+	global_modules.append(mod_name)
+
+
+## loads all global modules. these will be deleted after their _ready function is called.
+func load_global_modules() -> void:
+	for i in global_modules:
+		if FileAccess.file_exists("res://_mods/" + i + "/global.tscn"):
+			var n: Node = load("res://_mods/" + i + "/global.tscn").instantiate()
+			add_child(n)
+
+
+## unloads all global modules.
+func unload_global_modules() -> void:
+	for i in get_children():
+		i.free()
 
 
 ## unloads all mods from the current instance.

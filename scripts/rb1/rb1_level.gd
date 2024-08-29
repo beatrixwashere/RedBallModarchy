@@ -14,6 +14,10 @@ var loop: Array[String] = [
 	"redball_move",
 	"camera_update",
 ]
+var entities: Dictionary = {
+	"checkpoints": "checkpoint_hit",
+	"flags": "finish_level",
+}
 var audio: Dictionary = {
 	"rb1_bouncepad": "res://audio/rb1/bouncepad.mp3",
 	"rb1_car": "res://audio/rb1/car.mp3",
@@ -76,9 +80,15 @@ func _ready() -> void:
 		AudioHelper.toggle_bus_audio(bus_idx)
 		s.texture = load("res://images/rb1/sprites/sound" + ("off" if AudioServer.is_bus_mute(bus_idx) else "on") + ".png")
 		s.get_node("button").release_focus()
+	var back_to_menu: Callable = func _back_to_menu() -> void:
+		ModAPI.unload_global_modules()
+		get_tree().change_scene_to_file("res://scenes/rb1/main.tscn")
 	$ui/music/button.connect("button_down", audio_function.bind($ui/music, 1))
 	$ui/sfx/button.connect("button_down", audio_function.bind($ui/sfx, 2))
-	$ui/menu/button.connect("button_down", get_tree().change_scene_to_file.bind("res://scenes/rb1/main.tscn"))
+	$ui/menu/button.connect("button_down", back_to_menu)
+	
+	# load global modules
+	ModAPI.load_global_modules()
 
 
 # loops every physics frame (31 fps)
@@ -208,7 +218,7 @@ func _finish_level(area: Area2D) -> void:
 
 # receives hitbox signals
 func _redball_area_entered(area: Area2D) -> void:
-	if area.get_node("../..").name == "checkpoints":
-		funcs["checkpoint_hit"].call(area)
-	if area.get_node("../..").name == "flags":
-		funcs["finish_level"].call(area)
+	# iterate through entities
+	for i in entities.keys():
+		if area.get_node("../..").name == i:
+			funcs[entities[i]].call(area)
