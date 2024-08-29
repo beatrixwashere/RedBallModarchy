@@ -42,7 +42,7 @@ func add_global_module(mod_name: String) -> void:
 ## loads all global modules. these will be deleted after their _ready function is called.
 func load_global_modules() -> void:
 	for i in global_modules:
-		if FileAccess.file_exists("res://_mods/" + i + "/global.tscn"):
+		if FileAccess.file_exists("res://_mods/" + i + "/global.tscn" + ("" if OS.has_feature("editor") else ".remap")):
 			var n: Node = load("res://_mods/" + i + "/global.tscn").instantiate()
 			add_child(n)
 
