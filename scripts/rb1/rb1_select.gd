@@ -7,8 +7,10 @@ const level_button: PackedScene = preload("res://scenes/menu/level_button.tscn")
 
 # do everything here lmao
 func _ready() -> void:
-	# unload audio if any exists
+	# set up audio
 	AudioHelper.unload_all_audio()
+	AudioHelper.load_audio("rb1_hover", "res://audio/rb1/hover.mp3", "sfx")
+	AudioHelper.load_audio("rb1_click", "res://audio/rb1/click.mp3", "sfx")
 	
 	# get mod folders with levels
 	var mods_with_levels: Array[String] = []
@@ -28,6 +30,8 @@ func _ready() -> void:
 		# note: get_basename is used an extra time in exported builds to remove the .remap extension
 		for j in DirAccess.open("res://_mods/" + i + "/levels").get_files():
 			var _level_button: Control = level_button.instantiate()
+			
+			# set properties
 			_level_button.get_node("label").text = \
 					j.get_basename() if OS.has_feature("editor") else j.get_basename().get_basename()
 			_level_button.get_node("button").connect(
@@ -36,12 +40,19 @@ func _ready() -> void:
 							"res://_mods/" + i + "/levels/" + (j if OS.has_feature("editor") else j.get_basename())
 					)
 			)
+			
+			# connect audio
+			_level_button.get_node("button").connect("mouse_entered", AudioHelper.play.bind("rb1_hover"))
+			_level_button.get_node("button").connect("button_down", AudioHelper.play.bind("rb1_click"))
+			
 			$packs.get_node(i + "/list").add_child(_level_button)
 	
 	# handle vanilla levels
 	# note: get_basename is used an extra time in exported builds to remove the .remap extension
 	for i in DirAccess.open("res://scenes/rb1/levels").get_files():
 		var _level_button: Control = level_button.instantiate()
+		
+		# set properties
 		_level_button.get_node("label").text = \
 				i.get_basename() if OS.has_feature("editor") else i.get_basename().get_basename()
 		_level_button.get_node("button").connect(
@@ -50,6 +61,11 @@ func _ready() -> void:
 						"res://scenes/rb1/levels/" + (i if OS.has_feature("editor") else i.get_basename())
 				)
 		)
+		
+		# connect audio
+		_level_button.get_node("button").connect("mouse_entered", AudioHelper.play.bind("rb1_hover"))
+		_level_button.get_node("button").connect("button_down", AudioHelper.play.bind("rb1_click"))
+
 		$packs/RB1/list.add_child(_level_button)
 	
 	# connect back button
