@@ -54,6 +54,7 @@ common/physics_ticks_per_second=31
 2d/default_gravity=300.0
 2d/default_linear_damp=0.0
 2d/default_angular_damp=0.0
+rapier/solver/max_ccd_substeps=16
 
 [rendering]
 
