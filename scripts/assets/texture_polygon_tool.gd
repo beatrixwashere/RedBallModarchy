@@ -40,9 +40,10 @@ func runtime_fixes(tp: TexturePolygon) -> void:
 			y_max = i.y
 	
 	# fix polygon position data
+	var new_polygon: Array[Vector2] = []
 	for i in tp.polygon:
-		i.x -= x_min
-		i.y -= y_min
+		new_polygon.append(i - Vector2(x_min, y_min))
+	tp.polygon = new_polygon
 	tp.position.x += x_min
 	tp.position.y += y_min
 	

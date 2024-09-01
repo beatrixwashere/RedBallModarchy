@@ -35,9 +35,10 @@ func _ready() -> void:
 			y_max = i.y
 	
 	# fix polygon position data
+	var new_polygon: Array[Vector2] = []
 	for i in polygon:
-		i.x -= x_min
-		i.y -= y_min
+		new_polygon.append(i - Vector2(x_min, y_min))
+	polygon = new_polygon
 	position.x += x_min
 	position.y += y_min
 	
