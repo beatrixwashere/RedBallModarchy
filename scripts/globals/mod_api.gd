@@ -12,9 +12,14 @@ func add_function(func_name: String, func_callable: Callable) -> void:
 	get_tree().current_scene.funcs[func_name] = func_callable
 
 
-## adds en entity to check for in the level. func_name must already be added, and must have an area2d argument.
-func add_entity(entity_name: String, func_name: String) -> void:
-	get_tree().current_scene.entities[entity_name] = func_name
+## adds en entity to check for entering in the level. func_name must already be added, and must have an area2d argument.
+func add_entity_enter(entity_name: String, func_name: String) -> void:
+	get_tree().current_scene.entities_enter[entity_name] = func_name
+
+
+## adds en entity to check for exiting in the level. func_name must already be added, and must have an area2d argument.
+func add_entity_exit(entity_name: String, func_name: String) -> void:
+	get_tree().current_scene.entities_exit[entity_name] = func_name
 
 
 ## adds a function to the loop.

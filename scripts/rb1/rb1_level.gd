@@ -14,9 +14,12 @@ var loop: Array[String] = [
 	"redball_move",
 	"camera_update",
 ]
-var entities: Dictionary = {
+var entities_enter: Dictionary = {
 	"checkpoints": "checkpoint_hit",
 	"flags": "finish_level",
+}
+var entities_exit: Dictionary = {
+	
 }
 var audio: Dictionary = {
 	"rb1_bouncepad": "res://audio/rb1/bouncepad.mp3",
@@ -67,6 +70,7 @@ func _ready() -> void:
 	
 	# connect signals
 	redball.get_node("hitbox").connect("area_entered", _redball_area_entered)
+	redball.get_node("hitbox").connect("area_exited", _redball_area_exited)
 	
 	# load audio and play music
 	for i in audio.keys():
@@ -216,9 +220,17 @@ func _finish_level(area: Area2D) -> void:
 		get_tree().reload_current_scene()
 
 
-# receives hitbox signals
+# receives hitbox enter signals
 func _redball_area_entered(area: Area2D) -> void:
 	# iterate through entities
-	for i in entities.keys():
+	for i in entities_enter.keys():
 		if area.get_node("../..").name == i:
-			funcs[entities[i]].call(area)
+			funcs[entities_enter[i]].call(area)
+
+
+# receives hitbox exitsignals
+func _redball_area_exited(area: Area2D) -> void:
+	# iterate through entities
+	for i in entities_exit.keys():
+		if area.get_node("../..").name == i:
+			funcs[entities_exit[i]].call(area)
