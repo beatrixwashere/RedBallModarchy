@@ -78,6 +78,7 @@ func runtime_fixes(tp: TexturePolygon) -> void:
 	body.name = "body"
 	var coll: CollisionPolygon2D = CollisionPolygon2D.new()
 	coll.polygon = tp.polygon
+	coll.visible = false
 	body.add_child(coll)
 	coll.owner = get_scene()
 	coll.name = "collision"
