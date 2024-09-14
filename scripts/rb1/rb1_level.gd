@@ -101,9 +101,17 @@ func _physics_process(_delta: float) -> void:
 	for i in loop:
 		funcs[i].call()
 	
-	# check death barrier
+	# check for death barrier
 	if redball.position.y > death_barrier and _is_alive:
 		funcs["redball_die"].call()
+	
+	# check for kill objects
+	if redball.contact_monitor:
+		for i in redball.get_colliding_bodies():
+			if "-kill" in i.get_parent().name:
+				funcs["redball_die"].call()
+	
+	# reset function
 	if InputHelper.pressed[KEY_R]:
 		get_tree().reload_current_scene()
 
@@ -111,16 +119,16 @@ func _physics_process(_delta: float) -> void:
 # checks if a point is inside a body
 func is_body_at_point(point: Vector2) -> bool:
 	# create raycast at point argument
-	var rc0: RayCast2D = RayCast2D.new()
-	rc0.target_position = Vector2(0, 0)
-	rc0.hit_from_inside = true
-	rc0.position = point
-	add_child(rc0)
+	var rc: RayCast2D = RayCast2D.new()
+	rc.target_position = Vector2(0, 0)
+	rc.hit_from_inside = true
+	rc.position = point
+	add_child(rc)
 	
 	# update raycast and return true if it hit a body
-	rc0.force_raycast_update()
-	rc0.queue_free()
-	return rc0.is_colliding()
+	rc.force_raycast_update()
+	rc.queue_free()
+	return rc.is_colliding()
 
 
 # controls red ball's movement
@@ -168,6 +176,7 @@ func _redball_die() -> void:
 	AudioHelper.play("rb1_death")
 	_is_alive = false
 	redball.freeze = true
+	redball.contact_monitor = false
 	redball.get_node("collision").disabled = true
 	redball.get_node("sprite").visible = false
 	
@@ -181,7 +190,8 @@ func _redball_die() -> void:
 	
 	# wait and respawn player
 	await get_tree().create_timer(1.0).timeout
-	get_tree().reload_current_scene()
+	if is_inside_tree():
+		get_tree().reload_current_scene()
 
 
 # controls the scene camera
