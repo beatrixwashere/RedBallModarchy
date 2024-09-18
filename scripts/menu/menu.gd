@@ -18,6 +18,9 @@ func _ready() -> void:
 	# unload mods (only in exported builds)
 	if not OS.has_feature("editor"):
 		ModAPI.unload_all_mods()
+	
+	# clear global modules
+	ModAPI.global_modules = []
 
 
 ## creates a mod row node
@@ -26,16 +29,22 @@ func create_mod_row(left: String, right: String = "") -> void:
 	var row: Control = mod_row.instantiate()
 	%modlist.add_child(row)
 	
-	# visibility toggle lambda function for buttons
-	var toggle_visibility: Callable = func _toggle_visibility(c: Control) -> void:
-		c.visible = not c.visible
+	# visibility cycle lambda function for buttons
+	var cycle_mode: Callable = func _cycle_mode(c: Control) -> void:
+		if c.get_node("check").visible:
+			c.get_node("check").visible = false
+			c.get_node("global").visible = true
+		elif c.get_node("global").visible:
+			c.get_node("global").visible = false
+		else:
+			c.get_node("check").visible = true
 	
 	# set up buttons
 	row.get_node("left/label").text = left
-	row.get_node("left").connect("button_down", toggle_visibility.bind(row.get_node("left/check")))
+	row.get_node("left").connect("button_down", cycle_mode.bind(row.get_node("left")))
 	if right != "":
 		row.get_node("right/label").text = right
-		row.get_node("right").connect("button_down", toggle_visibility.bind(row.get_node("right/check")))
+		row.get_node("right").connect("button_down", cycle_mode.bind(row.get_node("right")))
 	else:
 		row.get_node("right").queue_free()
 
@@ -48,11 +57,15 @@ func load_game(scene_path: String) -> void:
 	# iterate through modlist to find enabled mods (only in exported builds)
 	for i in %modlist.get_children():
 		for j in i.get_children(): # mod_row buttons
-			if j.get_node("check").visible and not OS.has_feature("editor"):
+			if (j.get_node("check").visible or j.get_node("global").visible) and not OS.has_feature("editor"):
 				if FileAccess.file_exists(mods_path + "/" + j.get_node("label").text + ".pck"):
 					ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".pck")
+					if j.get_node("global").visible:
+						ModAPI.add_global_module(j.get_node("label").text)
 				else:
 					ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".zip")
+					if j.get_node("global").visible:
+						ModAPI.add_global_module(j.get_node("label").text)
 	
 	# load red ball scene
 	get_tree().change_scene_to_file(scene_path)
@@ -102,3 +115,4 @@ func toggle_all(check: bool) -> void:
 	for i in %modlist.get_children():
 		for j in i.get_children():
 			j.get_node("check").visible = check
+			j.get_node("global").visible = false

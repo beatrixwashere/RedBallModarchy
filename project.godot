@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RedBallModarchy"
-config/version="1.0000"
+config/version="1.0002"
 run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=31
@@ -25,6 +25,7 @@ ModAPI="*res://scripts/globals/mod_api.gd"
 InputHelper="*res://scripts/globals/input_helper.gd"
 AudioHelper="*res://scripts/globals/audio_helper.gd"
 DataHelper="*res://scripts/globals/data_helper.gd"
+DebugTools="*res://scenes/globals/debug.tscn"
 
 [display]
 
@@ -53,6 +54,7 @@ common/physics_ticks_per_second=31
 2d/default_gravity=300.0
 2d/default_linear_damp=0.0
 2d/default_angular_damp=0.0
+rapier/solver/max_ccd_substeps=16
 
 [rendering]
 
