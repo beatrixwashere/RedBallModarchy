@@ -1,3 +1,21 @@
+# v.1.0002
+
+### pause menu
+- rb1 now has a fully functional pause menu
+- this is required for all levels going forward; just copy it from `level_1`
+
+### a ton of bugfixes
+- ignore extra .remap extension present in standalone builds
+- ignore the _mods folder when making github commits
+- use continuous collision detection
+- update rapier to latest version
+- added audio to the level select buttons
+- fixed some texturepolygon processing issues
+- add entity enter/exit functionality
+- level select forces displaying scene files only
+
+---
+
 # v.1.0001
 
 ### global modules
