@@ -29,23 +29,25 @@ func _ready() -> void:
 		# instantiate buttons
 		# note: get_basename is used an extra time in exported builds to remove the .remap extension
 		for j in DirAccess.open("res://_mods/" + i + "/levels").get_files():
-			var _level_button: Control = level_button.instantiate()
-			
-			# set properties
-			_level_button.get_node("label").text = \
-					j.get_basename() if OS.has_feature("editor") else j.get_basename().get_basename()
-			_level_button.get_node("button").connect(
-					"button_down",
-					get_tree().change_scene_to_file.bind(
-							"res://_mods/" + i + "/levels/" + (j if OS.has_feature("editor") else j.get_basename())
-					)
-			)
-			
-			# connect audio
-			_level_button.get_node("button").connect("mouse_entered", AudioHelper.play.bind("rb1_hover"))
-			_level_button.get_node("button").connect("button_down", AudioHelper.play.bind("rb1_click"))
-			
-			$packs.get_node(i + "/list").add_child(_level_button)
+			# safeguard for nonlevel files
+			if j.get_extension() == "tscn":
+				var _level_button: Control = level_button.instantiate()
+				
+				# set properties
+				_level_button.get_node("label").text = \
+						j.get_basename() if OS.has_feature("editor") else j.get_basename().get_basename()
+				_level_button.get_node("button").connect(
+						"button_down",
+						get_tree().change_scene_to_file.bind(
+								"res://_mods/" + i + "/levels/" + (j if OS.has_feature("editor") else j.get_basename())
+						)
+				)
+				
+				# connect audio
+				_level_button.get_node("button").connect("mouse_entered", AudioHelper.play.bind("rb1_hover"))
+				_level_button.get_node("button").connect("button_down", AudioHelper.play.bind("rb1_click"))
+				
+				$packs.get_node(i + "/list").add_child(_level_button)
 	
 	# handle vanilla levels
 	# note: get_basename is used an extra time in exported builds to remove the .remap extension
