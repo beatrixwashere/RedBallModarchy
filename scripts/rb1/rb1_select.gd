@@ -30,7 +30,7 @@ func _ready() -> void:
 		# note: get_basename is used an extra time in exported builds to remove the .remap extension
 		for j in DirAccess.open("res://_mods/" + i + "/levels").get_files():
 			# safeguard for nonlevel files
-			if j.get_extension() == "tscn":
+			if j.get_extension() == "tscn" or j.get_basename().get_extension() == "tscn":
 				var _level_button: Control = level_button.instantiate()
 				
 				# set properties
