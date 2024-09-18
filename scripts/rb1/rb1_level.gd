@@ -35,6 +35,7 @@ var audio: Dictionary = {
 var music: Array[String] = [
 	"rb1_music",
 ]
+
 @export_group("redball_constants")
 @export var speed_cap_floor: float = 150
 @export var speed_cap_air: float = 75
@@ -52,6 +53,8 @@ var music: Array[String] = [
 
 var _is_alive: bool = true
 var _can_land: bool = false
+var _music_volume: int = 10
+var _sfx_volume: int = 10
 
 @onready var redball: RigidBody2D = get_node("redball")
 @onready var camera: Camera2D = get_node("camera")
@@ -85,11 +88,14 @@ func _ready() -> void:
 		s.texture = load("res://images/rb1/sprites/sound" + ("off" if AudioServer.is_bus_mute(bus_idx) else "on") + ".png")
 		s.get_node("button").release_focus()
 	var back_to_menu: Callable = func _back_to_menu() -> void:
-		ModAPI.unload_global_modules()
-		get_tree().change_scene_to_file("res://scenes/rb1/main.tscn")
+		get_tree().paused = true
+		$ui/pause.visible = true
 	$ui/music/button.connect("button_down", audio_function.bind($ui/music, 1))
 	$ui/sfx/button.connect("button_down", audio_function.bind($ui/sfx, 2))
 	$ui/menu/button.connect("button_down", back_to_menu)
+	for i in $ui/pause/buttons.get_children():
+		i.connect("button_down", _pause_menu.bind(i.name))
+	
 	
 	# load global modules
 	ModAPI.load_global_modules()
@@ -204,9 +210,11 @@ func _camera_update() -> void:
 
 # runs when hitting a checkpoint
 func _checkpoint_hit(area: Area2D) -> void:
-	# disable collision and set new cp_index
-	area.call_deferred("set_monitorable", false)
-	area.get_parent().play("raise")
+	# disable collision of every collected checkpoint and set new cp_index
+	for i in area.get_parent().get_index() + 1:
+		area.get_node("../..").get_child(i).get_node("hitbox").call_deferred("set_monitorable", false)
+		if area.get_node("../..").get_child(i).frame == 0:
+			area.get_node("../..").get_child(i).play("raise")
 	DataHelper.data["cp_index"] = area.get_parent().get_index()
 
 
@@ -228,6 +236,52 @@ func _finish_level(area: Area2D) -> void:
 		get_tree().change_scene_to_file(load_next)
 	else:
 		get_tree().reload_current_scene()
+
+
+# pause functions
+func _pause_menu(btn: String) -> void:
+	match btn:
+		"return":
+			get_tree().paused = false
+			$ui/pause.visible = false
+		"menu":
+			get_tree().paused = false
+			ModAPI.unload_global_modules()
+			get_tree().change_scene_to_file("res://scenes/rb1/main.tscn")
+		"modmenu":
+			get_tree().paused = false
+			ModAPI.unload_global_modules()
+			AudioHelper.unload_all_audio()
+			get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
+		"music_minus":
+			if _music_volume > 0:
+				_music_volume -= 1
+				$ui/pause/base/music.text = "Music volume: -- " + str(_music_volume * 10) + "% ++"
+				AudioServer.set_bus_volume_db(1, 6 * log(max(_music_volume, 0.01) / 10.0) / log(2))
+		"music_plus":
+			if _music_volume < 10:
+				_music_volume += 1
+				$ui/pause/base/music.text = "Music volume: -- " + str(_music_volume * 10) + "% ++"
+				AudioServer.set_bus_volume_db(1, 6 * log(max(_music_volume, 0.01) / 10.0) / log(2))
+		"sfx_minus":
+			if _sfx_volume > 0:
+				_sfx_volume -= 1
+				$ui/pause/base/sfx.text = "Sfx volume: -- " + str(_sfx_volume * 10) + "% ++"
+				AudioServer.set_bus_volume_db(2, 6 * log(max(_sfx_volume, 0.01) / 10.0) / log(2))
+		"sfx_plus":
+			if _sfx_volume < 10:
+				_sfx_volume += 1
+				$ui/pause/base/sfx.text = "Sfx volume: -- " + str(_sfx_volume * 10) + "% ++"
+				AudioServer.set_bus_volume_db(2, 6 * log(max(_sfx_volume, 0.01) / 10.0) / log(2))
+		"window":
+			if DisplayServer.window_get_mode() == DisplayServer.WindowMode.WINDOW_MODE_WINDOWED:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+				$ui/pause/base/window.text = "Window mode: Fullscreen"
+			elif DisplayServer.window_get_mode() == DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+				$ui/pause/base/window.text = "Window mode: Windowed"
+		_:
+			push_error("invalid argument")
 
 
 # receives hitbox enter signals
