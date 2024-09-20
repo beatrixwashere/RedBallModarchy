@@ -89,7 +89,7 @@ func load_pack_info(packidx: int) -> void:
 	var packpath: String
 	if packname == "RB1":
 		packpath = "res://scenes/rb1/pack_info.tscn"
-	else:
+	elif FileAccess.file_exists("res://_mods/" + packname + "/pack_info.tscn"):
 		packpath = "res://_mods/" + packname + "/pack_info.tscn"
 	
 	# instantiate new pack info scene
