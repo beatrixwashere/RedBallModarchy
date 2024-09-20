@@ -1,3 +1,17 @@
+# v.1.0003
+
+### pack info
+- level mods can now use pack info scenes to display information about the mod
+- for more info, see the *pack info* section in the modarchy text tutorial
+
+### pause fixes
+- use datahelper to store volume
+- preload volume and window text
+- add keybinds for toggling pause menu
+- turning on fullscreen now consistently works
+
+---
+
 # v.1.0002
 
 ### pause menu
