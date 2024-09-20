@@ -25,6 +25,7 @@ shader_parameter/rwidth = 8.0
 shader_parameter/rheight = 4.0
 
 [node name="pack_info" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 800.0

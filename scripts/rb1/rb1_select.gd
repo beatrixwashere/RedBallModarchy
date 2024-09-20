@@ -83,7 +83,7 @@ func load_pack_info(packidx: int) -> void:
 	var packname: String = $packs.get_tab_title(packidx)
 	
 	# remove previous pack info node
-	$info_container.remove_child($info_container.get_child(1))
+	$info_container.remove_child($info_container.get_child(0))
 	
 	# get path for new pack
 	var packpath: String

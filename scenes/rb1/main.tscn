@@ -43,11 +43,6 @@ offset_right = 880.0
 offset_bottom = 1040.0
 color = Color(1, 1, 1, 0.25098)
 
-[node name="outline" type="Line2D" parent="info_container"]
-points = PackedVector2Array(0, 0, 800, 0, 800, 800, 0, 800)
-closed = true
-width = 5.0
-
 [node name="pack_info" parent="info_container" instance=ExtResource("5_qa7ok")]
 
 [node name="back" type="Button" parent="."]
