@@ -3,5 +3,8 @@ extends Control
 
 
 func _physics_process(_delta: float) -> void:
-	get_tree().paused = true
-	get_parent().visible = true
+	if InputHelper.pressed[KEY_P] or InputHelper.pressed[KEY_ESCAPE]:
+		get_tree().paused = false
+		get_parent().visible = false
+		InputHelper.pressed[KEY_P] = false
+		InputHelper.pressed[KEY_ESCAPE] = false

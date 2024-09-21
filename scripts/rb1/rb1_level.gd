@@ -132,6 +132,8 @@ func _physics_process(_delta: float) -> void:
 	if InputHelper.pressed[KEY_P] or InputHelper.pressed[KEY_ESCAPE]:
 		get_tree().paused = true
 		$ui/pause.visible = true
+		InputHelper.pressed[KEY_P] = false
+		InputHelper.pressed[KEY_ESCAPE] = false
 
 
 # checks if a point is inside a body
