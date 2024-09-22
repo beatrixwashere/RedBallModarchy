@@ -88,9 +88,9 @@ func load_pack_info(packidx: int) -> void:
 	# get path for new pack
 	var packpath: String
 	if packname == "RB1":
-		packpath = "res://scenes/rb1/pack_info.tscn"
-	elif FileAccess.file_exists("res://_mods/" + packname + "/pack_info.tscn"):
-		packpath = "res://_mods/" + packname + "/pack_info.tscn"
+		packpath = "res://scenes/rb1/pack_info.tscn" + (".remap" if OS.has_feature("editor") else "")
+	elif FileAccess.file_exists("res://_mods/" + packname + "/pack_info.tscn" + (".remap" if OS.has_feature("editor") else "")):
+		packpath = "res://_mods/" + packname + "/pack_info.tscn" + (".remap" if OS.has_feature("editor") else "")
 	
 	# instantiate new pack info scene
 	$info_container.add_child(load(packpath).instantiate())
