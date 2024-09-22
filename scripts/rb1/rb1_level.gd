@@ -51,6 +51,8 @@ var music: Array[String] = [
 @export var death_barrier: float = 550
 @export var load_next: String = ""
 
+var on_floor: bool = false
+
 var _is_alive: bool = true
 var _can_land: bool = false
 
@@ -158,7 +160,7 @@ func _redball_move() -> void:
 	var check0: bool = is_body_at_point(redball.position + point0)
 	var check1: bool = is_body_at_point(redball.position + point1)
 	var check2: bool = is_body_at_point(redball.position + point2)
-	var on_floor: bool = check0 or check1 or check2
+	on_floor = check0 or check1 or check2
 	#$redball/floorchecks/check0.visible = check0
 	#$redball/floorchecks/check1.visible = check1
 	#$redball/floorchecks/check2.visible = check2
