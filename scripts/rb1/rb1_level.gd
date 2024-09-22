@@ -213,6 +213,7 @@ func _redball_die() -> void:
 	# wait and respawn player
 	await get_tree().create_timer(1.0).timeout
 	if is_inside_tree():
+		get_tree().paused = false
 		get_tree().reload_current_scene()
 
 
