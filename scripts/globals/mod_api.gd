@@ -60,10 +60,11 @@ func unload_global_modules() -> void:
 
 ## unloads all mods from the current instance.
 func unload_all_mods(path: String = "res://_mods", rm_root: bool = false) -> void:
-	var dir: DirAccess = DirAccess.open(path)
-	for i in dir.get_files():
-		dir.remove(i)
-	for i in dir.get_directories():
-		unload_all_mods(path + "/" + i, true)
-	if rm_root:
-		DirAccess.remove_absolute(path)
+	if DirAccess.dir_exists_absolute("res://_mods"):
+		var dir: DirAccess = DirAccess.open(path)
+		for i in dir.get_files():
+			dir.remove(i)
+		for i in dir.get_directories():
+			unload_all_mods(path + "/" + i, true)
+		if rm_root:
+			DirAccess.remove_absolute(path)
