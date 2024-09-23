@@ -22,6 +22,7 @@ func _init() -> void:
 	keys[8388607] = false
 	pressed[8388607] = false
 	echo[8388607] = false
+	process_mode = PROCESS_MODE_ALWAYS
 
 
 # processes input

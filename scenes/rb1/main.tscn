@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgmytuyhkn1ir"]
+[gd_scene load_steps=8 format=3 uid="uid://bgmytuyhkn1ir"]
 
 [ext_resource type="Script" path="res://scripts/rb1/rb1_select.gd" id="1_csfd1"]
 [ext_resource type="Texture2D" uid="uid://88iya5idhe3l" path="res://images/rb1/sprites/sky.svg" id="1_l5cs6"]
 [ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="2_aa781"]
 [ext_resource type="Shader" path="res://scripts/shaders/ui.gdshader" id="3_jyv0s"]
 [ext_resource type="PackedScene" uid="uid://pk7tftforbuy" path="res://scenes/menu/level_tab.tscn" id="4_6d23b"]
+[ext_resource type="PackedScene" uid="uid://brsgu5mxlw0px" path="res://scenes/rb1/pack_info.tscn" id="5_qa7ok"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbqis"]
 shader = ExtResource("3_jyv0s")
@@ -34,24 +35,15 @@ current_tab = 0
 [node name="RB1" parent="packs" instance=ExtResource("4_6d23b")]
 layout_mode = 2
 
-[node name="thumbnail" type="Panel" parent="."]
+[node name="info_container" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 240.0
 offset_right = 880.0
 offset_bottom = 1040.0
+color = Color(1, 1, 1, 0.25098)
 
-[node name="label" type="Label" parent="thumbnail"]
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 800.0
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_aa781")
-theme_override_font_sizes/font_size = 80
-text = "level thumbnails coming soon"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="pack_info" parent="info_container" instance=ExtResource("5_qa7ok")]
 
 [node name="back" type="Button" parent="."]
 material = SubResource("ShaderMaterial_jbqis")
@@ -71,3 +63,5 @@ theme_override_font_sizes/font_size = 35
 text = "back"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="tab_selected" from="packs" to="." method="load_pack_info"]

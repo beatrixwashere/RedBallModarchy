@@ -5,7 +5,7 @@ const level_tab: PackedScene = preload("res://scenes/menu/level_tab.tscn")
 const level_button: PackedScene = preload("res://scenes/menu/level_button.tscn")
 
 
-# do everything here lmao
+# do (almost) everything here lmao
 func _ready() -> void:
 	# set up audio
 	AudioHelper.unload_all_audio()
@@ -75,3 +75,24 @@ func _ready() -> void:
 	
 	# set up datahelper variables
 	DataHelper.data["cp_index"] = 0
+
+
+# load pack info when switching tabs
+func load_pack_info(packidx: int) -> void:
+	# get new pack name
+	var packname: String = $packs.get_tab_title(packidx)
+	
+	# remove previous pack info node
+	if $info_container.get_child_count() > 0:
+		$info_container.remove_child($info_container.get_child(0))
+	
+	# get path for new pack
+	var packpath: String = ""
+	if packname == "RB1":
+		packpath = "res://scenes/rb1/pack_info.tscn"
+	elif FileAccess.file_exists("res://_mods/" + packname + "/pack_info.tscn" + ("" if OS.has_feature("editor") else ".remap")):
+		packpath = "res://_mods/" + packname + "/pack_info.tscn"
+	
+	# instantiate new pack info scene
+	if packpath != "":
+		$info_container.add_child(load(packpath).instantiate())

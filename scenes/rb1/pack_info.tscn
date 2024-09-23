@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://brsgu5mxlw0px"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/ui.gdshader" id="1_juipq"]
+[ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="2_t7kgl"]
+[ext_resource type="Texture2D" uid="uid://c0w7cgp0843pb" path="res://images/rb1/thumbnail.jpg" id="3_crffy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eawh2"]
+shader = ExtResource("1_juipq")
+shader_parameter/rwidth = 10.0
+shader_parameter/rheight = 3.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tl5x4"]
+shader = ExtResource("1_juipq")
+shader_parameter/rwidth = 5.0
+shader_parameter/rheight = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6mk6e"]
+shader = ExtResource("1_juipq")
+shader_parameter/rwidth = 5.0
+shader_parameter/rheight = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kwk2h"]
+shader = ExtResource("1_juipq")
+shader_parameter/rwidth = 8.0
+shader_parameter/rheight = 4.0
+
+[node name="pack_info" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 800.0
+
+[node name="description" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_eawh2")
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 270.0
+
+[node name="label" type="Label" parent="description"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 780.0
+offset_bottom = 250.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_t7kgl")
+theme_override_font_sizes/font_size = 30
+text = "The original 17 levels! Ported to Modarchy by beatrixwashere and others."
+autowrap_mode = 2
+
+[node name="author" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_tl5x4")
+layout_mode = 0
+offset_top = 270.0
+offset_right = 400.0
+offset_bottom = 350.0
+
+[node name="label" type="Label" parent="author"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 370.0
+offset_bottom = 87.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_t7kgl")
+theme_override_font_sizes/font_size = 30
+text = "Evgeniy Fedoseev"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="version" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_6mk6e")
+layout_mode = 0
+offset_left = 400.0
+offset_top = 270.0
+offset_right = 800.0
+offset_bottom = 350.0
+
+[node name="label" type="Label" parent="version"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 370.0
+offset_bottom = 80.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_t7kgl")
+theme_override_font_sizes/font_size = 30
+text = "v.1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="thumbnail" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_kwk2h")
+layout_mode = 0
+offset_top = 350.0
+offset_right = 800.0
+offset_bottom = 800.0
+
+[node name="sprite" type="Sprite2D" parent="thumbnail"]
+scale = Vector2(3.2, 2.32)
+texture = ExtResource("3_crffy")
+centered = false

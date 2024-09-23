@@ -51,10 +51,10 @@ var music: Array[String] = [
 @export var death_barrier: float = 550
 @export var load_next: String = ""
 
+var on_floor: bool = false
+
 var _is_alive: bool = true
 var _can_land: bool = false
-var _music_volume: int = 10
-var _sfx_volume: int = 10
 
 @onready var redball: RigidBody2D = get_node("redball")
 @onready var camera: Camera2D = get_node("camera")
@@ -63,9 +63,13 @@ var _sfx_volume: int = 10
 
 # sets up the scene
 func _ready() -> void:
-	# set up datahelper if running scene directly
+	# set up datahelper values
 	if not DataHelper.data.has("cp_index"):
 		DataHelper.data["cp_index"] = 0
+	if not DataHelper.data.has("music_volume"):
+		DataHelper.data["music_volume"] = 10
+	if not DataHelper.data.has("sfx_volume"):
+		DataHelper.data["sfx_volume"] = 10
 	
 	# set red ball's and the camera's position
 	redball.position = $entities/checkpoints.get_child(DataHelper.data["cp_index"]).position
@@ -87,15 +91,20 @@ func _ready() -> void:
 		AudioHelper.toggle_bus_audio(bus_idx)
 		s.texture = load("res://images/rb1/sprites/sound" + ("off" if AudioServer.is_bus_mute(bus_idx) else "on") + ".png")
 		s.get_node("button").release_focus()
-	var back_to_menu: Callable = func _back_to_menu() -> void:
+	var open_pause_menu: Callable = func _open_pause_menu() -> void:
 		get_tree().paused = true
 		$ui/pause.visible = true
 	$ui/music/button.connect("button_down", audio_function.bind($ui/music, 1))
 	$ui/sfx/button.connect("button_down", audio_function.bind($ui/sfx, 2))
-	$ui/menu/button.connect("button_down", back_to_menu)
+	$ui/menu/button.connect("button_down", open_pause_menu)
 	for i in $ui/pause/buttons.get_children():
 		i.connect("button_down", _pause_menu.bind(i.name))
-	
+	$ui/pause/base/music.text = "Music volume: -- " + str(DataHelper.data["music_volume"] * 10) + "% ++"
+	$ui/pause/base/sfx.text = "Sfx volume: -- " + str(DataHelper.data["sfx_volume"] * 10) + "% ++"
+	if DisplayServer.window_get_mode() == DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN:
+		$ui/pause/base/window.text = "Window mode: Fullscreen"
+	else:
+		$ui/pause/base/window.text = "Window mode: Windowed"
 	
 	# load global modules
 	ModAPI.load_global_modules()
@@ -120,6 +129,13 @@ func _physics_process(_delta: float) -> void:
 	# reset function
 	if InputHelper.pressed[KEY_R]:
 		get_tree().reload_current_scene()
+	
+	# pause keybinds
+	if InputHelper.pressed[KEY_P] or InputHelper.pressed[KEY_ESCAPE]:
+		get_tree().paused = true
+		$ui/pause.visible = true
+		InputHelper.pressed[KEY_P] = false
+		InputHelper.pressed[KEY_ESCAPE] = false
 
 
 # checks if a point is inside a body
@@ -144,7 +160,7 @@ func _redball_move() -> void:
 	var check0: bool = is_body_at_point(redball.position + point0)
 	var check1: bool = is_body_at_point(redball.position + point1)
 	var check2: bool = is_body_at_point(redball.position + point2)
-	var on_floor: bool = check0 or check1 or check2
+	on_floor = check0 or check1 or check2
 	#$redball/floorchecks/check0.visible = check0
 	#$redball/floorchecks/check1.visible = check1
 	#$redball/floorchecks/check2.visible = check2
@@ -197,6 +213,7 @@ func _redball_die() -> void:
 	# wait and respawn player
 	await get_tree().create_timer(1.0).timeout
 	if is_inside_tree():
+		get_tree().paused = false
 		get_tree().reload_current_scene()
 
 
@@ -254,32 +271,32 @@ func _pause_menu(btn: String) -> void:
 			AudioHelper.unload_all_audio()
 			get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
 		"music_minus":
-			if _music_volume > 0:
-				_music_volume -= 1
-				$ui/pause/base/music.text = "Music volume: -- " + str(_music_volume * 10) + "% ++"
-				AudioServer.set_bus_volume_db(1, 6 * log(max(_music_volume, 0.01) / 10.0) / log(2))
+			if DataHelper.data["music_volume"] > 0:
+				DataHelper.data["music_volume"] -= 1
+				$ui/pause/base/music.text = "Music volume: -- " + str(DataHelper.data["music_volume"] * 10) + "% ++"
+				AudioServer.set_bus_volume_db(1, 6 * log(max(DataHelper.data["music_volume"], 0.01) / 10.0) / log(2))
 		"music_plus":
-			if _music_volume < 10:
-				_music_volume += 1
-				$ui/pause/base/music.text = "Music volume: -- " + str(_music_volume * 10) + "% ++"
-				AudioServer.set_bus_volume_db(1, 6 * log(max(_music_volume, 0.01) / 10.0) / log(2))
+			if DataHelper.data["music_volume"] < 10:
+				DataHelper.data["music_volume"] += 1
+				$ui/pause/base/music.text = "Music volume: -- " + str(DataHelper.data["music_volume"] * 10) + "% ++"
+				AudioServer.set_bus_volume_db(1, 6 * log(max(DataHelper.data["music_volume"], 0.01) / 10.0) / log(2))
 		"sfx_minus":
-			if _sfx_volume > 0:
-				_sfx_volume -= 1
-				$ui/pause/base/sfx.text = "Sfx volume: -- " + str(_sfx_volume * 10) + "% ++"
-				AudioServer.set_bus_volume_db(2, 6 * log(max(_sfx_volume, 0.01) / 10.0) / log(2))
+			if DataHelper.data["sfx_volume"] > 0:
+				DataHelper.data["sfx_volume"] -= 1
+				$ui/pause/base/sfx.text = "Sfx volume: -- " + str(DataHelper.data["sfx_volume"] * 10) + "% ++"
+				AudioServer.set_bus_volume_db(2, 6 * log(max(DataHelper.data["sfx_volume"], 0.01) / 10.0) / log(2))
 		"sfx_plus":
-			if _sfx_volume < 10:
-				_sfx_volume += 1
-				$ui/pause/base/sfx.text = "Sfx volume: -- " + str(_sfx_volume * 10) + "% ++"
-				AudioServer.set_bus_volume_db(2, 6 * log(max(_sfx_volume, 0.01) / 10.0) / log(2))
+			if DataHelper.data["sfx_volume"] < 10:
+				DataHelper.data["sfx_volume"] += 1
+				$ui/pause/base/sfx.text = "Sfx volume: -- " + str(DataHelper.data["sfx_volume"] * 10) + "% ++"
+				AudioServer.set_bus_volume_db(2, 6 * log(max(DataHelper.data["sfx_volume"], 0.01) / 10.0) / log(2))
 		"window":
-			if DisplayServer.window_get_mode() == DisplayServer.WindowMode.WINDOW_MODE_WINDOWED:
-				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-				$ui/pause/base/window.text = "Window mode: Fullscreen"
-			elif DisplayServer.window_get_mode() == DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN:
+			if DisplayServer.window_get_mode() == DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 				$ui/pause/base/window.text = "Window mode: Windowed"
+			else:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+				$ui/pause/base/window.text = "Window mode: Fullscreen"
 		_:
 			push_error("invalid argument")
 
