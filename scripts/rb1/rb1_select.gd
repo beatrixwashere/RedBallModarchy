@@ -83,14 +83,16 @@ func load_pack_info(packidx: int) -> void:
 	var packname: String = $packs.get_tab_title(packidx)
 	
 	# remove previous pack info node
-	$info_container.remove_child($info_container.get_child(0))
+	if $info_container.get_child_count() > 0:
+		$info_container.remove_child($info_container.get_child(0))
 	
 	# get path for new pack
-	var packpath: String
+	var packpath: String = ""
 	if packname == "RB1":
-		packpath = "res://scenes/rb1/pack_info.tscn" + (".remap" if OS.has_feature("editor") else "")
-	elif FileAccess.file_exists("res://_mods/" + packname + "/pack_info.tscn" + (".remap" if OS.has_feature("editor") else "")):
-		packpath = "res://_mods/" + packname + "/pack_info.tscn" + (".remap" if OS.has_feature("editor") else "")
+		packpath = "res://scenes/rb1/pack_info.tscn"
+	elif FileAccess.file_exists("res://_mods/" + packname + "/pack_info.tscn" + ("" if OS.has_feature("editor") else ".remap")):
+		packpath = "res://_mods/" + packname + "/pack_info.tscn"
 	
 	# instantiate new pack info scene
-	$info_container.add_child(load(packpath).instantiate())
+	if packpath != "":
+		$info_container.add_child(load(packpath).instantiate())
