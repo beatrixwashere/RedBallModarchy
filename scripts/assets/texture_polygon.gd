@@ -37,17 +37,20 @@ func _ready() -> void:
 	# fix polygon position data
 	var new_polygon: Array[Vector2] = []
 	for i in polygon:
-		new_polygon.append(i - Vector2(x_min, y_min))
+		new_polygon.append(i - Vector2((x_min + x_max) / 2, (y_min + y_max) / 2))
 	polygon = new_polygon
-	position.x += x_min
-	position.y += y_min
+	position.x += (x_min + x_max) / 2
+	position.y += (y_min + y_max) / 2
 	
 	# fix texture data
-	if texture.get_height() / (y_max - y_min) > texture.get_width() / (x_max - x_min):
-		texture_scale.x = texture.get_width() / (x_max - x_min)
-	else:
-		texture_scale.x = texture.get_height() / (y_max - y_min)
-	texture_scale.y = texture_scale.x
+	if texture:
+		if texture.get_height() / (y_max - y_min) > texture.get_width() / (x_max - x_min):
+			texture_scale.x = texture.get_width() / (x_max - x_min)
+		else:
+			texture_scale.x = texture.get_height() / (y_max - y_min)
+		texture_scale.y = texture_scale.x
+		texture_offset.x = (x_max - x_min) / 2
+		texture_offset.y = (y_max - y_min) / 2
 	
 	# add outline
 	if has_node("outline"):
