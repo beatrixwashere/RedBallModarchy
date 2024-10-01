@@ -15,9 +15,10 @@ func _ready() -> void:
 	# get mod folders with levels
 	var mods_with_levels: Array[String] = []
 	var mods_dir: DirAccess = DirAccess.open("res://_mods")
-	for i in mods_dir.get_directories():
-		if mods_dir.dir_exists(i + "/levels"):
-			mods_with_levels.append(i)
+	if mods_dir:
+		for i in mods_dir.get_directories():
+			if mods_dir.dir_exists(i + "/levels"):
+				mods_with_levels.append(i)
 	
 	# set up level select
 	for i in mods_with_levels:

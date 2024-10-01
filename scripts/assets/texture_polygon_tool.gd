@@ -42,17 +42,20 @@ func runtime_fixes(tp: TexturePolygon) -> void:
 	# fix polygon position data
 	var new_polygon: Array[Vector2] = []
 	for i in tp.polygon:
-		new_polygon.append(i - Vector2(x_min, y_min))
+		new_polygon.append(i - Vector2((x_min + x_max) / 2, (y_min + y_max) / 2))
 	tp.polygon = new_polygon
-	tp.position.x += x_min
-	tp.position.y += y_min
+	tp.position.x += (x_min + x_max) / 2
+	tp.position.y += (y_min + y_max) / 2
 	
 	# fix texture data
-	if tp.texture.get_height() / (y_max - y_min) > tp.texture.get_width() / (x_max - x_min):
-		tp.texture_scale.x = tp.texture.get_width() / (x_max - x_min)
-	else:
-		tp.texture_scale.x = tp.texture.get_height() / (y_max - y_min)
-	tp.texture_scale.y = tp.texture_scale.x
+	if tp.texture:
+		if tp.texture.get_height() / (y_max - y_min) > tp.texture.get_width() / (x_max - x_min):
+			tp.texture_scale.x = tp.texture.get_width() / (x_max - x_min)
+		else:
+			tp.texture_scale.x = tp.texture.get_height() / (y_max - y_min)
+		tp.texture_scale.y = tp.texture_scale.x
+		tp.texture_offset.x = (x_max - x_min) / 2
+		tp.texture_offset.y = (y_max - y_min) / 2
 	
 	# add outline
 	if tp.has_node("outline"):

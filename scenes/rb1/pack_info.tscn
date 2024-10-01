@@ -46,7 +46,7 @@ offset_bottom = 250.0
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_t7kgl")
 theme_override_font_sizes/font_size = 30
-text = "The original 17 levels! Ported to Modarchy by beatrixwashere and others."
+text = "The original 17 levels! Ported to Modarchy by beatrixwashere, Thog_n, and Incredi."
 autowrap_mode = 2
 
 [node name="author" type="Panel" parent="."]
