@@ -9,6 +9,7 @@ var funcs: Dictionary = {
 	"camera_update": _camera_update,
 	"checkpoint_hit": _checkpoint_hit,
 	"finish_level": _finish_level,
+	"press_button": _press_button,
 }
 var loop: Array[String] = [
 	"redball_move",
@@ -17,6 +18,8 @@ var loop: Array[String] = [
 var entities_enter: Dictionary = {
 	"checkpoints": "checkpoint_hit",
 	"flags": "finish_level",
+	"spikes": "redball_die",
+	"buttons": "press_button"
 }
 var entities_exit: Dictionary = {
 	
@@ -108,6 +111,14 @@ func _ready() -> void:
 	
 	# load global modules
 	ModAPI.load_global_modules()
+	
+	# contact skin testing
+	var queue: Array = get_tree().current_scene.get_children()
+	while queue.size() > 0:
+		if queue[0] is StaticBody2D or queue[0] is AnimatableBody2D:
+			RapierPhysicsServer2D.body_set_extra_param(queue[0].get_rid(), 0, 0.5)
+		queue.append_array(queue[0].get_children())
+		queue.pop_front()
 
 
 # loops every physics frame (31 fps)
@@ -193,7 +204,7 @@ func _redball_move() -> void:
 
 
 # kills red ball
-func _redball_die() -> void:
+func _redball_die(_area: Area2D = null) -> void:
 	# stop red ball
 	AudioHelper.play("rb1_death")
 	_is_alive = false
@@ -220,9 +231,11 @@ func _redball_die() -> void:
 # controls the scene camera
 func _camera_update() -> void:
 	# tween to red ball
-	#camera.position = redball.position
-	var tween: Tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(camera, "position", redball.position, 1.0)
+	var strength: float = 0.1 # 0 < strength < 1 // lower is slower
+	camera.position = redball.position * strength + camera.position * (1 - strength)
+	# mirrors nondeterministic tweener
+	#var tween: Tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	#tween.tween_property(camera, "position", redball.position, 1.0)
 
 
 # runs when hitting a checkpoint
@@ -249,10 +262,24 @@ func _finish_level(area: Area2D) -> void:
 	
 	# wait and load next scene
 	await get_tree().create_timer(2.871).timeout
-	if load_next != "":
-		get_tree().change_scene_to_file(load_next)
-	else:
-		get_tree().reload_current_scene()
+	if is_inside_tree():
+		get_tree().paused = false
+		if load_next != "":
+			get_tree().change_scene_to_file(load_next)
+		else:
+			get_tree().reload_current_scene()
+
+
+# runs when pressing a button
+func _press_button(area: Area2D) -> void:
+	# play audio and disable button collision
+	AudioHelper.play("rb1_checkbox")
+	area.call_deferred("set_monitorable", false)
+	
+	# disable linked object
+	var link_name: String = area.get_parent().name
+	get_tree().current_scene.get_node("objects/" + link_name).visible = false
+	get_tree().current_scene.get_node("objects/" + link_name + "/body/collision").disabled = true
 
 
 # pause functions
