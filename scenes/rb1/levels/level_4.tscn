@@ -1,0 +1,877 @@
+[gd_scene load_steps=45 format=3 uid="uid://bmf45nxswiyce"]
+
+[ext_resource type="Texture2D" uid="uid://88iya5idhe3l" path="res://images/rb1/sprites/sky.svg" id="1_7iq8b"]
+[ext_resource type="Texture2D" uid="uid://bwiilvsbem5yg" path="res://icon.svg" id="1_nkpa1"]
+[ext_resource type="Script" path="res://scripts/rb1/rb1_level.gd" id="1_ydg73"]
+[ext_resource type="Texture2D" uid="uid://dkjsvplpfx6a4" path="res://images/rb1/sprites/cloud1.png" id="2_im6p5"]
+[ext_resource type="Texture2D" uid="uid://b4dd008gptmq8" path="res://images/rb1/sprites/cloud2.png" id="3_uu3a3"]
+[ext_resource type="Texture2D" uid="uid://1l77qvvaygx" path="res://images/rb1/sprites/soundon.png" id="4_d3c43"]
+[ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="5_3d2q0"]
+[ext_resource type="Texture2D" uid="uid://r4d6wbpil2be" path="res://images/rb1/sprites/pause_bg.svg" id="6_ywmfi"]
+[ext_resource type="PackedScene" uid="uid://ciigq32r4rwsm" path="res://scenes/rb1/assets/redball.tscn" id="7_ltdem"]
+[ext_resource type="Texture2D" uid="uid://cikh2c375qqqa" path="res://images/rb1/textures/groundtexture.png" id="8_n8pjw"]
+[ext_resource type="Script" path="res://scripts/assets/texture_polygon.gd" id="9_2pdv2"]
+[ext_resource type="PackedScene" uid="uid://b21x76ypama6i" path="res://scenes/rb1/assets/checkpoint.tscn" id="11_irkwb"]
+[ext_resource type="Texture2D" uid="uid://b02peed4sywgq" path="res://images/rb1/sprites/grasssprite.svg" id="11_ruk7o"]
+[ext_resource type="Script" path="res://scenes/rb1/levels/tempscripts/death_stomper.gd" id="12_2sq8t"]
+[ext_resource type="Script" path="res://scenes/rb1/levels/tempscripts/falling_platform.gd" id="12_eyasm"]
+[ext_resource type="Texture2D" uid="uid://bo6yn4h0ni6us" path="res://images/rb1/textures/metaltexture.png" id="12_mb5wr"]
+[ext_resource type="Script" path="res://scenes/rb1/levels/tempscripts/axe.gd" id="14_4shiy"]
+[ext_resource type="Texture2D" uid="uid://mcukk377e0ge" path="res://images/rb1/textures/stonetexture.png" id="14_nltbv"]
+[ext_resource type="Texture2D" uid="uid://cmdukbx5innin" path="res://images/rb1/sprites/flagspritesheet.png" id="17_55qlf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ubdo8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vjrn3"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_duvma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn84h"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(0, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77hjr"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(100, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pffa7"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(200, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snt3t"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(300, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st6s7"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(400, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d5ht"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(500, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0lqt"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(600, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kab1e"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(700, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmdi2"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(800, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh7gp"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(900, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilp7o"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1000, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aexx"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1100, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bvy5"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1200, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04g3y"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1300, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xbge"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1400, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8ww3"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1500, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m06v"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1600, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl6ls"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1700, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvqmm"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1800, 0, 100, 186)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elxsd"]
+atlas = ExtResource("17_55qlf")
+region = Rect2(1900, 0, 100, 186)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ag1w5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn84h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77hjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pffa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snt3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st6s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d5ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0lqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kab1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmdi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh7gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilp7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7aexx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bvy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04g3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xbge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8ww3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m06v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl6ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvqmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elxsd")
+}],
+"loop": false,
+"name": &"raise",
+"speed": 40.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4gn1"]
+size = Vector2(61.6, 163.8)
+
+[node name="Level4" type="Node2D"]
+script = ExtResource("1_ydg73")
+load_next = "res://scenes/rb1/levels/level_5.tscn"
+
+[node name="modules" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(472, 240)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_nkpa1")
+
+[node name="bg" type="ParallaxBackground" parent="."]
+
+[node name="sky" type="ParallaxLayer" parent="bg"]
+position = Vector2(-6, -20)
+scale = Vector2(0.38, 0.38)
+motion_scale = Vector2(0, 0)
+metadata/_edit_group_ = true
+
+[node name="sprite" type="Sprite2D" parent="bg/sky"]
+scale = Vector2(2.56, 1.8)
+texture = ExtResource("1_7iq8b")
+centered = false
+
+[node name="clouds" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1920, 1080)
+metadata/_edit_group_ = true
+
+[node name="sprite_0" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(105.263, 78.9474)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_im6p5")
+centered = false
+
+[node name="sprite_1" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(290, 350)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_im6p5")
+centered = false
+
+[node name="sprite_2" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(160, 730)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_im6p5")
+centered = false
+
+[node name="sprite_3" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(1000, 610)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_im6p5")
+centered = false
+
+[node name="sprite_4" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(1210, 140)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_im6p5")
+centered = false
+
+[node name="sprite_5" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(1610, 210)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_im6p5")
+centered = false
+
+[node name="sprite_6" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(1370, 800)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_im6p5")
+centered = false
+
+[node name="sprite_7" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(530, 130)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_uu3a3")
+centered = false
+
+[node name="sprite_8" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(920, 350)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_uu3a3")
+centered = false
+
+[node name="sprite_9" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(400, 560)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_uu3a3")
+centered = false
+
+[node name="sprite_10" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(670, 890)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_uu3a3")
+centered = false
+
+[node name="sprite_11" type="Sprite2D" parent="bg/clouds"]
+position = Vector2(1570, 590)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_uu3a3")
+centered = false
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="music" type="Sprite2D" parent="ui"]
+position = Vector2(40, 40)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_d3c43")
+metadata/_edit_group_ = true
+
+[node name="button" type="Button" parent="ui/music"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 27.0
+flat = true
+
+[node name="label" type="Label" parent="ui/music"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 7.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 25
+text = "M"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" type="Sprite2D" parent="ui"]
+position = Vector2(100, 40)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_d3c43")
+metadata/_edit_group_ = true
+
+[node name="button" type="Button" parent="ui/sfx"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 31.0
+offset_bottom = 27.0
+flat = true
+
+[node name="label" type="Label" parent="ui/sfx"]
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 7.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 25
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menu" type="Label" parent="ui"]
+offset_left = 138.0
+offset_top = 14.0
+offset_right = 618.0
+offset_bottom = 223.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 150
+text = "Menu"
+metadata/_edit_group_ = true
+
+[node name="button" type="Button" parent="ui/menu"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 220.0
+flat = true
+
+[node name="pause" type="CanvasLayer" parent="ui"]
+visible = false
+
+[node name="bg" type="ColorRect" parent="ui/pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.376471)
+
+[node name="base" type="Sprite2D" parent="ui/pause"]
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ywmfi")
+
+[node name="pause" type="Label" parent="ui/pause/base"]
+offset_left = -150.0
+offset_top = -63.3333
+offset_right = 1050.0
+offset_bottom = 20.6667
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 60
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="return" type="Label" parent="ui/pause/base"]
+offset_left = -150.0
+offset_top = -36.6667
+offset_right = 1050.0
+offset_bottom = 30.3333
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 40
+text = "Return to the game"
+horizontal_alignment = 1
+
+[node name="menu" type="Label" parent="ui/pause/base"]
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 1050.0
+offset_bottom = 47.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 40
+text = "Back to Main menu"
+horizontal_alignment = 1
+
+[node name="modmenu" type="Label" parent="ui/pause/base"]
+offset_left = -150.0
+offset_top = -3.33333
+offset_right = 1050.0
+offset_bottom = 63.6667
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 40
+text = "Back to Mod menu"
+horizontal_alignment = 1
+
+[node name="music" type="Label" parent="ui/pause/base"]
+offset_left = -150.0
+offset_top = 13.3333
+offset_right = 1050.0
+offset_bottom = 80.3333
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 40
+text = "Music volume: -- 100% ++"
+horizontal_alignment = 1
+
+[node name="sfx" type="Label" parent="ui/pause/base"]
+offset_left = -150.0
+offset_top = 30.0
+offset_right = 1050.0
+offset_bottom = 98.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 40
+text = "Sfx volume: -- 100% ++"
+horizontal_alignment = 1
+
+[node name="window" type="Label" parent="ui/pause/base"]
+offset_left = -150.0
+offset_top = 46.6667
+offset_right = 1050.0
+offset_bottom = 114.667
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 40
+text = "Window mode: Windowed"
+horizontal_alignment = 1
+
+[node name="buttons" type="Control" parent="ui/pause"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="return" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 430.0
+offset_right = 1110.0
+offset_bottom = 480.0
+flat = true
+
+[node name="menu" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 480.0
+offset_right = 1110.0
+offset_bottom = 530.0
+flat = true
+
+[node name="modmenu" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 530.0
+offset_right = 1110.0
+offset_bottom = 580.0
+flat = true
+
+[node name="music_minus" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 970.0
+offset_top = 580.0
+offset_right = 1030.0
+offset_bottom = 630.0
+flat = true
+
+[node name="music_plus" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 580.0
+offset_right = 1160.0
+offset_bottom = 630.0
+flat = true
+
+[node name="sfx_minus" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 630.0
+offset_right = 1010.0
+offset_bottom = 680.0
+flat = true
+
+[node name="sfx_plus" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 630.0
+offset_right = 1140.0
+offset_bottom = 680.0
+flat = true
+
+[node name="window" type="Button" parent="ui/pause/buttons"]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 680.0
+offset_right = 1160.0
+offset_bottom = 730.0
+flat = true
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="Beginning" type="Polygon2D" parent="objects"]
+position = Vector2(-130, 51)
+texture = ExtResource("8_n8pjw")
+polygon = PackedVector2Array(440, 241, 440, 122, 490, 122, 490, 95, 407, 95, 407, 116, 382, 116, 382, 137, 361, 137, 361, 159, 339, 159, 339, 178, 318, 178, 318, 200, 295, 200, 295.088, 221, -376, 221, -376, 242)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("8_n8pjw")
+skip_in_tool = true
+
+[node name="Ending Platform" type="Polygon2D" parent="objects"]
+position = Vector2(587, 133)
+texture = ExtResource("8_n8pjw")
+polygon = PackedVector2Array(786, 34, 786, 13, -31, 13, -31, 34)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("8_n8pjw")
+skip_in_tool = true
+
+[node name="Top 1" type="Polygon2D" parent="objects"]
+position = Vector2(-409, 67)
+texture = ExtResource("8_n8pjw")
+polygon = PackedVector2Array(96, 32, -97, 32, -97, 53, 96, 53)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="Top 2" type="Polygon2D" parent="objects"]
+position = Vector2(-175, 67)
+texture = ExtResource("8_n8pjw")
+polygon = PackedVector2Array(1, 32, -97, 32, -97, 53, 1, 53)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="Top 3" type="Polygon2D" parent="objects"]
+position = Vector2(-35, 67)
+texture = ExtResource("8_n8pjw")
+polygon = PackedVector2Array(1, 32, -97, 32, -97, 53, 1, 53)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="Top 4" type="Polygon2D" parent="objects"]
+position = Vector2(103, 67)
+texture = ExtResource("8_n8pjw")
+polygon = PackedVector2Array(1, 32, -96, 32, -96, 53, 1, 53)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="grass" type="Sprite2D" parent="objects"]
+position = Vector2(-430.059, 268.335)
+scale = Vector2(0.248431, 0.248431)
+texture = ExtResource("11_ruk7o")
+
+[node name="grass2" type="Sprite2D" parent="objects"]
+position = Vector2(108, 267.417)
+scale = Vector2(0.189609, 0.251667)
+texture = ExtResource("11_ruk7o")
+
+[node name="grass3" type="Sprite2D" parent="objects"]
+position = Vector2(630.941, 143.335)
+scale = Vector2(0.248431, 0.248431)
+texture = ExtResource("11_ruk7o")
+
+[node name="grass4" type="Sprite2D" parent="objects"]
+position = Vector2(1167, 142)
+scale = Vector2(0.17, 0.258)
+texture = ExtResource("11_ruk7o")
+
+[node name="entities" type="Node2D" parent="."]
+
+[node name="Falling -fall" type="RigidBody2D" parent="entities"]
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("12_eyasm")
+
+[node name="Falling Platform" type="Polygon2D" parent="entities/Falling -fall"]
+position = Vector2(383, 107)
+texture = ExtResource("8_n8pjw")
+texture_scale = Vector2(3.64234, 3.64234)
+polygon = PackedVector2Array(12, 39, 12, 50, 137, 50, 137, 39)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("8_n8pjw")
+use_collision = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/Falling -fall"]
+polygon = PackedVector2Array(395, 146, 395, 157, 520, 157, 520, 146)
+
+[node name="grass" type="Sprite2D" parent="entities/Falling -fall"]
+position = Vector2(456.353, 143.335)
+scale = Vector2(0.209216, 0.209216)
+texture = ExtResource("11_ruk7o")
+
+[node name="checkpoints" type="Node2D" parent="entities"]
+
+[node name="checkpoint_0" parent="entities/checkpoints" instance=ExtResource("11_irkwb")]
+position = Vector2(-469, 253)
+frame = 4
+frame_progress = 1.0
+
+[node name="checkpoint_1" parent="entities/checkpoints" instance=ExtResource("11_irkwb")]
+position = Vector2(293, 125)
+
+[node name="-kill" type="Node2D" parent="entities"]
+
+[node name="Stomper 1 -kill" type="RigidBody2D" parent="entities/-kill"]
+position = Vector2(-312, 7)
+mass = 1000.0
+lock_rotation = true
+script = ExtResource("12_2sq8t")
+max_height = -100.0
+min_height = 11.75
+
+[node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 1 -kill"]
+texture = ExtResource("12_mb5wr")
+texture_offset = Vector2(0, 125.09)
+texture_scale = Vector2(0.60262, 0.60262)
+texture_rotation = 1.309
+polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("12_mb5wr")
+use_collision = false
+baked = true
+
+[node name="outline" type="Line2D" parent="entities/-kill/Stomper 1 -kill/Top -kill"]
+points = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2, 0, 2)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="Bottom -kill" type="Polygon2D" parent="entities/-kill/Stomper 1 -kill"]
+position = Vector2(-60, 195)
+color = Color(0.6, 0, 0, 1)
+texture = SubResource("CanvasTexture_ubdo8")
+texture_scale = Vector2(0.00775194, 0.00775194)
+polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
+script = ExtResource("9_2pdv2")
+texture_shortcut = SubResource("CanvasTexture_ubdo8")
+use_collision = false
+
+[node name="outline" type="Line2D" parent="entities/-kill/Stomper 1 -kill/Bottom -kill"]
+points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="-kill" type="CollisionPolygon2D" parent="entities/-kill/Stomper 1 -kill"]
+polygon = PackedVector2Array(0, 2, 39, 2, 39, 229, 69, 260, -26, 260, 0, 229)
+
+[node name="Stomper 2 -kill" type="RigidBody2D" parent="entities/-kill"]
+position = Vector2(-173, -88)
+mass = 1000.0
+lock_rotation = true
+script = ExtResource("12_2sq8t")
+max_height = -100.0
+min_height = 11.75
+
+[node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 2 -kill"]
+texture = ExtResource("12_mb5wr")
+texture_offset = Vector2(0, 125.09)
+texture_scale = Vector2(0.60262, 0.60262)
+texture_rotation = 1.309
+polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("12_mb5wr")
+use_collision = false
+baked = true
+
+[node name="outline" type="Line2D" parent="entities/-kill/Stomper 2 -kill/Top -kill"]
+points = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2, 0, 2)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="Bottom -kill" type="Polygon2D" parent="entities/-kill/Stomper 2 -kill"]
+position = Vector2(-60, 195)
+color = Color(0.6, 0, 0, 1)
+texture = SubResource("CanvasTexture_ubdo8")
+texture_scale = Vector2(0.00775194, 0.00775194)
+polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
+script = ExtResource("9_2pdv2")
+texture_shortcut = SubResource("CanvasTexture_ubdo8")
+use_collision = false
+
+[node name="outline" type="Line2D" parent="entities/-kill/Stomper 2 -kill/Bottom -kill"]
+points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="-kill" type="CollisionPolygon2D" parent="entities/-kill/Stomper 2 -kill"]
+polygon = PackedVector2Array(0, 2, 39, 2, 39, 229, 69, 260, -26, 260, 0, 229)
+
+[node name="Stomper 3 -kill" type="RigidBody2D" parent="entities/-kill"]
+position = Vector2(-33, 7)
+mass = 1000.0
+lock_rotation = true
+script = ExtResource("12_2sq8t")
+max_height = -100.0
+min_height = 11.75
+
+[node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 3 -kill"]
+texture = ExtResource("12_mb5wr")
+texture_offset = Vector2(0, 125.09)
+texture_scale = Vector2(0.60262, 0.60262)
+texture_rotation = 1.309
+polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("12_mb5wr")
+use_collision = false
+baked = true
+
+[node name="outline" type="Line2D" parent="entities/-kill/Stomper 3 -kill/Top -kill"]
+points = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2, 0, 2)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="Bottom -kill" type="Polygon2D" parent="entities/-kill/Stomper 3 -kill"]
+position = Vector2(-60, 195)
+color = Color(0.6, 0, 0, 1)
+texture = SubResource("CanvasTexture_ubdo8")
+texture_scale = Vector2(0.00775194, 0.00775194)
+polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
+script = ExtResource("9_2pdv2")
+texture_shortcut = SubResource("CanvasTexture_ubdo8")
+use_collision = false
+
+[node name="outline" type="Line2D" parent="entities/-kill/Stomper 3 -kill/Bottom -kill"]
+points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="-kill" type="CollisionPolygon2D" parent="entities/-kill/Stomper 3 -kill"]
+polygon = PackedVector2Array(0, 2, 39, 2, 39, 229, 69, 260, -26, 260, 0, 229)
+
+[node name="Axe 1 -kill" type="StaticBody2D" parent="entities/-kill"]
+position = Vector2(820, -28)
+rotation = -0.846485
+script = ExtResource("14_4shiy")
+direction = 1
+
+[node name="TexturePolygon" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
+texture = ExtResource("14_nltbv")
+polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -2, 148, 0, 162, 2, 148, 7, 0, 5, -5)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("14_nltbv")
+use_collision = false
+
+[node name="Axe Left" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
+color = Color(0.6, 0, 0, 1)
+polygon = PackedVector2Array(-2, 148, -24, 163, -29, 149, -31, 134, -29, 119, -24, 107, -2.94, 120)
+script = ExtResource("9_2pdv2")
+texture_shortcut = SubResource("CanvasTexture_vjrn3")
+use_collision = false
+
+[node name="Axe Left2" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
+color = Color(0.6, 0, 0, 1)
+polygon = PackedVector2Array(2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120)
+script = ExtResource("9_2pdv2")
+texture_shortcut = SubResource("CanvasTexture_duvma")
+use_collision = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/-kill/Axe 1 -kill"]
+polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -3, 120, -24, 107, -29, 119, -31, 134, -29, 149, -24, 163, -2, 148, 0, 162, 2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120, 7, 0, 5, -5)
+
+[node name="Axe 2 -kill" type="StaticBody2D" parent="entities/-kill"]
+position = Vector2(1104, -28)
+rotation = 0.846485
+script = ExtResource("14_4shiy")
+direction = -1
+
+[node name="TexturePolygon" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
+texture = ExtResource("14_nltbv")
+polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -2, 148, 0, 162, 2, 148, 7, 0, 5, -5)
+script = ExtResource("9_2pdv2")
+texture_shortcut = ExtResource("14_nltbv")
+use_collision = false
+
+[node name="Axe Left" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
+color = Color(0.6, 0, 0, 1)
+polygon = PackedVector2Array(-2, 148, -24, 163, -29, 149, -31, 134, -29, 119, -24, 107, -2.94, 120)
+script = ExtResource("9_2pdv2")
+texture_shortcut = SubResource("CanvasTexture_vjrn3")
+use_collision = false
+
+[node name="Axe Left2" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
+color = Color(0.6, 0, 0, 1)
+polygon = PackedVector2Array(2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120)
+script = ExtResource("9_2pdv2")
+texture_shortcut = SubResource("CanvasTexture_duvma")
+use_collision = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/-kill/Axe 2 -kill"]
+polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -3, 120, -24, 107, -29, 119, -31, 134, -29, 149, -24, 163, -2, 148, 0, 162, 2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120, 7, 0, 5, -5)
+
+[node name="flags" type="Node2D" parent="entities"]
+
+[node name="flag" type="AnimatedSprite2D" parent="entities/flags"]
+position = Vector2(1324, 124)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_ag1w5")
+animation = &"raise"
+
+[node name="hitbox" type="Area2D" parent="entities/flags/flag"]
+
+[node name="collision" type="CollisionShape2D" parent="entities/flags/flag/hitbox"]
+position = Vector2(-19.2001, 11.1)
+shape = SubResource("RectangleShape2D_t4gn1")
+
+[node name="labels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="level" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = -505.0
+offset_top = 154.0
+offset_right = 193.0
+offset_bottom = 238.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 60
+text = "Level 4: Axes"
+
+[node name="?" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 97.0
+offset_right = 493.0
+offset_bottom = 181.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 60
+text = "?"
+
+[node name="axes" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 611.0
+offset_top = 84.0
+offset_right = 875.0
+offset_bottom = 168.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
+theme_override_fonts/font = ExtResource("5_3d2q0")
+theme_override_font_sizes/font_size = 60
+text = "Axes! =)"
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(2.7, 2.7)
+
+[node name="redball" parent="." instance=ExtResource("7_ltdem")]
+position = Vector2(-464, 254)
+
+[connection signal="body_entered" from="entities/Falling -fall" to="entities/Falling -fall" method="_on_body_entered"]
+[connection signal="body_shape_entered" from="entities/Falling -fall" to="entities/Falling -fall" method="_on_body_shape_entered"]
