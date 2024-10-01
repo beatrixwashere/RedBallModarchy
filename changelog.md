@@ -1,3 +1,18 @@
+# v.1.0004
+
+### more vanilla ports
+- levels 2 through 6 are done being ported!
+- to be honest these are held together with toothpicks and string so expect to see a patch soon
+- and also please be patient while everything gets fixed
+
+### miscellaneous
+- fixed cloud texture for vanilla levels
+- added a tool script that helps with porting
+- fixed a crash that occured when no mods were enabled
+- time for public release!
+
+---
+
 # v.1.0003
 
 ### pack info
