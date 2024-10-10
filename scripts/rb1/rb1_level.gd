@@ -212,7 +212,7 @@ func _redball_die(_area: Area2D = null) -> void:
 	redball.contact_monitor = false
 	redball.get_node("collision").disabled = true
 	redball.get_node("sprite").visible = false
-	redball.get_node("hitbox").monitoring = false
+	redball.get_node("hitbox").set_deferred("monitoring", false)
 	
 	# generate death parts
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
