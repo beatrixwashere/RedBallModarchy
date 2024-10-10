@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bo6yn4h0ni6us" path="res://images/rb1/textures/metaltexture.png" id="10_cu5x6"]
 [ext_resource type="Texture2D" uid="uid://b02peed4sywgq" path="res://images/rb1/sprites/grasssprite.svg" id="11_phs4i"]
 [ext_resource type="PackedScene" uid="uid://b21x76ypama6i" path="res://scenes/rb1/assets/checkpoint.tscn" id="13_qk6w7"]
-[ext_resource type="Script" path="res://scenes/rb1/levels/tempscripts/falling_platform.gd" id="13_vad5q"]
+[ext_resource type="Script" path="res://scripts/rb1/assets/falling_platform.gd" id="13_vad5q"]
 [ext_resource type="Texture2D" uid="uid://cmdukbx5innin" path="res://images/rb1/sprites/flagspritesheet.png" id="14_0h53s"]
 [ext_resource type="PackedScene" uid="uid://ciigq32r4rwsm" path="res://scenes/rb1/assets/redball.tscn" id="15_7j77t"]
 
