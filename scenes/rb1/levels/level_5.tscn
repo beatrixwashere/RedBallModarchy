@@ -633,7 +633,7 @@ visible = false
 polygon = PackedVector2Array(85, 0, 85, 15, 0, 15, 0, 0)
 
 [node name="smallball" type="RigidBody2D" parent="objects"]
-position = Vector2(172, -20)
+position = Vector2(175, -20)
 mass = 90.0
 
 [node name="collision" type="CollisionShape2D" parent="objects/smallball"]
@@ -736,7 +736,7 @@ texture = ExtResource("14_vx2dr")
 shape = SubResource("RectangleShape2D_4ny68")
 
 [node name="greenPlatform" type="Sprite2D" parent="entities/buttons"]
-position = Vector2(275, 264)
+position = Vector2(269, 261)
 texture = ExtResource("15_rf8d7")
 
 [node name="hitbox" type="Area2D" parent="entities/buttons/greenPlatform"]
@@ -786,19 +786,6 @@ theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
 theme_override_fonts/font = ExtResource("6_c0iqs")
 theme_override_font_sizes/font_size = 48
 text = "Use \"R\" to restart"
-horizontal_alignment = 1
-
-[node name="goal" type="Label" parent="labels"]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 190.0
-offset_right = 931.0
-offset_bottom = 258.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
-theme_override_fonts/font = ExtResource("6_c0iqs")
-theme_override_font_sizes/font_size = 48
-text = "This is the level goal"
 horizontal_alignment = 1
 
 [node name="camera" type="Camera2D" parent="."]
