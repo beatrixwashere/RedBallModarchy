@@ -673,7 +673,7 @@ mass = 1000.0
 lock_rotation = true
 script = ExtResource("12_2sq8t")
 max_height = -100.0
-min_height = 11.75
+min_height = 11.5
 
 [node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 2 -kill"]
 texture = ExtResource("12_mb5wr")
@@ -872,6 +872,3 @@ zoom = Vector2(2.7, 2.7)
 
 [node name="redball" parent="." instance=ExtResource("7_ltdem")]
 position = Vector2(-464, 254)
-
-[connection signal="body_entered" from="entities/Falling -fall" to="entities/Falling -fall" method="_on_body_entered"]
-[connection signal="body_shape_entered" from="entities/Falling -fall" to="entities/Falling -fall" method="_on_body_shape_entered"]
