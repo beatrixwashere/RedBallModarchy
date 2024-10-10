@@ -82,7 +82,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("3_0n56u")
 theme_override_font_sizes/font_size = 50
-text = "v.1.0004"
+text = "v.1.0005"
 horizontal_alignment = 1
 vertical_alignment = 1
 

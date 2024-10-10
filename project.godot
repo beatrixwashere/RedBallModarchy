@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RedBallModarchy"
-config/version="1.0004"
+config/version="1.0005"
 run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=31
