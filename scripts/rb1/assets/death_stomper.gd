@@ -10,7 +10,7 @@ func _ready():
 	mass = 65536
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not freeze:
 		if position.y > min_height:
 			going_up = true
@@ -22,4 +22,4 @@ func _physics_process(delta: float) -> void:
 			linear_velocity = Vector2(0, -2)
 			move_and_collide(linear_velocity)
 		
-		#print(self.position.y)
+		#print(position.y)
