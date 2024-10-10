@@ -3,6 +3,7 @@ extends Node
 
 var move_platform_direction: int = 1
 
+
 func _physics_process(_delta: float) -> void:
 	# moving platform
 	if get_node("../../objects/move_platform").position.x < 390:
