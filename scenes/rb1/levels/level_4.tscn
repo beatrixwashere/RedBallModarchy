@@ -13,10 +13,10 @@
 [ext_resource type="Script" path="res://scripts/assets/texture_polygon.gd" id="9_2pdv2"]
 [ext_resource type="PackedScene" uid="uid://b21x76ypama6i" path="res://scenes/rb1/assets/checkpoint.tscn" id="11_irkwb"]
 [ext_resource type="Texture2D" uid="uid://b02peed4sywgq" path="res://images/rb1/sprites/grasssprite.svg" id="11_ruk7o"]
-[ext_resource type="Script" path="res://scenes/rb1/levels/tempscripts/death_stomper.gd" id="12_2sq8t"]
-[ext_resource type="Script" path="res://scenes/rb1/levels/tempscripts/falling_platform.gd" id="12_eyasm"]
+[ext_resource type="Script" path="res://scripts/rb1/assets/death_stomper.gd" id="12_2sq8t"]
+[ext_resource type="Script" path="res://scripts/rb1/assets/falling_platform.gd" id="12_eyasm"]
 [ext_resource type="Texture2D" uid="uid://bo6yn4h0ni6us" path="res://images/rb1/textures/metaltexture.png" id="12_mb5wr"]
-[ext_resource type="Script" path="res://scenes/rb1/levels/tempscripts/axe.gd" id="14_4shiy"]
+[ext_resource type="Script" path="res://scripts/rb1/assets/axe.gd" id="14_4shiy"]
 [ext_resource type="Texture2D" uid="uid://mcukk377e0ge" path="res://images/rb1/textures/stonetexture.png" id="14_nltbv"]
 [ext_resource type="Texture2D" uid="uid://cmdukbx5innin" path="res://images/rb1/sprites/flagspritesheet.png" id="17_55qlf"]
 
@@ -673,7 +673,7 @@ mass = 1000.0
 lock_rotation = true
 script = ExtResource("12_2sq8t")
 max_height = -100.0
-min_height = 11.75
+min_height = 11.5
 
 [node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 2 -kill"]
 texture = ExtResource("12_mb5wr")
@@ -872,6 +872,3 @@ zoom = Vector2(2.7, 2.7)
 
 [node name="redball" parent="." instance=ExtResource("7_ltdem")]
 position = Vector2(-464, 254)
-
-[connection signal="body_entered" from="entities/Falling -fall" to="entities/Falling -fall" method="_on_body_entered"]
-[connection signal="body_shape_entered" from="entities/Falling -fall" to="entities/Falling -fall" method="_on_body_shape_entered"]

@@ -1,3 +1,20 @@
+# v.1.0005
+
+### vanilla fixes
+- fix starting rotation and line for the funny ball in level 2
+- add top spikes to level 3
+- moved level 4 mechanic scripts to `scripts/rb1/assets`
+- refactored code for mechanic scripts
+- adjusted level 5 platform, text, and green button
+
+### other patches
+- fix incorrect spawns by resetting cp_index on level transitions
+- fix spikes by disabling hitbox monitoring on death
+- add pressed button sprites
+- adjusted some scripts to fit the style guide
+
+---
+
 # v.1.0004
 
 ### more vanilla ports

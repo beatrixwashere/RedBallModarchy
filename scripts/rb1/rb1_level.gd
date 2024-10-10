@@ -212,6 +212,7 @@ func _redball_die(_area: Area2D = null) -> void:
 	redball.contact_monitor = false
 	redball.get_node("collision").disabled = true
 	redball.get_node("sprite").visible = false
+	redball.get_node("hitbox").set_deferred("monitoring", false)
 	
 	# generate death parts
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -261,6 +262,7 @@ func _finish_level(area: Area2D) -> void:
 	InputHelper.reset_all_inputs()
 	
 	# wait and load next scene
+	DataHelper.data["cp_index"] = 0
 	await get_tree().create_timer(2.871).timeout
 	if is_inside_tree():
 		get_tree().paused = false
@@ -275,6 +277,9 @@ func _press_button(area: Area2D) -> void:
 	# play audio and disable button collision
 	AudioHelper.play("rb1_checkbox")
 	area.call_deferred("set_monitorable", false)
+	
+	# replace button sprite with empty button
+	area.get_parent().texture = load("res://images/rb1/sprites/emptybutton.png")
 	
 	# disable linked object
 	var link_name: String = area.get_parent().name

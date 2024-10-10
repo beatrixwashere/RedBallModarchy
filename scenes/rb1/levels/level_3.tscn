@@ -664,13 +664,13 @@ visible = false
 polygon = PackedVector2Array(225, -10, 225, 10, -225, 10, -225, -10)
 
 [node name="grass" type="Sprite2D" parent="objects/exitPlatform"]
-position = Vector2(-150.735, -14.165)
-scale = Vector2(0.246142, 0.287647)
+position = Vector2(-179.367, -12.8325)
+scale = Vector2(0.156912, 0.222255)
 texture = ExtResource("11_yarpv")
 
 [node name="grass2" type="Sprite2D" parent="objects/exitPlatform"]
-position = Vector2(-3.99999, -13.5)
-scale = Vector2(0.260973, 0.287647)
+position = Vector2(3.05877, -13.5)
+scale = Vector2(0.237086, 0.287647)
 texture = ExtResource("11_yarpv")
 
 [node name="grass3" type="Sprite2D" parent="objects/exitPlatform"]
@@ -722,6 +722,16 @@ texture = ExtResource("14_0u1qy")
 [node name="hitbox" type="Area2D" parent="entities/spikes/spikes_1"]
 
 [node name="collision" type="CollisionShape2D" parent="entities/spikes/spikes_1/hitbox"]
+shape = SubResource("RectangleShape2D_4um6c")
+
+[node name="spikes_2" type="Sprite2D" parent="entities/spikes"]
+position = Vector2(342, 113)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_0u1qy")
+
+[node name="hitbox" type="Area2D" parent="entities/spikes/spikes_2"]
+
+[node name="collision" type="CollisionShape2D" parent="entities/spikes/spikes_2/hitbox"]
 shape = SubResource("RectangleShape2D_4um6c")
 
 [node name="labels" type="Control" parent="."]

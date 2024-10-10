@@ -631,7 +631,7 @@ disabled = true
 
 [node name="line" type="Line2D" parent="objects/kick_ball/joint"]
 position = Vector2(-87, -209)
-width = 2.0
+width = 1.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="collision" type="CollisionShape2D" parent="objects/kick_ball"]
@@ -640,6 +640,7 @@ shape = SubResource("CircleShape2D_sj1fo")
 
 [node name="polygon" type="Polygon2D" parent="objects/kick_ball"]
 position = Vector2(148, 305)
+rotation = -0.565487
 texture = ExtResource("10_342ce")
 texture_offset = Vector2(27, 27)
 texture_scale = Vector2(2.55556, 2.55556)
