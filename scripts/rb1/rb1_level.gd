@@ -6,6 +6,7 @@ const deathpartscene: PackedScene = preload("res://scenes/rb1/assets/deathpart.t
 var funcs: Dictionary = {
 	"redball_move": _redball_move,
 	"redball_die": _redball_die,
+	"redball_reset": _redball_reset,
 	"camera_update": _camera_update,
 	"checkpoint_hit": _checkpoint_hit,
 	"finish_level": _finish_level,
@@ -139,7 +140,7 @@ func _physics_process(_delta: float) -> void:
 	
 	# reset function
 	if InputHelper.pressed[KEY_R]:
-		get_tree().reload_current_scene()
+		funcs["redball_reset"].call()
 	
 	# pause keybinds
 	if InputHelper.pressed[KEY_P] or InputHelper.pressed[KEY_ESCAPE]:
@@ -167,14 +168,14 @@ func is_body_at_point(point: Vector2) -> bool:
 # controls red ball's movement
 func _redball_move() -> void:
 	# check if red ball is on a surface
-	#$redball/floorchecks.rotation = -redball.rotation
+	#redball.get_node("floorchecks").rotation = -redball.rotation
 	var check0: bool = is_body_at_point(redball.position + point0)
 	var check1: bool = is_body_at_point(redball.position + point1)
 	var check2: bool = is_body_at_point(redball.position + point2)
 	on_floor = check0 or check1 or check2
-	#$redball/floorchecks/check0.visible = check0
-	#$redball/floorchecks/check1.visible = check1
-	#$redball/floorchecks/check2.visible = check2
+	#redball.get_node("floorchecks/check0").visible = check0
+	#redball.get_node("floorchecks/check1").visible = check1
+	#redball.get_node("floorchecks/check2").visible = check2
 	
 	# process inputs
 	if _can_land and on_floor and redball.get_contact_count() > 0:
@@ -227,6 +228,11 @@ func _redball_die(_area: Area2D = null) -> void:
 	if is_inside_tree():
 		get_tree().paused = false
 		get_tree().reload_current_scene()
+
+
+# reset key function
+func _redball_reset() -> void:
+	get_tree().reload_current_scene()
 
 
 # controls the scene camera

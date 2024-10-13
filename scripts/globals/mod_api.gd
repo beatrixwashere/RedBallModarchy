@@ -49,7 +49,7 @@ func load_global_modules() -> void:
 	for i in global_modules:
 		if FileAccess.file_exists("res://_mods/" + i + "/global.tscn" + ("" if OS.has_feature("editor") else ".remap")):
 			var n: Node = load("res://_mods/" + i + "/global.tscn").instantiate()
-			add_child(n)
+			get_tree().current_scene.get_node("modules").add_child(n)
 
 
 ## unloads all global modules.
@@ -68,3 +68,4 @@ func unload_all_mods(path: String = "res://_mods", rm_root: bool = false) -> voi
 			unload_all_mods(path + "/" + i, true)
 		if rm_root:
 			DirAccess.remove_absolute(path)
+	global_modules = []

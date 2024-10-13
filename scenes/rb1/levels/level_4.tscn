@@ -193,7 +193,6 @@ texture = ExtResource("1_nkpa1")
 [node name="bg" type="ParallaxBackground" parent="."]
 
 [node name="sky" type="ParallaxLayer" parent="bg"]
-position = Vector2(-6, -20)
 scale = Vector2(0.38, 0.38)
 motion_scale = Vector2(0, 0)
 metadata/_edit_group_ = true

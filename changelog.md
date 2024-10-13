@@ -1,3 +1,13 @@
+# v.1.0006
+
+### small patches
+- fix global modules
+- allow custom reset button functions
+- fix sky position in level 4
+- add missing spikes to level 6
+
+---
+
 # v.1.0005
 
 ### vanilla fixes
