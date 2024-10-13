@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://iewd47bmfsbg"]
+[gd_scene load_steps=41 format=3 uid="uid://iewd47bmfsbg"]
 
 [ext_resource type="Script" path="res://scripts/rb1/rb1_level.gd" id="1_ui7wb"]
 [ext_resource type="Script" path="res://scripts/rb1/levels/level_6.gd" id="2_moepu"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/rb1/assets/falling_platform.gd" id="13_vad5q"]
 [ext_resource type="Texture2D" uid="uid://cmdukbx5innin" path="res://images/rb1/sprites/flagspritesheet.png" id="14_0h53s"]
 [ext_resource type="PackedScene" uid="uid://ciigq32r4rwsm" path="res://scenes/rb1/assets/redball.tscn" id="15_7j77t"]
+[ext_resource type="Texture2D" uid="uid://c3dnind8j7woh" path="res://images/rb1/sprites/spikes.png" id="16_tr1lk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cn84h"]
 atlas = ExtResource("14_0h53s")
@@ -167,6 +168,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7xog"]
 size = Vector2(61.6, 163.8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my31t"]
+size = Vector2(264, 40)
 
 [node name="level_6" type="Node2D"]
 script = ExtResource("1_ui7wb")
@@ -854,6 +858,28 @@ animation = &"raise"
 [node name="collision" type="CollisionShape2D" parent="entities/flags/flag/hitbox"]
 position = Vector2(-19.2001, 11.1)
 shape = SubResource("RectangleShape2D_p7xog")
+
+[node name="spikes" type="Node2D" parent="entities"]
+
+[node name="spikes_0" type="Sprite2D" parent="entities/spikes"]
+position = Vector2(574, 669)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_tr1lk")
+
+[node name="hitbox" type="Area2D" parent="entities/spikes/spikes_0"]
+
+[node name="collision" type="CollisionShape2D" parent="entities/spikes/spikes_0/hitbox"]
+shape = SubResource("RectangleShape2D_my31t")
+
+[node name="spikes_1" type="Sprite2D" parent="entities/spikes"]
+position = Vector2(638, 669)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_tr1lk")
+
+[node name="hitbox" type="Area2D" parent="entities/spikes/spikes_1"]
+
+[node name="collision" type="CollisionShape2D" parent="entities/spikes/spikes_1/hitbox"]
+shape = SubResource("RectangleShape2D_my31t")
 
 [node name="labels" type="Control" parent="."]
 layout_mode = 3
