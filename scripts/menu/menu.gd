@@ -5,15 +5,25 @@ const mod_row: PackedScene = preload("res://scenes/menu/mod_row.tscn")
 
 
 func _ready() -> void:
-	# verify mods folder integrity, if it doesn't exist then force the user to set a new one
-	if FileAccess.file_exists("user://modsfolder.modarchy"):
-		var path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_pascal_string()
-		if path != "" and DirAccess.dir_exists_absolute(path):
-			reload_mods()
+	if not OS.has_feature("web"):
+		# verify mods folder integrity, if it doesn't exist then force the user to set a new one
+		if FileAccess.file_exists("user://modsfolder.modarchy"):
+			var path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_pascal_string()
+			if path != "" and DirAccess.dir_exists_absolute(path):
+				reload_mods()
+			else:
+				$mods_folder_popup.visible = true
 		else:
 			$mods_folder_popup.visible = true
 	else:
-		$mods_folder_popup.visible = true
+		# use for web builds
+		reload_mods_web()
+		$modsfolder.visible = false
+		$mods/search/lineedit.disconnect("text_changed", reload_mods)
+		$mods/search/lineedit.connect("text_changed", reload_mods_web)
+		$reload.disconnect("button_down", reload_mods)
+		$reload.connect("button_down", reload_mods_web)
+		$web_popup.visible = true
 	
 	# unload mods (only in exported builds)
 	if not OS.has_feature("editor"):
@@ -51,19 +61,27 @@ func create_mod_row(left: String, right: String = "") -> void:
 
 ## loads mods and enters the game
 func load_game(scene_path: String) -> void:
-	# get mods folder path
-	var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_pascal_string()
-	
-	# iterate through modlist to find enabled mods (only in exported builds)
-	for i in %modlist.get_children():
-		for j in i.get_children(): # mod_row buttons
-			if (j.get_node("check").visible or j.get_node("global").visible) and not OS.has_feature("editor"):
-				if FileAccess.file_exists(mods_path + "/" + j.get_node("label").text + ".pck"):
-					ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".pck")
-					if j.get_node("global").visible:
-						ModAPI.add_global_module(j.get_node("label").text)
-				else:
-					ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".zip")
+	if not OS.has_feature("web"):
+		# get mods folder path
+		var mods_path: String = FileAccess.open("user://modsfolder.modarchy", FileAccess.READ).get_pascal_string()
+		
+		# iterate through modlist to find enabled mods (only in exported builds)
+		for i in %modlist.get_children():
+			for j in i.get_children(): # mod_row buttons
+				if (j.get_node("check").visible or j.get_node("global").visible) and not OS.has_feature("editor"):
+					if FileAccess.file_exists(mods_path + "/" + j.get_node("label").text + ".pck"):
+						ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".pck")
+						if j.get_node("global").visible:
+							ModAPI.add_global_module(j.get_node("label").text)
+					else:
+						ProjectSettings.load_resource_pack(mods_path + "/" + j.get_node("label").text + ".zip")
+						if j.get_node("global").visible:
+							ModAPI.add_global_module(j.get_node("label").text)
+	else:
+		# use for web builds
+		for i in %modlist.get_children():
+			for j in i.get_children(): # mod_row buttons
+				if (j.get_node("check").visible or j.get_node("global").visible):
 					if j.get_node("global").visible:
 						ModAPI.add_global_module(j.get_node("label").text)
 	
@@ -86,6 +104,31 @@ func reload_mods(filter: String = "") -> void:
 	for i in dir.get_files():
 		# filter out mods when searching and check for pck/zip file extension
 		if (filter == "" or filter in i) and (i.get_extension() == "pck" or i.get_extension() == "zip"):
+			modfiles.append(i)
+	
+	# iterate through modfiles and generate modlist
+	while modfiles.size() > 1:
+		create_mod_row(modfiles.pop_front().get_basename(), modfiles.pop_front().get_basename())
+	# make single button row if needed
+	if modfiles.size() == 1:
+		create_mod_row(modfiles.pop_front().get_basename())
+	
+	# add extra control node to fix scrolling
+	%modlist.add_child(Control.new())
+
+
+## modlist initialization for web builds
+func reload_mods_web(filter: String = "") -> void:
+	# clear modlist
+	for i in %modlist.get_children():
+		i.free()
+	
+	# iterate through each file in the mods folder
+	var dir: DirAccess = DirAccess.open("res://_mods")
+	var modfiles: Array[String] = []
+	for i in dir.get_directories():
+		# filter out mods when searching
+		if filter == "" or filter in i:
 			modfiles.append(i)
 	
 	# iterate through modfiles and generate modlist

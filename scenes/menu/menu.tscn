@@ -82,7 +82,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 30
 theme_override_fonts/font = ExtResource("3_0n56u")
 theme_override_font_sizes/font_size = 50
-text = "v.1.0005"
+text = "v.1.0006"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -294,6 +294,45 @@ cancel_button_text = "cancel"
 file_mode = 2
 access = 2
 
+[node name="web_popup" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="bg" type="Panel" parent="web_popup"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="header" type="Label" parent="web_popup"]
+offset_left = 240.0
+offset_right = 1680.0
+offset_bottom = 960.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 60
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 80
+text = "download modarchy for your os to get access to all mods!
+ "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="modsfolder" type="Button" parent="web_popup"]
+material = SubResource("ShaderMaterial_tb8lp")
+offset_left = 640.0
+offset_top = 600.0
+offset_right = 1280.0
+offset_bottom = 680.0
+metadata/_edit_group_ = true
+
+[node name="label" type="Label" parent="web_popup/modsfolder"]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_0n56u")
+theme_override_font_sizes/font_size = 35
+text = "ok!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="text_changed" from="mods/search/lineedit" to="." method="reload_mods"]
 [connection signal="button_down" from="mods/checkall" to="." method="toggle_all" binds= [true]]
 [connection signal="button_down" from="mods/uncheckall" to="." method="toggle_all" binds= [false]]
@@ -303,3 +342,4 @@ access = 2
 [connection signal="dir_selected" from="modsfolder/filedialog" to="." method="set_mods_folder"]
 [connection signal="button_down" from="mods_folder_popup/modsfolder" to="mods_folder_popup/modsfolder/filedialog" method="set_visible" binds= [true]]
 [connection signal="dir_selected" from="mods_folder_popup/modsfolder/filedialog" to="." method="set_mods_folder"]
+[connection signal="button_down" from="web_popup/modsfolder" to="web_popup" method="set_visible" binds= [false]]
