@@ -1,13 +1,12 @@
-[gd_scene load_steps=45 format=3 uid="uid://bmf45nxswiyce"]
+[gd_scene load_steps=44 format=3 uid="uid://bmf45nxswiyce"]
 
 [ext_resource type="Texture2D" uid="uid://88iya5idhe3l" path="res://images/rb1/sprites/sky.svg" id="1_7iq8b"]
 [ext_resource type="Texture2D" uid="uid://bwiilvsbem5yg" path="res://icon.svg" id="1_nkpa1"]
 [ext_resource type="Script" path="res://scripts/rb1/rb1_level.gd" id="1_ydg73"]
 [ext_resource type="Texture2D" uid="uid://dkjsvplpfx6a4" path="res://images/rb1/sprites/cloud1.png" id="2_im6p5"]
 [ext_resource type="Texture2D" uid="uid://b4dd008gptmq8" path="res://images/rb1/sprites/cloud2.png" id="3_uu3a3"]
-[ext_resource type="Texture2D" uid="uid://1l77qvvaygx" path="res://images/rb1/sprites/soundon.png" id="4_d3c43"]
 [ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="5_3d2q0"]
-[ext_resource type="Texture2D" uid="uid://r4d6wbpil2be" path="res://images/rb1/sprites/pause_bg.svg" id="6_ywmfi"]
+[ext_resource type="PackedScene" uid="uid://cqhb2y0jywwyf" path="res://scenes/rb1/assets/ui.tscn" id="6_5s7in"]
 [ext_resource type="PackedScene" uid="uid://ciigq32r4rwsm" path="res://scenes/rb1/assets/redball.tscn" id="7_ltdem"]
 [ext_resource type="Texture2D" uid="uid://cikh2c375qqqa" path="res://images/rb1/textures/groundtexture.png" id="8_n8pjw"]
 [ext_resource type="Script" path="res://scripts/assets/texture_polygon.gd" id="9_2pdv2"]
@@ -177,7 +176,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4gn1"]
 size = Vector2(61.6, 163.8)
 
-[node name="Level4" type="Node2D"]
+[node name="level_4" type="Node2D"]
 script = ExtResource("1_ydg73")
 load_next = "res://scenes/rb1/levels/level_5.tscn"
 
@@ -279,246 +278,7 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_uu3a3")
 centered = false
 
-[node name="ui" type="CanvasLayer" parent="."]
-
-[node name="music" type="Sprite2D" parent="ui"]
-position = Vector2(40, 40)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_d3c43")
-metadata/_edit_group_ = true
-
-[node name="button" type="Button" parent="ui/music"]
-offset_left = -31.0
-offset_top = -27.0
-offset_right = 31.0
-offset_bottom = 27.0
-flat = true
-
-[node name="label" type="Label" parent="ui/music"]
-offset_left = -31.0
-offset_top = -27.0
-offset_right = 7.0
-offset_bottom = 27.0
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 25
-text = "M"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="sfx" type="Sprite2D" parent="ui"]
-position = Vector2(100, 40)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_d3c43")
-metadata/_edit_group_ = true
-
-[node name="button" type="Button" parent="ui/sfx"]
-offset_left = -31.0
-offset_top = -27.0
-offset_right = 31.0
-offset_bottom = 27.0
-flat = true
-
-[node name="label" type="Label" parent="ui/sfx"]
-offset_left = -31.0
-offset_top = -27.0
-offset_right = 7.0
-offset_bottom = 27.0
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 25
-text = "S"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="menu" type="Label" parent="ui"]
-offset_left = 138.0
-offset_top = 14.0
-offset_right = 618.0
-offset_bottom = 223.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 150
-text = "Menu"
-metadata/_edit_group_ = true
-
-[node name="button" type="Button" parent="ui/menu"]
-layout_mode = 0
-offset_right = 480.0
-offset_bottom = 220.0
-flat = true
-
-[node name="pause" type="CanvasLayer" parent="ui"]
-visible = false
-
-[node name="bg" type="ColorRect" parent="ui/pause"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0.376471)
-
-[node name="base" type="Sprite2D" parent="ui/pause"]
-position = Vector2(960, 540)
-scale = Vector2(3, 3)
-texture = ExtResource("6_ywmfi")
-
-[node name="pause" type="Label" parent="ui/pause/base"]
-offset_left = -150.0
-offset_top = -63.3333
-offset_right = 1050.0
-offset_bottom = 20.6667
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.12549, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 60
-text = "PAUSE"
-horizontal_alignment = 1
-
-[node name="return" type="Label" parent="ui/pause/base"]
-offset_left = -150.0
-offset_top = -36.6667
-offset_right = 1050.0
-offset_bottom = 30.3333
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 40
-text = "Return to the game"
-horizontal_alignment = 1
-
-[node name="menu" type="Label" parent="ui/pause/base"]
-offset_left = -150.0
-offset_top = -20.0
-offset_right = 1050.0
-offset_bottom = 47.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 40
-text = "Back to Main menu"
-horizontal_alignment = 1
-
-[node name="modmenu" type="Label" parent="ui/pause/base"]
-offset_left = -150.0
-offset_top = -3.33333
-offset_right = 1050.0
-offset_bottom = 63.6667
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 40
-text = "Back to Mod menu"
-horizontal_alignment = 1
-
-[node name="music" type="Label" parent="ui/pause/base"]
-offset_left = -150.0
-offset_top = 13.3333
-offset_right = 1050.0
-offset_bottom = 80.3333
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 40
-text = "Music volume: -- 100% ++"
-horizontal_alignment = 1
-
-[node name="sfx" type="Label" parent="ui/pause/base"]
-offset_left = -150.0
-offset_top = 30.0
-offset_right = 1050.0
-offset_bottom = 98.0
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 40
-text = "Sfx volume: -- 100% ++"
-horizontal_alignment = 1
-
-[node name="window" type="Label" parent="ui/pause/base"]
-offset_left = -150.0
-offset_top = 46.6667
-offset_right = 1050.0
-offset_bottom = 114.667
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0.12549, 0.12549, 0.501961, 1)
-theme_override_fonts/font = ExtResource("5_3d2q0")
-theme_override_font_sizes/font_size = 40
-text = "Window mode: Windowed"
-horizontal_alignment = 1
-
-[node name="buttons" type="Control" parent="ui/pause"]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="return" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 810.0
-offset_top = 430.0
-offset_right = 1110.0
-offset_bottom = 480.0
-flat = true
-
-[node name="menu" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 810.0
-offset_top = 480.0
-offset_right = 1110.0
-offset_bottom = 530.0
-flat = true
-
-[node name="modmenu" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 810.0
-offset_top = 530.0
-offset_right = 1110.0
-offset_bottom = 580.0
-flat = true
-
-[node name="music_minus" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 970.0
-offset_top = 580.0
-offset_right = 1030.0
-offset_bottom = 630.0
-flat = true
-
-[node name="music_plus" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 1100.0
-offset_top = 580.0
-offset_right = 1160.0
-offset_bottom = 630.0
-flat = true
-
-[node name="sfx_minus" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 950.0
-offset_top = 630.0
-offset_right = 1010.0
-offset_bottom = 680.0
-flat = true
-
-[node name="sfx_plus" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 1080.0
-offset_top = 630.0
-offset_right = 1140.0
-offset_bottom = 680.0
-flat = true
-
-[node name="window" type="Button" parent="ui/pause/buttons"]
-layout_mode = 0
-offset_left = 760.0
-offset_top = 680.0
-offset_right = 1160.0
-offset_bottom = 730.0
-flat = true
+[node name="ui" parent="." instance=ExtResource("6_5s7in")]
 
 [node name="objects" type="Node2D" parent="."]
 
