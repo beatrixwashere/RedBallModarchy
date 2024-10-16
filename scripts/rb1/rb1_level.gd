@@ -109,6 +109,14 @@ func _ready() -> void:
 		$ui/pause/base/window.text = "Window mode: Fullscreen"
 	else:
 		$ui/pause/base/window.text = "Window mode: Windowed"
+	if has_node("ui/touch") and (OS.has_feature("android")):
+		$ui/touch.visible = true
+		$ui/touch/left.connect("pressed", InputHelper.manual_input.bind(KEY_A, true))
+		$ui/touch/right.connect("pressed", InputHelper.manual_input.bind(KEY_D, true))
+		$ui/touch/up.connect("pressed", InputHelper.manual_input.bind(KEY_W, true))
+		$ui/touch/left.connect("released", InputHelper.manual_input.bind(KEY_A, false))
+		$ui/touch/right.connect("released", InputHelper.manual_input.bind(KEY_D, false))
+		$ui/touch/up.connect("released", InputHelper.manual_input.bind(KEY_W, false))
 	
 	# load global modules
 	ModAPI.load_global_modules()
