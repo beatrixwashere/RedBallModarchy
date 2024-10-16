@@ -7,6 +7,8 @@ var keys: Dictionary
 var pressed: Dictionary
 ## stores a boolean value for every key, which is true if the key is activated by keyboard repeat.[br]use [code]InputHelper.echo[KEY_*][/code] to access, where * is a key name (see globalscope).
 var echo: Dictionary
+## on if the script is not currently taking input. (ex: when the player is typing)
+var locked: bool = false
 
 
 # initializes dictionaries
@@ -27,10 +29,15 @@ func _init() -> void:
 
 # processes input
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey and not locked:
 		keys[event.keycode] = event.is_pressed()
 		pressed[event.keycode] = event.is_pressed() and not event.is_echo()
 		echo[event.keycode] = event.is_pressed() and event.is_echo()
+
+
+# manually sets an key state
+func manual_input(key: int, on: bool) -> void:
+	keys[key] = on
 
 
 # loops reset_states
