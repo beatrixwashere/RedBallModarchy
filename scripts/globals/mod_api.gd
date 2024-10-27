@@ -39,9 +39,16 @@ func add_to_music(audio_name: String) -> void:
 
 ## adds a global module.
 func add_global_module(mod_name: String) -> void:
-	# check for global.tscn
-	#if FileAccess.file_exists("res://_mods/" + mod_name + "/global.tscn"):
 	global_modules.append(mod_name)
+	
+	# if replace_files.txt exists in the mod, read the file
+	if DirAccess.open("res://_mods/" + mod_name).file_exists("replace_files.txt"):
+		var file: FileAccess = FileAccess.open("res://_mods/" + mod_name + "/replace_files.txt", FileAccess.READ)
+		var next: String = file.get_line()
+		while next != "":
+			var paths: PackedStringArray = next.split(" -> ")
+			ResourceSaver.save(load(paths[1]), paths[0])
+			next = file.get_line()
 
 
 ## loads all global modules. these will be deleted after their _ready function is called.
