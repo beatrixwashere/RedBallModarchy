@@ -1,23 +1,98 @@
-extends CanvasLayer
-## this script is attached to a global scene, and is not meant to be used like a helper.
-# TODO: make this less resource intensive when visible
+extends Window
+## this script is used for viewing performance statistics and using console commands.
+
+## stores each command available in the console; add to this using [code]DebugTools.commands[NAME] = CALLABLE[/code]
+var commands: Dictionary = {
+	"list": _cmd_list,
+	"pos": _cmd_pos,
+	"vel": _cmd_vel,
+	"kill": _cmd_kill,
+}
 
 
 ## updates performance info.
 func _physics_process(_delta: float) -> void:
 	# toggle debug info visibility
 	if InputHelper.pressed[KEY_F1]:
-		$info.visible = not $info.visible
-		if $info.visible:
-			$info/body.text = performance_info()
+		visible = not visible
+		if visible:
+			$tabs/performance/body.text = performance_info()
 			performance_update_loop()
+	InputHelper.locked = $tabs/console/typing/edit.has_focus()
+
+
+## runs a command in the console.
+func run_command(cmd: String) -> void:
+	# print command to console
+	output_message("> " + cmd)
+	
+	# reset lineedit
+	$tabs/console/typing/edit.release_focus()
+	InputHelper.locked = false
+	$tabs/console/typing/edit.text = ""
+	
+	# separate command and arguments
+	var args: PackedStringArray = cmd.split(" ")
+	var cmd_name: String = args[0]
+	args.remove_at(0)
+	
+	# run command if it exists
+	for i in commands.keys():
+		if cmd_name == i:
+			commands[i].call(args)
+			return
+	
+	# if it doesn't exist, print a message
+	output_message("command not found")
+
+
+## append a message to the console.
+func output_message(msg: String) -> void:
+	var new_label: RichTextLabel = $tabs/console/container/vbox/label.duplicate()
+	new_label.text = " " + msg
+	$tabs/console/container/vbox.add_child(new_label)
+	await get_tree().create_timer(0.25).timeout
+	$tabs/console/container.set_deferred("scroll_vertical", 1_000_000_000)
+
+
+# list available commands
+func _cmd_list(_args: PackedStringArray) -> void:
+	var list: String = ""
+	for i in commands.keys():
+		list += i + ", "
+	list = list.substr(0, list.length() - 2)
+	output_message(list)
+
+
+# edit red ball's position
+func _cmd_pos(args: PackedStringArray) -> void:
+	if args.size() == 2:
+		get_tree().current_scene.redball.position = Vector2(float(args[0]), float(args[1]))
+		output_message("changed position to (" + str(float(args[0])) + ", " + str(float(args[1])) + ")")
+	else:
+		output_message("invalid arguments (format is pos x y)")
+
+
+# edit red ball's position
+func _cmd_vel(args: PackedStringArray) -> void:
+	if args.size() == 2:
+		get_tree().current_scene.redball.linear_velocity = Vector2(float(args[0]), float(args[1]))
+		output_message("changed velocity to (" + str(float(args[0])) + ", " + str(float(args[1])) + ")")
+	else:
+		output_message("invalid arguments (format is vel x y)")
+
+
+# kill red ball
+func _cmd_kill(_args: PackedStringArray) -> void:
+	get_tree().current_scene.funcs["redball_die"].call()
+	output_message("killed red ball")
 
 
 ## only updates every second.
 func performance_update_loop() -> void:
 	await get_tree().create_timer(1.0).timeout
-	if $info.visible:
-		$info/body.text = performance_info()
+	if visible:
+		$tabs/performance/body.text = performance_info()
 		performance_update_loop()
 
 

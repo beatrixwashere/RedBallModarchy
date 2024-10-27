@@ -3,19 +3,25 @@
 [ext_resource type="Script" path="res://scripts/globals/debug_tools.gd" id="1_yldmp"]
 [ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="2_lfkdo"]
 
-[node name="debug" type="CanvasLayer"]
-layer = 128
+[node name="debug" type="Window"]
+title = "RedBallModarchy // DEBUG"
+position = Vector2i(1360, 40)
+size = Vector2i(520, 1020)
+content_scale_mode = 2
+content_scale_aspect = 1
 script = ExtResource("1_yldmp")
 
-[node name="info" type="ColorRect" parent="."]
-visible = false
-offset_left = 1360.0
-offset_top = 40.0
-offset_right = 1880.0
-offset_bottom = 1040.0
-color = Color(1, 1, 1, 0.501961)
+[node name="tabs" type="TabContainer" parent="."]
+offset_right = 520.0
+offset_bottom = 1020.0
+current_tab = 0
 
-[node name="header" type="Label" parent="info"]
+[node name="performance" type="ColorRect" parent="tabs"]
+layout_mode = 2
+color = Color(1, 1, 1, 0.501961)
+metadata/_tab_index = 0
+
+[node name="header" type="Label" parent="tabs/performance"]
 layout_mode = 0
 offset_right = 520.0
 offset_bottom = 60.0
@@ -28,7 +34,7 @@ text = "performance"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="body" type="Label" parent="info"]
+[node name="body" type="Label" parent="tabs/performance"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 70.0
@@ -40,3 +46,52 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_lfkdo")
 theme_override_font_sizes/font_size = 14
 text = "performance"
+
+[node name="console" type="ColorRect" parent="tabs"]
+visible = false
+layout_mode = 2
+color = Color(1, 1, 1, 0.501961)
+metadata/_tab_index = 1
+
+[node name="container" type="ScrollContainer" parent="tabs/console"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 510.0
+offset_bottom = 919.0
+follow_focus = true
+vertical_scroll_mode = 2
+
+[node name="vbox" type="VBoxContainer" parent="tabs/console/container"]
+layout_mode = 2
+
+[node name="label" type="RichTextLabel" parent="tabs/console/container/vbox"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("2_lfkdo")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = " // debug console //"
+fit_content = true
+autowrap_mode = 2
+
+[node name="typing" type="Panel" parent="tabs/console"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 919.0
+offset_right = 510.0
+offset_bottom = 959.0
+
+[node name="edit" type="LineEdit" parent="tabs/console/typing"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_lfkdo")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "use \" list \" to see available commands"
+flat = true
+
+[connection signal="text_submitted" from="tabs/console/typing/edit" to="." method="run_command"]

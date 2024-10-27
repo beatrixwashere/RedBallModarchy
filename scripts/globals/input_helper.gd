@@ -7,7 +7,7 @@ var keys: Dictionary
 var pressed: Dictionary
 ## stores a boolean value for every key, which is true if the key is activated by keyboard repeat.[br]use [code]InputHelper.echo[KEY_*][/code] to access, where * is a key name (see globalscope).
 var echo: Dictionary
-## on if the script is not currently taking input. (ex: when the player is typing)
+## on if the script is not currently taking input.
 var locked: bool = false
 
 
