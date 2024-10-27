@@ -12,9 +12,15 @@ func _ready() -> void:
 			if path != "" and DirAccess.dir_exists_absolute(path):
 				reload_mods()
 			else:
-				$mods_folder_popup.visible = true
+				var default_path: String = OS.get_executable_path().get_base_dir() + "/mods"
+				if not DirAccess.dir_exists_absolute(default_path):
+					DirAccess.make_dir_absolute(default_path)
+				set_mods_folder(default_path)
 		else:
-			$mods_folder_popup.visible = true
+			var default_path: String = OS.get_executable_path().get_base_dir() + "/mods"
+			if not DirAccess.dir_exists_absolute(default_path):
+				DirAccess.make_dir_absolute(default_path)
+			set_mods_folder(default_path)
 	else:
 		# use for web builds
 		reload_mods_web()
