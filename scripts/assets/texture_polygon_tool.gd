@@ -67,21 +67,3 @@ func runtime_fixes(tp: TexturePolygon) -> void:
 	tp.add_child(outline)
 	outline.owner = get_scene()
 	outline.name = "outline"
-	
-	# skip if collision is off
-	if not tp.use_collision:
-		return
-	
-	# generate collision
-	if tp.has_node("body"):
-		tp.get_node("body").free()
-	var body: AnimatableBody2D = AnimatableBody2D.new()
-	tp.add_child(body)
-	body.owner = get_scene()
-	body.name = "body"
-	var coll: CollisionPolygon2D = CollisionPolygon2D.new()
-	coll.polygon = tp.polygon
-	coll.visible = false
-	body.add_child(coll)
-	coll.owner = get_scene()
-	coll.name = "collision"

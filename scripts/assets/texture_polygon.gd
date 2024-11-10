@@ -4,7 +4,6 @@ extends Polygon2D
 ## to perform the fixes in the editor, open scripts/assets/texture_polygon_tool.gd, and run it.
 
 @export var texture_shortcut: Texture2D ## texture shortcut; applies to the polygon2d texture property.
-@export var use_collision: bool = true ## if true, the polygon will have collision.
 @export var baked: bool ## if true, the texture and polygon won't be modified. check this if they are already set in the editor (typically through the tool script).
 @export var skip_in_tool: bool ## if true, the tool script won't process this node.
 
@@ -61,18 +60,3 @@ func _ready() -> void:
 	outline.default_color = Color(0, 0, 0, 1)
 	add_child(outline)
 	outline.name = "outline"
-	
-	# skip if collision is off
-	if not use_collision:
-		return
-	
-	# generate collision
-	if has_node("body"):
-		get_node("body").free()
-	var body: AnimatableBody2D = AnimatableBody2D.new()
-	add_child(body)
-	body.name = "body"
-	var coll: CollisionPolygon2D = CollisionPolygon2D.new()
-	coll.polygon = polygon
-	body.add_child(coll)
-	coll.name = "collision"
