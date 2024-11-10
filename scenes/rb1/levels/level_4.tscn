@@ -602,7 +602,6 @@ texture_scale = Vector2(3.64234, 3.64234)
 polygon = PackedVector2Array(12, 39, 12, 50, 137, 50, 137, 39)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
-use_collision = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/Falling -fall"]
 polygon = PackedVector2Array(395, 146, 395, 157, 520, 157, 520, 146)
@@ -640,7 +639,6 @@ texture_rotation = 1.309
 polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("12_mb5wr")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 1 -kill/Top -kill"]
@@ -656,7 +654,6 @@ texture_scale = Vector2(0.00775194, 0.00775194)
 polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_ubdo8")
-use_collision = false
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 1 -kill/Bottom -kill"]
 points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
@@ -682,7 +679,6 @@ texture_rotation = 1.309
 polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("12_mb5wr")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 2 -kill/Top -kill"]
@@ -698,7 +694,6 @@ texture_scale = Vector2(0.00775194, 0.00775194)
 polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_ubdo8")
-use_collision = false
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 2 -kill/Bottom -kill"]
 points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
@@ -724,7 +719,6 @@ texture_rotation = 1.309
 polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("12_mb5wr")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 3 -kill/Top -kill"]
@@ -740,7 +734,6 @@ texture_scale = Vector2(0.00775194, 0.00775194)
 polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_ubdo8")
-use_collision = false
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 3 -kill/Bottom -kill"]
 points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
@@ -761,21 +754,18 @@ texture = ExtResource("14_nltbv")
 polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -2, 148, 0, 162, 2, 148, 7, 0, 5, -5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("14_nltbv")
-use_collision = false
 
 [node name="Axe Left" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
 color = Color(0.6, 0, 0, 1)
 polygon = PackedVector2Array(-2, 148, -24, 163, -29, 149, -31, 134, -29, 119, -24, 107, -2.94, 120)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_vjrn3")
-use_collision = false
 
 [node name="Axe Left2" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
 color = Color(0.6, 0, 0, 1)
 polygon = PackedVector2Array(2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_duvma")
-use_collision = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/-kill/Axe 1 -kill"]
 polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -3, 120, -24, 107, -29, 119, -31, 134, -29, 149, -24, 163, -2, 148, 0, 162, 2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120, 7, 0, 5, -5)
@@ -791,21 +781,18 @@ texture = ExtResource("14_nltbv")
 polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -2, 148, 0, 162, 2, 148, 7, 0, 5, -5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("14_nltbv")
-use_collision = false
 
 [node name="Axe Left" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
 color = Color(0.6, 0, 0, 1)
 polygon = PackedVector2Array(-2, 148, -24, 163, -29, 149, -31, 134, -29, 119, -24, 107, -2.94, 120)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_vjrn3")
-use_collision = false
 
 [node name="Axe Left2" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
 color = Color(0.6, 0, 0, 1)
 polygon = PackedVector2Array(2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_duvma")
-use_collision = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/-kill/Axe 2 -kill"]
 polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -3, 120, -24, 107, -29, 119, -31, 134, -29, 149, -24, 163, -2, 148, 0, 162, 2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120, 7, 0, 5, -5)

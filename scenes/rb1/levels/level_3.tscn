@@ -528,7 +528,6 @@ texture_scale = Vector2(3.32667, 3.32667)
 polygon = PackedVector2Array(75, -10, 75, 10, -75, 10, -75, -10)
 script = ExtResource("9_3ixje")
 texture_shortcut = ExtResource("8_fx1lx")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="objects/body/firstPlatform"]
@@ -558,7 +557,6 @@ texture_scale = Vector2(1.996, 1.996)
 polygon = PackedVector2Array(125, -10, 125, 10, -125, 10, -125, -10)
 script = ExtResource("9_3ixje")
 texture_shortcut = ExtResource("8_fx1lx")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="objects/body2/shipPlatform1"]
@@ -593,7 +591,6 @@ texture_scale = Vector2(1.996, 1.996)
 polygon = PackedVector2Array(125, -10, 125, 10, -125, 10, -125, -10)
 script = ExtResource("9_3ixje")
 texture_shortcut = ExtResource("8_fx1lx")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="objects/body3/shipPlatform2"]
@@ -627,7 +624,6 @@ texture_scale = Vector2(3.32, 3.32)
 polygon = PackedVector2Array(75, -5, 75, 5, -75, 5, -75, -5)
 script = ExtResource("9_3ixje")
 texture_shortcut = ExtResource("11_cfrgq")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="objects/movePlatform1/movePlatform3"]
@@ -655,7 +651,6 @@ texture_scale = Vector2(3.32, 3.32)
 polygon = PackedVector2Array(75, -5, 75, 5, -75, 5, -75, -5)
 script = ExtResource("9_3ixje")
 texture_shortcut = ExtResource("11_cfrgq")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="objects/movePlatform2/movePlatform3"]
@@ -684,7 +679,6 @@ texture_scale = Vector2(1.10889, 1.10889)
 polygon = PackedVector2Array(225, -10, 225, 10, -225, 10, -225, -10)
 script = ExtResource("9_3ixje")
 texture_shortcut = ExtResource("8_fx1lx")
-use_collision = false
 baked = true
 
 [node name="outline" type="Line2D" parent="objects/body6/exitPlatform"]

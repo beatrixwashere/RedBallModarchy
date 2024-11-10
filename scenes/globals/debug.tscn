@@ -5,6 +5,7 @@
 
 [node name="debug" type="Window"]
 title = "RedBallModarchy // DEBUG"
+initial_position = 1
 size = Vector2i(520, 1020)
 content_scale_mode = 2
 content_scale_aspect = 1
