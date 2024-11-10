@@ -7,6 +7,7 @@
 title = "RedBallModarchy // DEBUG"
 initial_position = 1
 size = Vector2i(520, 1020)
+visible = false
 content_scale_mode = 2
 content_scale_aspect = 1
 script = ExtResource("1_yldmp")
