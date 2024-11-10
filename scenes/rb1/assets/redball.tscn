@@ -1,9 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciigq32r4rwsm"]
+[gd_scene load_steps=4 format=3 uid="uid://ciigq32r4rwsm"]
 
 [ext_resource type="Texture2D" uid="uid://crdfouj4pxcx7" path="res://images/rb1/sprites/rb1.png" id="1_14i65"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dbst4"]
-bounce = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnthb"]
 radius = 10.5
@@ -11,12 +8,10 @@ radius = 10.5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1iarr"]
 size = Vector2(21, 21)
 
-[node name="redball" type="RigidBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_dbst4")
-can_sleep = false
-continuous_cd = 2
-contact_monitor = true
-max_contacts_reported = 4
+[node name="redball" type="b2iBody"]
+friction = 0.4
+set_bullet = true
+auto_init = false
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
