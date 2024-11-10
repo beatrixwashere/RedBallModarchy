@@ -41,12 +41,12 @@ var music: Array[String] = [
 ]
 
 @export_group("redball_constants")
-@export var speed_cap_floor: float = 150
-@export var speed_cap_air: float = 75
-@export var speed_accel_floor: float = 15
-@export var speed_accel_air: float = 7.5
-@export var jump_velocity: float = -165
-@export var jump_slowfall: float = -2.5
+@export var speed_cap_floor: float = 5 * 30
+@export var speed_cap_air: float = 2.5 * 30
+@export var speed_accel_floor: float = 0.5 * 30
+@export var speed_accel_air: float = 0.25 * 30
+@export var jump_force: float = -65 * 30
+@export var jump_slowfall: float = -1 * 30
 @export_group("floor_points")
 @export var point0: Vector2 = Vector2(-6, 11.4)
 @export var point1: Vector2 = Vector2(0, 12)
@@ -54,15 +54,30 @@ var music: Array[String] = [
 @export_group("misc")
 @export var death_barrier: float = 550
 @export var load_next: String = ""
+@export_group("advanced")
+@export var world_scene: PackedScene = preload("res://scenes/rb1/assets/world.tscn")
 
 var on_floor: bool = false
+var contact_list: Array = []
+var world: b2iWorld = null
 
 var _is_alive: bool = true
 var _can_land: bool = false
 
-@onready var redball: RigidBody2D = get_node("redball")
+@onready var redball: b2iBody = get_node("redball")
 @onready var camera: Camera2D = get_node("camera")
 @onready var rbhitbox: CollisionShape2D = get_node("redball/hitbox/collision")
+
+
+func _enter_tree() -> void:
+	world = world_scene.instantiate()
+	world.init()
+	world.contact_add.connect(contact_add)
+	world.contact_remove.connect(contact_remove)
+
+
+func _exit_tree() -> void:
+	world.free()
 
 
 # sets up the scene
@@ -77,6 +92,7 @@ func _ready() -> void:
 	
 	# set red ball's and the camera's position
 	redball.position = $entities/checkpoints.get_child(DataHelper.data["cp_index"]).position
+	redball.init()
 	camera.position = $entities/checkpoints.get_child(DataHelper.data["cp_index"]).position
 	
 	# connect signals
@@ -120,18 +136,11 @@ func _ready() -> void:
 	
 	# load global modules
 	ModAPI.load_global_modules()
-	
-	# contact skin testing
-	var queue: Array = get_tree().current_scene.get_children()
-	while queue.size() > 0:
-		if queue[0] is StaticBody2D or queue[0] is AnimatableBody2D:
-			RapierPhysicsServer2D.body_set_extra_param(queue[0].get_rid(), 0, 0.5)
-		queue.append_array(queue[0].get_children())
-		queue.pop_front()
 
 
 # loops every physics frame (31 fps)
 func _physics_process(_delta: float) -> void:
+	world.update()
 	# call the game loop functions
 	for i in loop:
 		funcs[i].call()
@@ -141,8 +150,8 @@ func _physics_process(_delta: float) -> void:
 		funcs["redball_die"].call()
 	
 	# check for kill objects
-	if redball.contact_monitor:
-		for i in redball.get_colliding_bodies():
+	if _is_alive:
+		for i in contact_list:
 			if "-kill" in i.get_parent().name:
 				funcs["redball_die"].call()
 	
@@ -156,6 +165,20 @@ func _physics_process(_delta: float) -> void:
 		$ui/pause.visible = true
 		InputHelper.pressed[KEY_P] = false
 		InputHelper.pressed[KEY_ESCAPE] = false
+
+
+func contact_add(contact_point:b2iContactPoint):
+	if contact_point.body1 == redball:
+		contact_list.append(contact_point.body2)
+	if contact_point.body2 == redball:
+		contact_list.append(contact_point.body1)
+
+
+func contact_remove(contact_point:b2iContactPoint):
+	if(contact_point.body1 == redball && contact_point.body2 in contact_list):
+		contact_list.pop_front()
+	if(contact_point.body2 == redball && contact_point.body1 in contact_list):
+		contact_list.pop_front()
 
 
 # checks if a point is inside a body
@@ -177,34 +200,38 @@ func is_body_at_point(point: Vector2) -> bool:
 func _redball_move() -> void:
 	# check if red ball is on a surface
 	#redball.get_node("floorchecks").rotation = -redball.rotation
-	var check0: bool = is_body_at_point(redball.position + point0)
-	var check1: bool = is_body_at_point(redball.position + point1)
-	var check2: bool = is_body_at_point(redball.position + point2)
+	var check0: bool = world.is_body_at_point(redball.position + point0)
+	var check1: bool = world.is_body_at_point(redball.position + point1)
+	var check2: bool = world.is_body_at_point(redball.position + point2)
 	on_floor = check0 or check1 or check2
 	#redball.get_node("floorchecks/check0").visible = check0
 	#redball.get_node("floorchecks/check1").visible = check1
 	#redball.get_node("floorchecks/check2").visible = check2
 	
 	# process inputs
-	if _can_land and on_floor and redball.get_contact_count() > 0:
+	if _can_land and on_floor and !contact_list.is_empty():
 		AudioHelper.play("rb1_landing")
 		_can_land = false
 	if (InputHelper.keys[KEY_D] or InputHelper.keys[KEY_RIGHT]):
+		redball.wake_up()
 		if on_floor and redball.linear_velocity.x < speed_cap_floor:
 			redball.linear_velocity += Vector2(speed_accel_floor, 0)
 		elif redball.linear_velocity.x < speed_cap_air:
 			redball.linear_velocity += Vector2(speed_accel_air, 0)
 	if (InputHelper.keys[KEY_A] or InputHelper.keys[KEY_LEFT]):
+		redball.wake_up()
 		if on_floor and redball.linear_velocity.x > -speed_cap_floor:
 			redball.linear_velocity += Vector2(-speed_accel_floor, 0)
 		elif redball.linear_velocity.x > -speed_cap_air:
 			redball.linear_velocity += Vector2(-speed_accel_air, 0)
-	if (InputHelper.keys[KEY_W] or InputHelper.keys[KEY_UP]) and on_floor and redball.get_contact_count() > 0:
-		redball.linear_velocity += Vector2(0, jump_velocity)
-		AudioHelper.play("rb1_jump")
-		_can_land = true
-	if (InputHelper.keys[KEY_W] or InputHelper.keys[KEY_UP]) and redball.linear_velocity.y < 0:
-		redball.linear_velocity += Vector2(0, jump_slowfall)
+	if (InputHelper.keys[KEY_W] or InputHelper.keys[KEY_UP]):
+		redball.wake_up()
+		if on_floor and !contact_list.is_empty():
+			redball.apply_force(Vector2(0, jump_force))
+			AudioHelper.play("rb1_jump")
+			_can_land = true
+		elif redball.linear_velocity.y < 0:
+			redball.apply_force(Vector2(0, jump_slowfall))
 	
 	# adjust hitbox to rotation
 	rbhitbox.rotation = -redball.rotation
@@ -217,9 +244,9 @@ func _redball_die(_area: Area2D = null) -> void:
 	# stop red ball
 	AudioHelper.play("rb1_death")
 	_is_alive = false
-	redball.freeze = true
-	redball.contact_monitor = false
-	redball.get_node("collision").disabled = true
+	#redball.freeze = true
+	#redball.contact_monitor = false
+	#redball.get_node("collision").disabled = true
 	redball.get_node("sprite").visible = false
 	redball.get_node("hitbox").set_deferred("monitoring", false)
 	
@@ -271,8 +298,8 @@ func _finish_level(area: Area2D) -> void:
 	area.get_parent().play("raise")
 	
 	# slow down red ball and reset input
-	redball.linear_damp = 3
-	redball.angular_damp = 3
+	#redball.linear_damp = 3
+	#redball.angular_damp = 3
 	InputHelper.reset_all_inputs()
 	
 	# wait and load next scene
