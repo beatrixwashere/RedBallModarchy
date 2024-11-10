@@ -14,7 +14,5 @@ func _physics_process(_delta: float) -> void:
 		move_platform_direction_2 = 1
 	if get_node("../../objects/movePlatform2").position.y > 271:
 		move_platform_direction_2 = -1
-	get_node("../../objects/movePlatform1").position.y += 3 * move_platform_direction_1
-	get_node("../../objects/movePlatform1/body").position.y += 0
-	get_node("../../objects/movePlatform2").position.y += 3 * move_platform_direction_2
-	get_node("../../objects/movePlatform2/body").position.y += 0
+	get_node("../../objects/movePlatform1").linear_velocity = Vector2(0, 90 * move_platform_direction_1)
+	get_node("../../objects/movePlatform2").linear_velocity = Vector2(0, 90 * move_platform_direction_2)
