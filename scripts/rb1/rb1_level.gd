@@ -209,6 +209,8 @@ func _redball_move() -> void:
 	#redball.get_node("floorchecks/check2").visible = check2
 	
 	# process inputs
+	if not _is_alive:
+		return
 	if _can_land and on_floor and !contact_list.is_empty():
 		AudioHelper.play("rb1_landing")
 		_can_land = false
@@ -245,7 +247,7 @@ func _redball_die(_area: Area2D = null) -> void:
 	AudioHelper.play("rb1_death")
 	_is_alive = false
 	#redball.freeze = true
-	#redball.contact_monitor = false
+	redball.destroy() #redball.contact_monitor = false
 	#redball.get_node("collision").disabled = true
 	redball.get_node("sprite").visible = false
 	redball.get_node("hitbox").set_deferred("monitoring", false)
@@ -253,10 +255,12 @@ func _redball_die(_area: Area2D = null) -> void:
 	# generate death parts
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	for i in 8:
-		var dpart: RigidBody2D = deathpartscene.instantiate()
+		var dpart: b2iBody = deathpartscene.instantiate()
 		redball.add_child(dpart)
 		dpart.position = Vector2(10 * rng.randf(), 10 * rng.randf())
+		print(dpart.position)
 		dpart.linear_velocity = redball.linear_velocity / 3
+	redball.linear_velocity = Vector2(0, 0)
 	
 	# wait and respawn player
 	await get_tree().create_timer(1.0).timeout
@@ -298,8 +302,8 @@ func _finish_level(area: Area2D) -> void:
 	area.get_parent().play("raise")
 	
 	# slow down red ball and reset input
-	#redball.linear_damp = 3
-	#redball.angular_damp = 3
+	redball.linear_damping = 3
+	redball.angular_damping = 3
 	InputHelper.reset_all_inputs()
 	
 	# wait and load next scene
@@ -324,8 +328,9 @@ func _press_button(area: Area2D) -> void:
 	
 	# disable linked object
 	var link_name: String = area.get_parent().name
-	get_tree().current_scene.get_node("objects/" + link_name).visible = false
-	get_tree().current_scene.get_node("objects/" + link_name + "/body/collision").disabled = true
+	get_node("objects/" + link_name).visible = false
+	get_node("objects/" + link_name + "/collision").disabled = true
+	get_node("objects/" + link_name).destroy()
 
 
 # pause functions
