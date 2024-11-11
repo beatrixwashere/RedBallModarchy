@@ -9,13 +9,13 @@ func _run() -> void:
 	var queue: Array = get_scene().get_children()
 	while queue.size() > 0:
 		if queue[0] is TexturePolygon:
-			runtime_fixes(queue[0])
+			fix_texturepolygon(queue[0])
 		queue.append_array(queue[0].get_children())
 		queue.pop_front()
 
 
-# fixes the texture of a node
-func runtime_fixes(tp: TexturePolygon) -> void:
+# restructures texturepolygons
+func fix_texturepolygon(tp: TexturePolygon) -> void:
 	# check if tp already has a b2ibody parent
 	if tp.get_parent() is b2iBody:
 		return
