@@ -1,3 +1,4 @@
+@icon("res://images/rb1/textures/woodtexture.png")
 class_name TexturePolygon
 extends Polygon2D
 ## this node is a modification of the polygon2d node, and automatically fixes the texture and sets collision at runtime.
