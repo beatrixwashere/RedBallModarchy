@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://bjqkr5qvi7f41"]
+[gd_scene load_steps=40 format=3 uid="uid://bjqkr5qvi7f41"]
 
 [ext_resource type="Script" path="res://scripts/rb1/rb1_level.gd" id="1_f4g3f"]
 [ext_resource type="Texture2D" uid="uid://88iya5idhe3l" path="res://images/rb1/sprites/sky.svg" id="2_a50si"]
-[ext_resource type="Script" path="res://scripts/rb1/levels/level_2.gd" id="2_ym6bf"]
 [ext_resource type="Texture2D" uid="uid://dkjsvplpfx6a4" path="res://images/rb1/sprites/cloud1.png" id="3_ij6sw"]
 [ext_resource type="Texture2D" uid="uid://b4dd008gptmq8" path="res://images/rb1/sprites/cloud2.png" id="4_1ddwc"]
 [ext_resource type="Texture2D" uid="uid://1l77qvvaygx" path="res://images/rb1/sprites/soundon.png" id="5_5j2m7"]
@@ -181,7 +180,6 @@ load_next = "res://scenes/rb1/levels/level_3.tscn"
 [node name="modules" type="Node" parent="."]
 
 [node name="Level2" type="Node" parent="modules"]
-script = ExtResource("2_ym6bf")
 
 [node name="bg" type="ParallaxBackground" parent="."]
 
@@ -515,105 +513,6 @@ flat = true
 
 [node name="objects" type="Node2D" parent="."]
 
-[node name="first_platform" type="Polygon2D" parent="objects"]
-position = Vector2(-387, 395)
-texture = ExtResource("8_f1645")
-texture_offset = Vector2(83, 10)
-texture_scale = Vector2(3.00602, 3.00602)
-polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
-script = ExtResource("9_0wcik")
-texture_shortcut = ExtResource("8_f1645")
-baked = true
-
-[node name="outline" type="Line2D" parent="objects/first_platform"]
-points = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10, 83, -10)
-width = 0.75
-default_color = Color(0, 0, 0, 1)
-
-[node name="grass" type="Sprite2D" parent="objects/first_platform"]
-position = Vector2(0, -13)
-scale = Vector2(0.281675, 0.34)
-texture = ExtResource("10_aqjho")
-
-[node name="body" type="AnimatableBody2D" parent="objects/first_platform"]
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/first_platform/body"]
-visible = false
-polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
-
-[node name="triangle_barier" type="Polygon2D" parent="objects"]
-position = Vector2(-163.5, 360)
-texture = ExtResource("8_f1645")
-texture_offset = Vector2(34, 26)
-texture_scale = Vector2(5.75, 5.75)
-polygon = PackedVector2Array(34, 26, -34, 26, 34, -26)
-script = ExtResource("9_0wcik")
-texture_shortcut = ExtResource("8_f1645")
-baked = true
-
-[node name="outline" type="Line2D" parent="objects/triangle_barier"]
-points = PackedVector2Array(34, 26, -34, 26, 34, -26, 34, 26)
-width = 0.75
-default_color = Color(0, 0, 0, 1)
-
-[node name="body" type="AnimatableBody2D" parent="objects/triangle_barier"]
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/triangle_barier/body"]
-visible = false
-polygon = PackedVector2Array(34, 26, -34, 26, 34, -26)
-
-[node name="platform_triangle" type="Polygon2D" parent="objects"]
-position = Vector2(-162, 395)
-texture = ExtResource("8_f1645")
-texture_offset = Vector2(83, 10)
-texture_scale = Vector2(3.00602, 3.00602)
-polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
-script = ExtResource("9_0wcik")
-texture_shortcut = ExtResource("8_f1645")
-baked = true
-
-[node name="outline" type="Line2D" parent="objects/platform_triangle"]
-points = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10, 83, -10)
-width = 0.75
-default_color = Color(0, 0, 0, 1)
-
-[node name="grass" type="Sprite2D" parent="objects/platform_triangle"]
-position = Vector2(0, -13)
-scale = Vector2(0.281675, 0.34)
-texture = ExtResource("10_aqjho")
-
-[node name="body" type="AnimatableBody2D" parent="objects/platform_triangle"]
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/platform_triangle/body"]
-visible = false
-polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
-
-[node name="ball_platform" type="Polygon2D" parent="objects"]
-position = Vector2(80, 395)
-texture = ExtResource("8_f1645")
-texture_offset = Vector2(83, 10)
-texture_scale = Vector2(3.00602, 3.00602)
-polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
-script = ExtResource("9_0wcik")
-texture_shortcut = ExtResource("8_f1645")
-baked = true
-
-[node name="outline" type="Line2D" parent="objects/ball_platform"]
-points = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10, 83, -10)
-width = 0.75
-default_color = Color(0, 0, 0, 1)
-
-[node name="grass" type="Sprite2D" parent="objects/ball_platform"]
-position = Vector2(0, -13)
-scale = Vector2(0.281675, 0.34)
-texture = ExtResource("10_aqjho")
-
-[node name="body" type="AnimatableBody2D" parent="objects/ball_platform"]
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/ball_platform/body"]
-visible = false
-polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
-
 [node name="kick_ball" type="RigidBody2D" parent="objects"]
 position = Vector2(-10, 20)
 mass = 90.0
@@ -634,11 +533,14 @@ position = Vector2(-87, -209)
 width = 1.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="collision" type="CollisionShape2D" parent="objects/kick_ball"]
+[node name="_b2iBody_51814" type="b2iBody" parent="objects/kick_ball"]
+density = 0.0
+
+[node name="collision" type="CollisionShape2D" parent="objects/kick_ball/_b2iBody_51814"]
 position = Vector2(148, 305)
 shape = SubResource("CircleShape2D_sj1fo")
 
-[node name="polygon" type="Polygon2D" parent="objects/kick_ball"]
+[node name="polygon" type="Polygon2D" parent="objects/kick_ball/_b2iBody_51814"]
 position = Vector2(148, 305)
 rotation = -0.565487
 texture = ExtResource("10_342ce")
@@ -649,12 +551,122 @@ script = ExtResource("9_0wcik")
 texture_shortcut = ExtResource("10_342ce")
 baked = true
 
-[node name="outline" type="Line2D" parent="objects/kick_ball/polygon"]
+[node name="outline" type="Line2D" parent="objects/kick_ball/_b2iBody_51814/polygon"]
 points = PackedVector2Array(27, 0, 26, -7, 23, -14, 19, -19, 13, -24, 7, -26, 0, -27, -7, -26, -14, -23, -19, -19, -23, -14, -26, -7, -27, 0, -26, 7, -23, 14, -19, 19, -14, 23, -7, 26, 0, 27, 7, 26, 14, 23, 19, 19, 23, 14, 26, 7, 27, 0)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="jump1" type="Polygon2D" parent="objects"]
+[node name="first_platform" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="first_platform" type="Polygon2D" parent="objects/first_platform"]
+position = Vector2(-387, 395)
+texture = ExtResource("8_f1645")
+texture_offset = Vector2(83, 10)
+texture_scale = Vector2(3.00602, 3.00602)
+polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
+script = ExtResource("9_0wcik")
+texture_shortcut = ExtResource("8_f1645")
+baked = true
+
+[node name="outline" type="Line2D" parent="objects/first_platform/first_platform"]
+points = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10, 83, -10)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="grass" type="Sprite2D" parent="objects/first_platform/first_platform"]
+position = Vector2(0, -13)
+scale = Vector2(0.281675, 0.34)
+texture = ExtResource("10_aqjho")
+
+[node name="collision" type="CollisionPolygon2D" parent="objects/first_platform"]
+visible = false
+position = Vector2(-387, 395)
+polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
+
+[node name="triangle_barier" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="triangle_barier" type="Polygon2D" parent="objects/triangle_barier"]
+position = Vector2(-163.5, 360)
+texture = ExtResource("8_f1645")
+texture_offset = Vector2(34, 26)
+texture_scale = Vector2(5.75, 5.75)
+polygon = PackedVector2Array(34, 26, -34, 26, 34, -26)
+script = ExtResource("9_0wcik")
+texture_shortcut = ExtResource("8_f1645")
+baked = true
+
+[node name="outline" type="Line2D" parent="objects/triangle_barier/triangle_barier"]
+points = PackedVector2Array(34, 26, -34, 26, 34, -26, 34, 26)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="collision" type="CollisionPolygon2D" parent="objects/triangle_barier"]
+visible = false
+position = Vector2(-163.5, 360)
+polygon = PackedVector2Array(34, 26, -34, 26, 34, -26)
+
+[node name="platform_triangle" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="platform_triangle" type="Polygon2D" parent="objects/platform_triangle"]
+position = Vector2(-162, 395)
+texture = ExtResource("8_f1645")
+texture_offset = Vector2(83, 10)
+texture_scale = Vector2(3.00602, 3.00602)
+polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
+script = ExtResource("9_0wcik")
+texture_shortcut = ExtResource("8_f1645")
+baked = true
+
+[node name="outline" type="Line2D" parent="objects/platform_triangle/platform_triangle"]
+points = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10, 83, -10)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="grass" type="Sprite2D" parent="objects/platform_triangle/platform_triangle"]
+position = Vector2(0, -13)
+scale = Vector2(0.281675, 0.34)
+texture = ExtResource("10_aqjho")
+
+[node name="collision" type="CollisionPolygon2D" parent="objects/platform_triangle"]
+visible = false
+position = Vector2(-162, 395)
+polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
+
+[node name="ball_platform" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="ball_platform" type="Polygon2D" parent="objects/ball_platform"]
+position = Vector2(80, 395)
+texture = ExtResource("8_f1645")
+texture_offset = Vector2(83, 10)
+texture_scale = Vector2(3.00602, 3.00602)
+polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
+script = ExtResource("9_0wcik")
+texture_shortcut = ExtResource("8_f1645")
+baked = true
+
+[node name="outline" type="Line2D" parent="objects/ball_platform/ball_platform"]
+points = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10, 83, -10)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="grass" type="Sprite2D" parent="objects/ball_platform/ball_platform"]
+position = Vector2(0, -13)
+scale = Vector2(0.281675, 0.34)
+texture = ExtResource("10_aqjho")
+
+[node name="collision" type="CollisionPolygon2D" parent="objects/ball_platform"]
+visible = false
+position = Vector2(80, 395)
+polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
+
+[node name="jump1" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="jump1" type="Polygon2D" parent="objects/jump1"]
 position = Vector2(280, 395)
 texture = ExtResource("8_f1645")
 texture_offset = Vector2(50, 10)
@@ -664,23 +676,25 @@ script = ExtResource("9_0wcik")
 texture_shortcut = ExtResource("8_f1645")
 baked = true
 
-[node name="outline" type="Line2D" parent="objects/jump1"]
+[node name="outline" type="Line2D" parent="objects/jump1/jump1"]
 points = PackedVector2Array(50, -10, 50, 10, -50, 10, -50, -10, 50, -10)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="grass" type="Sprite2D" parent="objects/jump1"]
+[node name="grass" type="Sprite2D" parent="objects/jump1/jump1"]
 position = Vector2(0, -14)
 scale = Vector2(0.17, 0.287647)
 texture = ExtResource("10_aqjho")
 
-[node name="body" type="AnimatableBody2D" parent="objects/jump1"]
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/jump1/body"]
+[node name="collision" type="CollisionPolygon2D" parent="objects/jump1"]
 visible = false
+position = Vector2(280, 395)
 polygon = PackedVector2Array(50, -10, 50, 10, -50, 10, -50, -10)
 
-[node name="move_platform" type="Polygon2D" parent="objects"]
+[node name="move_platform" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="move_platform" type="Polygon2D" parent="objects/move_platform"]
 position = Vector2(390, 390)
 texture = ExtResource("12_8be0x")
 texture_offset = Vector2(40, 5)
@@ -690,18 +704,20 @@ script = ExtResource("9_0wcik")
 texture_shortcut = ExtResource("12_8be0x")
 baked = true
 
-[node name="outline" type="Line2D" parent="objects/move_platform"]
+[node name="outline" type="Line2D" parent="objects/move_platform/move_platform"]
 points = PackedVector2Array(40, -5, 40, 5, -40, 5, -40, -5, 40, -5)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="body" type="AnimatableBody2D" parent="objects/move_platform"]
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/move_platform/body"]
+[node name="collision" type="CollisionPolygon2D" parent="objects/move_platform"]
 visible = false
+position = Vector2(390, 390)
 polygon = PackedVector2Array(40, -5, 40, 5, -40, 5, -40, -5)
 
-[node name="exit_platform" type="Polygon2D" parent="objects"]
+[node name="exit_platform" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="exit_platform" type="Polygon2D" parent="objects/exit_platform"]
 position = Vector2(694, 395)
 texture = ExtResource("8_f1645")
 texture_offset = Vector2(83, 10)
@@ -711,20 +727,19 @@ script = ExtResource("9_0wcik")
 texture_shortcut = ExtResource("8_f1645")
 baked = true
 
-[node name="outline" type="Line2D" parent="objects/exit_platform"]
+[node name="outline" type="Line2D" parent="objects/exit_platform/exit_platform"]
 points = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10, 83, -10)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="grass" type="Sprite2D" parent="objects/exit_platform"]
+[node name="grass" type="Sprite2D" parent="objects/exit_platform/exit_platform"]
 position = Vector2(-1, -14)
 scale = Vector2(0.281675, 0.34)
 texture = ExtResource("10_aqjho")
 
-[node name="body" type="AnimatableBody2D" parent="objects/exit_platform"]
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/exit_platform/body"]
+[node name="collision" type="CollisionPolygon2D" parent="objects/exit_platform"]
 visible = false
+position = Vector2(694, 395)
 polygon = PackedVector2Array(83, -10, 83, 10, -83, 10, -83, -10)
 
 [node name="entities" type="Node2D" parent="."]
