@@ -9,7 +9,6 @@ _mods/*
 # export presets
 export_presets.cfg
 
-# gdextension binary files
-bin/*.so
-bin/*.dll
-bin/*.framework
+# gdextension binaries
+bin/*
+!bin/box2d.gdextension
