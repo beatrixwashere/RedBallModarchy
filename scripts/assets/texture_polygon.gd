@@ -1,10 +1,11 @@
-@icon("res://images/rb1/textures/woodtexture.png")
+@icon("res://bin/icons/TexturePolygon.svg")
 class_name TexturePolygon
 extends Polygon2D
 ## this node is a modification of the polygon2d node, and automatically fixes the texture and sets collision at runtime.
 ## to perform the fixes in the editor, open scripts/assets/texture_polygon_tool.gd, and run it.
 
 @export var texture_shortcut: Texture2D ## texture shortcut; applies to the polygon2d texture property.
+@export var use_collision: bool = true ## if true, the polygon will have collision.
 @export var baked: bool ## if true, the texture and polygon won't be modified. check this if they are already set in the editor (typically through the tool script).
 @export var skip_in_tool: bool ## if true, the tool script won't process this node.
 

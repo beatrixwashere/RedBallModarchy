@@ -12,3 +12,4 @@ export_presets.cfg
 # gdextension binaries
 bin/*
 !bin/box2d.gdextension
+!bin/icons/
