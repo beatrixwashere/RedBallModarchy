@@ -28,6 +28,9 @@ func fix_texturepolygon(tp: TexturePolygon) -> void:
 	
 	# reparent nodes
 	tp.reparent(body)
-	tp.get_node("body/collision").reparent(body)
-	tp.get_node("body").free()
+	if tp.has_node("body/collision"):
+		tp.get_node("body/collision").reparent(body)
+	if tp.has_node("body"):
+		tp.get_node("body").free()
 	body.name = tp.name
+	body.set_display_folded(true)
