@@ -27,9 +27,6 @@ func fix_texturepolygon(tp: TexturePolygon) -> void:
 	body.owner = get_scene()
 	
 	# reparent nodes
-	tp.reparent(body)
-	if tp.has_node("body/collision"):
-		tp.get_node("body/collision").reparent(body)
 	if tp.has_node("body"):
 		tp.get_node("body").free()
 	body.name = tp.name

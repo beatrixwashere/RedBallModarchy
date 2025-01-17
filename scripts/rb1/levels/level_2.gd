@@ -14,7 +14,7 @@ func _physics_process(_delta: float) -> void:
 	get_node("../../objects/move_platform/body").position.x += 0
 	
 	# joint line
-	get_node("../../objects/kick_ball/joint/line").points = [
+	get_node("../../objects/joint/line").points = [
 		get_node("../../objects/kick_ball/joint").position,
 		get_node("../../objects/kick_ball/polygon").position
 	]

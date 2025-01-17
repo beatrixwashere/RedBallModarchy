@@ -329,7 +329,7 @@ func _press_button(area: Area2D) -> void:
 	# disable linked object
 	var link_name: String = area.get_parent().name
 	get_node("objects/" + link_name).visible = false
-	get_node("objects/" + link_name + "/collision").disabled = true
+	#get_node("objects/" + link_name + "/collision").disabled = true
 	get_node("objects/" + link_name).destroy()
 
 

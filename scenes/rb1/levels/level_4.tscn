@@ -1,7 +1,6 @@
-[gd_scene load_steps=45 format=3 uid="uid://bmf45nxswiyce"]
+[gd_scene load_steps=44 format=3 uid="uid://bmf45nxswiyce"]
 
 [ext_resource type="Texture2D" uid="uid://88iya5idhe3l" path="res://images/rb1/sprites/sky.svg" id="1_7iq8b"]
-[ext_resource type="Texture2D" uid="uid://bwiilvsbem5yg" path="res://icon.svg" id="1_nkpa1"]
 [ext_resource type="Script" path="res://scripts/rb1/rb1_level.gd" id="1_ydg73"]
 [ext_resource type="Texture2D" uid="uid://dkjsvplpfx6a4" path="res://images/rb1/sprites/cloud1.png" id="2_im6p5"]
 [ext_resource type="Texture2D" uid="uid://b4dd008gptmq8" path="res://images/rb1/sprites/cloud2.png" id="3_uu3a3"]
@@ -182,13 +181,6 @@ script = ExtResource("1_ydg73")
 load_next = "res://scenes/rb1/levels/level_5.tscn"
 
 [node name="modules" type="Node" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-position = Vector2(472, 240)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("1_nkpa1")
 
 [node name="bg" type="ParallaxBackground" parent="."]
 
@@ -523,48 +515,88 @@ flat = true
 [node name="objects" type="Node2D" parent="."]
 
 [node name="Beginning" type="Polygon2D" parent="objects"]
-position = Vector2(-130, 51)
+position = Vector2(-73, 172)
 texture = ExtResource("8_n8pjw")
-polygon = PackedVector2Array(440, 241, 440, 122, 490, 122, 490, 95, 407, 95, 407, 116, 382, 116, 382, 137, 361, 137, 361, 159, 339, 159, 339, 178, 318, 178, 318, 200, 295, 200, 295.088, 221, -376, 221, -376, 242)
+texture_offset = Vector2(433, 121)
+texture_scale = Vector2(0.576212, 0.576212)
+polygon = PackedVector2Array(383, 120, 383, 1, 433, 1, 433, -26, 350, -26, 350, -5, 325, -5, 325, 16, 304, 16, 304, 38, 282, 38, 282, 57, 261, 57, 261, 79, 238, 79, 238.088, 100, -433, 100, -433, 121)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
-skip_in_tool = true
+
+[node name="outline" type="Line2D" parent="objects/Beginning"]
+points = PackedVector2Array(383, 120, 383, 1, 433, 1, 433, -26, 350, -26, 350, -5, 325, -5, 325, 16, 304, 16, 304, 38, 282, 38, 282, 57, 261, 57, 261, 79, 238, 79, 238.088, 100, -433, 100, -433, 121, 383, 120)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
 
 [node name="Ending Platform" type="Polygon2D" parent="objects"]
-position = Vector2(587, 133)
+position = Vector2(964.5, 150)
 texture = ExtResource("8_n8pjw")
-polygon = PackedVector2Array(786, 34, 786, 13, -31, 13, -31, 34)
+texture_offset = Vector2(408.5, 17)
+texture_scale = Vector2(0.610771, 0.610771)
+polygon = PackedVector2Array(408.5, 17, 408.5, -4, -408.5, -4, -408.5, 17)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
-skip_in_tool = true
+
+[node name="outline" type="Line2D" parent="objects/Ending Platform"]
+points = PackedVector2Array(408.5, 17, 408.5, -4, -408.5, -4, -408.5, 17, 408.5, 17)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
 
 [node name="Top 1" type="Polygon2D" parent="objects"]
-position = Vector2(-409, 67)
+position = Vector2(-409.5, 106.75)
 texture = ExtResource("8_n8pjw")
-polygon = PackedVector2Array(96, 32, -97, 32, -97, 53, 96, 53)
+texture_offset = Vector2(96.5, 13.25)
+texture_scale = Vector2(2.58549, 2.58549)
+polygon = PackedVector2Array(96.5, -7.75, -96.5, -7.75, -96.5, 13.25, 96.5, 13.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="outline" type="Line2D" parent="objects/Top 1"]
+points = PackedVector2Array(96.5, -7.75, -96.5, -7.75, -96.5, 13.25, 96.5, 13.25, 96.5, -7.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
 
 [node name="Top 2" type="Polygon2D" parent="objects"]
-position = Vector2(-175, 67)
+position = Vector2(-223, 106.75)
 texture = ExtResource("8_n8pjw")
-polygon = PackedVector2Array(1, 32, -97, 32, -97, 53, 1, 53)
+texture_offset = Vector2(49, 13.25)
+texture_scale = Vector2(5.09184, 5.09184)
+polygon = PackedVector2Array(49, -7.75, -49, -7.75, -49, 13.25, 49, 13.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="outline" type="Line2D" parent="objects/Top 2"]
+points = PackedVector2Array(49, -7.75, -49, -7.75, -49, 13.25, 49, 13.25, 49, -7.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
 
 [node name="Top 3" type="Polygon2D" parent="objects"]
-position = Vector2(-35, 67)
+position = Vector2(-83, 106.75)
 texture = ExtResource("8_n8pjw")
-polygon = PackedVector2Array(1, 32, -97, 32, -97, 53, 1, 53)
+texture_offset = Vector2(49, 13.25)
+texture_scale = Vector2(5.09184, 5.09184)
+polygon = PackedVector2Array(49, -7.75, -49, -7.75, -49, 13.25, 49, 13.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
 
+[node name="outline" type="Line2D" parent="objects/Top 3"]
+points = PackedVector2Array(49, -7.75, -49, -7.75, -49, 13.25, 49, 13.25, 49, -7.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
 [node name="Top 4" type="Polygon2D" parent="objects"]
-position = Vector2(103, 67)
+position = Vector2(55.5, 106.75)
 texture = ExtResource("8_n8pjw")
-polygon = PackedVector2Array(1, 32, -96, 32, -96, 53, 1, 53)
+texture_offset = Vector2(48.5, 13.25)
+texture_scale = Vector2(5.14433, 5.14433)
+polygon = PackedVector2Array(48.5, -7.75, -48.5, -7.75, -48.5, 13.25, 48.5, 13.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="outline" type="Line2D" parent="objects/Top 4"]
+points = PackedVector2Array(48.5, -7.75, -48.5, -7.75, -48.5, 13.25, 48.5, 13.25, 48.5, -7.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
 
 [node name="grass" type="Sprite2D" parent="objects"]
 position = Vector2(-430.059, 268.335)
@@ -586,6 +618,24 @@ position = Vector2(1167, 142)
 scale = Vector2(0.17, 0.258)
 texture = ExtResource("11_ruk7o")
 
+[node name="Beginning2" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="Ending Platform2" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="Top 5" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="Top 6" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="Top 7" type="b2iBody" parent="objects"]
+density = 0.0
+
+[node name="Top 8" type="b2iBody" parent="objects"]
+density = 0.0
+
 [node name="entities" type="Node2D" parent="."]
 
 [node name="Falling -fall" type="RigidBody2D" parent="entities"]
@@ -596,12 +646,18 @@ max_contacts_reported = 1
 script = ExtResource("12_eyasm")
 
 [node name="Falling Platform" type="Polygon2D" parent="entities/Falling -fall"]
-position = Vector2(383, 107)
+position = Vector2(457.5, 144.5)
 texture = ExtResource("8_n8pjw")
-texture_scale = Vector2(3.64234, 3.64234)
-polygon = PackedVector2Array(12, 39, 12, 50, 137, 50, 137, 39)
+texture_offset = Vector2(62.5, 12.5)
+texture_scale = Vector2(3.992, 3.992)
+polygon = PackedVector2Array(-62.5, 1.5, -62.5, 12.5, 62.5, 12.5, 62.5, 1.5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("8_n8pjw")
+
+[node name="outline" type="Line2D" parent="entities/Falling -fall/Falling Platform"]
+points = PackedVector2Array(-62.5, 1.5, -62.5, 12.5, 62.5, 12.5, 62.5, 1.5, -62.5, 1.5)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/Falling -fall"]
 polygon = PackedVector2Array(395, 146, 395, 157, 520, 157, 520, 146)
@@ -610,6 +666,9 @@ polygon = PackedVector2Array(395, 146, 395, 157, 520, 157, 520, 146)
 position = Vector2(456.353, 143.335)
 scale = Vector2(0.209216, 0.209216)
 texture = ExtResource("11_ruk7o")
+
+[node name="Falling Platform2" type="b2iBody" parent="entities/Falling -fall"]
+density = 0.0
 
 [node name="checkpoints" type="Node2D" parent="entities"]
 
@@ -632,36 +691,44 @@ max_height = -100.0
 min_height = 11.75
 
 [node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 1 -kill"]
+position = Vector2(19.5, 115.5)
 texture = ExtResource("12_mb5wr")
-texture_offset = Vector2(0, 125.09)
-texture_scale = Vector2(0.60262, 0.60262)
+texture_offset = Vector2(19.5, 113.5)
+texture_scale = Vector2(0.60793, 0.60793)
 texture_rotation = 1.309
-polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
+polygon = PackedVector2Array(-19.5, -113.5, -19.5, 113.5, 19.5, 113.5, 19.5, -113.5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("12_mb5wr")
 baked = true
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 1 -kill/Top -kill"]
-points = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2, 0, 2)
+points = PackedVector2Array(-19.5, -113.5, -19.5, 113.5, 19.5, 113.5, 19.5, -113.5, -19.5, -113.5)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
 [node name="Bottom -kill" type="Polygon2D" parent="entities/-kill/Stomper 1 -kill"]
-position = Vector2(-60, 195)
+position = Vector2(21.5, 243.75)
 color = Color(0.6, 0, 0, 1)
 texture = SubResource("CanvasTexture_ubdo8")
-texture_scale = Vector2(0.00775194, 0.00775194)
-polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
+texture_offset = Vector2(47.5, 16.25)
+texture_scale = Vector2(0.0105263, 0.0105263)
+polygon = PackedVector2Array(-21.5, -14.75, 17.5, -14.75, 47.5, 16.25, -47.5, 16.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_ubdo8")
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 1 -kill/Bottom -kill"]
-points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
+points = PackedVector2Array(-21.5, -14.75, 17.5, -14.75, 47.5, 16.25, -47.5, 16.25, -21.5, -14.75)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
 [node name="-kill" type="CollisionPolygon2D" parent="entities/-kill/Stomper 1 -kill"]
 polygon = PackedVector2Array(0, 2, 39, 2, 39, 229, 69, 260, -26, 260, 0, 229)
+
+[node name="Top -kill2" type="b2iBody" parent="entities/-kill/Stomper 1 -kill"]
+density = 0.0
+
+[node name="Bottom -kill2" type="b2iBody" parent="entities/-kill/Stomper 1 -kill"]
+density = 0.0
 
 [node name="Stomper 2 -kill" type="RigidBody2D" parent="entities/-kill"]
 position = Vector2(-173, -88)
@@ -672,36 +739,44 @@ max_height = -100.0
 min_height = 11.5
 
 [node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 2 -kill"]
+position = Vector2(19.5, 115.5)
 texture = ExtResource("12_mb5wr")
-texture_offset = Vector2(0, 125.09)
-texture_scale = Vector2(0.60262, 0.60262)
+texture_offset = Vector2(19.5, 113.5)
+texture_scale = Vector2(0.60793, 0.60793)
 texture_rotation = 1.309
-polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
+polygon = PackedVector2Array(-19.5, -113.5, -19.5, 113.5, 19.5, 113.5, 19.5, -113.5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("12_mb5wr")
 baked = true
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 2 -kill/Top -kill"]
-points = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2, 0, 2)
+points = PackedVector2Array(-19.5, -113.5, -19.5, 113.5, 19.5, 113.5, 19.5, -113.5, -19.5, -113.5)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
 [node name="Bottom -kill" type="Polygon2D" parent="entities/-kill/Stomper 2 -kill"]
-position = Vector2(-60, 195)
+position = Vector2(21.5, 243.75)
 color = Color(0.6, 0, 0, 1)
 texture = SubResource("CanvasTexture_ubdo8")
-texture_scale = Vector2(0.00775194, 0.00775194)
-polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
+texture_offset = Vector2(47.5, 16.25)
+texture_scale = Vector2(0.0105263, 0.0105263)
+polygon = PackedVector2Array(-21.5, -14.75, 17.5, -14.75, 47.5, 16.25, -47.5, 16.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_ubdo8")
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 2 -kill/Bottom -kill"]
-points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
+points = PackedVector2Array(-21.5, -14.75, 17.5, -14.75, 47.5, 16.25, -47.5, 16.25, -21.5, -14.75)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
 [node name="-kill" type="CollisionPolygon2D" parent="entities/-kill/Stomper 2 -kill"]
 polygon = PackedVector2Array(0, 2, 39, 2, 39, 229, 69, 260, -26, 260, 0, 229)
+
+[node name="Top -kill2" type="b2iBody" parent="entities/-kill/Stomper 2 -kill"]
+density = 0.0
+
+[node name="Bottom -kill2" type="b2iBody" parent="entities/-kill/Stomper 2 -kill"]
+density = 0.0
 
 [node name="Stomper 3 -kill" type="RigidBody2D" parent="entities/-kill"]
 position = Vector2(-33, 7)
@@ -712,36 +787,44 @@ max_height = -100.0
 min_height = 11.75
 
 [node name="Top -kill" type="Polygon2D" parent="entities/-kill/Stomper 3 -kill"]
+position = Vector2(19.5, 115.5)
 texture = ExtResource("12_mb5wr")
-texture_offset = Vector2(0, 125.09)
-texture_scale = Vector2(0.60262, 0.60262)
+texture_offset = Vector2(19.5, 113.5)
+texture_scale = Vector2(0.60793, 0.60793)
 texture_rotation = 1.309
-polygon = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2)
+polygon = PackedVector2Array(-19.5, -113.5, -19.5, 113.5, 19.5, 113.5, 19.5, -113.5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("12_mb5wr")
 baked = true
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 3 -kill/Top -kill"]
-points = PackedVector2Array(0, 2, 0, 229, 39, 229, 39, 2, 0, 2)
+points = PackedVector2Array(-19.5, -113.5, -19.5, 113.5, 19.5, 113.5, 19.5, -113.5, -19.5, -113.5)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
 [node name="Bottom -kill" type="Polygon2D" parent="entities/-kill/Stomper 3 -kill"]
-position = Vector2(-60, 195)
+position = Vector2(21.5, 243.75)
 color = Color(0.6, 0, 0, 1)
 texture = SubResource("CanvasTexture_ubdo8")
-texture_scale = Vector2(0.00775194, 0.00775194)
-polygon = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65)
+texture_offset = Vector2(47.5, 16.25)
+texture_scale = Vector2(0.0105263, 0.0105263)
+polygon = PackedVector2Array(-21.5, -14.75, 17.5, -14.75, 47.5, 16.25, -47.5, 16.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_ubdo8")
 
 [node name="outline" type="Line2D" parent="entities/-kill/Stomper 3 -kill/Bottom -kill"]
-points = PackedVector2Array(60, 34, 99, 34, 129, 65, 34, 65, 60, 34)
+points = PackedVector2Array(-21.5, -14.75, 17.5, -14.75, 47.5, 16.25, -47.5, 16.25, -21.5, -14.75)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
 [node name="-kill" type="CollisionPolygon2D" parent="entities/-kill/Stomper 3 -kill"]
 polygon = PackedVector2Array(0, 2, 39, 2, 39, 229, 69, 260, -26, 260, 0, 229)
+
+[node name="Top -kill2" type="b2iBody" parent="entities/-kill/Stomper 3 -kill"]
+density = 0.0
+
+[node name="Bottom -kill2" type="b2iBody" parent="entities/-kill/Stomper 3 -kill"]
+density = 0.0
 
 [node name="Axe 1 -kill" type="StaticBody2D" parent="entities/-kill"]
 position = Vector2(820, -28)
@@ -750,25 +833,60 @@ script = ExtResource("14_4shiy")
 direction = 1
 
 [node name="TexturePolygon" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
+position = Vector2(0, 77.5)
 texture = ExtResource("14_nltbv")
-polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -2, 148, 0, 162, 2, 148, 7, 0, 5, -5)
+texture_offset = Vector2(7, 84.5)
+texture_scale = Vector2(1.76923, 1.76923)
+polygon = PackedVector2Array(0, -84.5, -5, -82.5, -7, -77.5, -2, 70.5, 0, 84.5, 2, 70.5, 7, -77.5, 5, -82.5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("14_nltbv")
 
+[node name="outline" type="Line2D" parent="entities/-kill/Axe 1 -kill/TexturePolygon"]
+points = PackedVector2Array(0, -84.5, -5, -82.5, -7, -77.5, -2, 70.5, 0, 84.5, 2, 70.5, 7, -77.5, 5, -82.5, 0, -84.5)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
 [node name="Axe Left" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
+position = Vector2(-16.5, 122.25)
 color = Color(0.6, 0, 0, 1)
-polygon = PackedVector2Array(-2, 148, -24, 163, -29, 149, -31, 134, -29, 119, -24, 107, -2.94, 120)
+texture = SubResource("CanvasTexture_vjrn3")
+texture_offset = Vector2(14.5, 40.75)
+texture_scale = Vector2(0.0122699, 0.0122699)
+polygon = PackedVector2Array(14.5, 25.75, -7.5, 40.75, -12.5, 26.75, -14.5, 11.75, -12.5, -3.25, -7.5, -15.25, 13.56, -2.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_vjrn3")
 
+[node name="outline" type="Line2D" parent="entities/-kill/Axe 1 -kill/Axe Left"]
+points = PackedVector2Array(14.5, 25.75, -7.5, 40.75, -12.5, 26.75, -14.5, 11.75, -12.5, -3.25, -7.5, -15.25, 13.56, -2.25, 14.5, 25.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
 [node name="Axe Left2" type="Polygon2D" parent="entities/-kill/Axe 1 -kill"]
+position = Vector2(16.5, 122.25)
 color = Color(0.6, 0, 0, 1)
-polygon = PackedVector2Array(2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120)
+texture = SubResource("CanvasTexture_duvma")
+texture_offset = Vector2(14.5, 40.75)
+texture_scale = Vector2(0.0122699, 0.0122699)
+polygon = PackedVector2Array(-14.5, 25.75, 7.5, 40.75, 12.5, 26.75, 14.5, 11.75, 12.5, -3.25, 7.5, -15.25, -13.5, -2.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_duvma")
 
+[node name="outline" type="Line2D" parent="entities/-kill/Axe 1 -kill/Axe Left2"]
+points = PackedVector2Array(-14.5, 25.75, 7.5, 40.75, 12.5, 26.75, 14.5, 11.75, 12.5, -3.25, 7.5, -15.25, -13.5, -2.25, -14.5, 25.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/-kill/Axe 1 -kill"]
 polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -3, 120, -24, 107, -29, 119, -31, 134, -29, 149, -24, 163, -2, 148, 0, 162, 2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120, 7, 0, 5, -5)
+
+[node name="TexturePolygon2" type="b2iBody" parent="entities/-kill/Axe 1 -kill"]
+density = 0.0
+
+[node name="Axe Left3" type="b2iBody" parent="entities/-kill/Axe 1 -kill"]
+density = 0.0
+
+[node name="Axe Left4" type="b2iBody" parent="entities/-kill/Axe 1 -kill"]
+density = 0.0
 
 [node name="Axe 2 -kill" type="StaticBody2D" parent="entities/-kill"]
 position = Vector2(1104, -28)
@@ -777,25 +895,60 @@ script = ExtResource("14_4shiy")
 direction = -1
 
 [node name="TexturePolygon" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
+position = Vector2(0, 77.5)
 texture = ExtResource("14_nltbv")
-polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -2, 148, 0, 162, 2, 148, 7, 0, 5, -5)
+texture_offset = Vector2(7, 84.5)
+texture_scale = Vector2(1.76923, 1.76923)
+polygon = PackedVector2Array(0, -84.5, -5, -82.5, -7, -77.5, -2, 70.5, 0, 84.5, 2, 70.5, 7, -77.5, 5, -82.5)
 script = ExtResource("9_2pdv2")
 texture_shortcut = ExtResource("14_nltbv")
 
+[node name="outline" type="Line2D" parent="entities/-kill/Axe 2 -kill/TexturePolygon"]
+points = PackedVector2Array(0, -84.5, -5, -82.5, -7, -77.5, -2, 70.5, 0, 84.5, 2, 70.5, 7, -77.5, 5, -82.5, 0, -84.5)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
 [node name="Axe Left" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
+position = Vector2(-16.5, 122.25)
 color = Color(0.6, 0, 0, 1)
-polygon = PackedVector2Array(-2, 148, -24, 163, -29, 149, -31, 134, -29, 119, -24, 107, -2.94, 120)
+texture = SubResource("CanvasTexture_vjrn3")
+texture_offset = Vector2(14.5, 40.75)
+texture_scale = Vector2(0.0122699, 0.0122699)
+polygon = PackedVector2Array(14.5, 25.75, -7.5, 40.75, -12.5, 26.75, -14.5, 11.75, -12.5, -3.25, -7.5, -15.25, 13.56, -2.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_vjrn3")
 
+[node name="outline" type="Line2D" parent="entities/-kill/Axe 2 -kill/Axe Left"]
+points = PackedVector2Array(14.5, 25.75, -7.5, 40.75, -12.5, 26.75, -14.5, 11.75, -12.5, -3.25, -7.5, -15.25, 13.56, -2.25, 14.5, 25.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
 [node name="Axe Left2" type="Polygon2D" parent="entities/-kill/Axe 2 -kill"]
+position = Vector2(16.5, 122.25)
 color = Color(0.6, 0, 0, 1)
-polygon = PackedVector2Array(2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120)
+texture = SubResource("CanvasTexture_duvma")
+texture_offset = Vector2(14.5, 40.75)
+texture_scale = Vector2(0.0122699, 0.0122699)
+polygon = PackedVector2Array(-14.5, 25.75, 7.5, 40.75, 12.5, 26.75, 14.5, 11.75, 12.5, -3.25, 7.5, -15.25, -13.5, -2.25)
 script = ExtResource("9_2pdv2")
 texture_shortcut = SubResource("CanvasTexture_duvma")
 
+[node name="outline" type="Line2D" parent="entities/-kill/Axe 2 -kill/Axe Left2"]
+points = PackedVector2Array(-14.5, 25.75, 7.5, 40.75, 12.5, 26.75, 14.5, 11.75, 12.5, -3.25, 7.5, -15.25, -13.5, -2.25, -14.5, 25.75)
+width = 0.75
+default_color = Color(0, 0, 0, 1)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entities/-kill/Axe 2 -kill"]
 polygon = PackedVector2Array(0, -7, -5, -5, -7, 0, -3, 120, -24, 107, -29, 119, -31, 134, -29, 149, -24, 163, -2, 148, 0, 162, 2, 148, 24, 163, 29, 149, 31, 134, 29, 119, 24, 107, 3, 120, 7, 0, 5, -5)
+
+[node name="TexturePolygon2" type="b2iBody" parent="entities/-kill/Axe 2 -kill"]
+density = 0.0
+
+[node name="Axe Left3" type="b2iBody" parent="entities/-kill/Axe 2 -kill"]
+density = 0.0
+
+[node name="Axe Left4" type="b2iBody" parent="entities/-kill/Axe 2 -kill"]
+density = 0.0
 
 [node name="flags" type="Node2D" parent="entities"]
 

@@ -5,10 +5,10 @@ extends Node
 func _physics_process(_delta: float) -> void:
 	# rotate spinners
 	#get_node("../../objects/spin").rotation += PI * 0.3 / 31
-	get_node("../../objects/spin").angular_velocity = PI * 0.3 / 31
-	get_node("../../objects/back_ball_1").rotation -= PI * 0.2 / 31
-	get_node("../../objects/back_ball_2").rotation -= PI * 0.2 / 31
-	get_node("../../objects/back_ball_3").rotation -= PI * 0.2 / 31
+	#get_node("../../objects/spin").angular_velocity = PI * 0.3 / 31
+	#get_node("../../objects/back_ball_1").rotation -= PI * 0.2 / 31
+	#get_node("../../objects/back_ball_2").rotation -= PI * 0.2 / 31
+	#get_node("../../objects/back_ball_3").rotation -= PI * 0.2 / 31
 	
 	# check for drop contact
 	if get_node("../..")._is_alive:

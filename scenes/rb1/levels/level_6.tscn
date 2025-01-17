@@ -513,6 +513,7 @@ flat = true
 [node name="objects" type="Node2D" parent="."]
 
 [node name="drop1" type="b2iBody" parent="objects"]
+density = 0.0
 
 [node name="collision" type="CollisionPolygon2D" parent="objects/drop1"]
 visible = false
@@ -652,6 +653,10 @@ baked = true
 points = PackedVector2Array(67.75, -58.6, 60.55, -65.5, 26.3, -30.2, 5, -39.75, 5, -89.5, -5, -89.5, -5, -39.75, -24.35, -31.4, -61.1, -65.2, -67.9, -57.8, -31.7, -24.5, -39.65, -5.7, -88.95, -6.1, -89.05, 3.9, -39.8, 4.3, -31.45, 24.8, -66.7, 60.1, -59.6, 67.1, -24.65, 31.55, -4.2, 39.4, -4.85001, 89.4, 5.14999, 89.5, 5.8, 39.6, 25.9, 30.6, 63.7, 63.2, 70.2, 55.6, 32.65, 23.2, 39.75, 4.45, 89.05, 4, 88.95, -6, 39.65, -5.55, 33, -22.8, 67.75, -58.6)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
+
+[node name="b2iRevoluteJoint" type="b2iRevoluteJoint" parent="objects/spin"]
+enable_motor = true
+motor_speed = 10.0
 
 [node name="voronka_left" type="b2iBody" parent="objects"]
 density = 0.0

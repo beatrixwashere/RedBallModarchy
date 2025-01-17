@@ -516,10 +516,6 @@ flat = true
 density = 0.0
 position = Vector2(0, 425)
 
-[node name="collision" type="CollisionPolygon2D" parent="objects/body"]
-position = Vector2(75, 10)
-polygon = PackedVector2Array(75, -10, 75, 10, -75, 10, -75, -10)
-
 [node name="firstPlatform" type="Polygon2D" parent="objects/body"]
 position = Vector2(75, 10)
 texture = ExtResource("8_fx1lx")
@@ -543,11 +539,6 @@ texture = ExtResource("11_yarpv")
 [node name="body2" type="b2iBody" parent="objects"]
 density = 0.0
 position = Vector2(217, 424.5)
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/body2"]
-visible = false
-position = Vector2(125, 10)
-polygon = PackedVector2Array(125, -10, 125, 10, -125, 10, -125, -10)
 
 [node name="shipPlatform1" type="Polygon2D" parent="objects/body2"]
 position = Vector2(125, 10)
@@ -578,11 +569,6 @@ texture = ExtResource("11_yarpv")
 density = 0.0
 position = Vector2(217, 271.05)
 
-[node name="collision" type="CollisionPolygon2D" parent="objects/body3"]
-visible = false
-position = Vector2(125, 10)
-polygon = PackedVector2Array(125, -10, 125, 10, -125, 10, -125, -10)
-
 [node name="shipPlatform2" type="Polygon2D" parent="objects/body3"]
 position = Vector2(125, 10)
 texture = ExtResource("8_fx1lx")
@@ -611,11 +597,6 @@ texture = ExtResource("11_yarpv")
 [node name="movePlatform1" type="b2iBody" parent="objects"]
 position = Vector2(490, 425)
 
-[node name="collision" type="CollisionPolygon2D" parent="objects/movePlatform1"]
-visible = false
-position = Vector2(75, 5)
-polygon = PackedVector2Array(75, -5, 75, 5, -75, 5, -75, -5)
-
 [node name="movePlatform3" type="Polygon2D" parent="objects/movePlatform1"]
 position = Vector2(75, 5)
 texture = ExtResource("11_cfrgq")
@@ -637,11 +618,6 @@ global_direction = true
 
 [node name="movePlatform2" type="b2iBody" parent="objects"]
 position = Vector2(45, 270.5)
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/movePlatform2"]
-visible = false
-position = Vector2(75, 5)
-polygon = PackedVector2Array(75, -5, 75, 5, -75, 5, -75, -5)
 
 [node name="movePlatform3" type="Polygon2D" parent="objects/movePlatform2"]
 position = Vector2(75, 5)
@@ -665,11 +641,6 @@ global_direction = true
 [node name="body6" type="b2iBody" parent="objects"]
 density = 0.0
 position = Vector2(217, 117.5)
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/body6"]
-visible = false
-position = Vector2(225, 10)
-polygon = PackedVector2Array(225, -10, 225, 10, -225, 10, -225, -10)
 
 [node name="exitPlatform" type="Polygon2D" parent="objects/body6"]
 position = Vector2(225, 10)

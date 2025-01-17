@@ -508,9 +508,6 @@ flat = true
 density = 0.0
 position = Vector2(-20, 270)
 
-[node name="collision" type="CollisionPolygon2D" parent="objects/body"]
-polygon = PackedVector2Array(0, 0, 200, 0, 200, 20, 0, 20)
-
 [node name="start_platform" type="Polygon2D" parent="objects/body"]
 texture = ExtResource("3_244gm")
 texture_scale = Vector2(2.495, 2.495)
@@ -533,9 +530,6 @@ texture = ExtResource("5_spxai")
 density = 0.0
 position = Vector2(334, 221)
 
-[node name="collision" type="CollisionPolygon2D" parent="objects/body2"]
-polygon = PackedVector2Array(0, 0, 20, 0, 20, 50, 0, 50)
-
 [node name="barier" type="Polygon2D" parent="objects/body2"]
 texture = ExtResource("6_twifn")
 texture_scale = Vector2(5.98, 5.98)
@@ -552,9 +546,6 @@ default_color = Color(0, 0, 0, 1)
 [node name="body3" type="b2iBody" parent="objects"]
 density = 0.0
 position = Vector2(240, 270)
-
-[node name="collision" type="CollisionPolygon2D" parent="objects/body3"]
-polygon = PackedVector2Array(0, 0, 300, 0, 300, 20, 0, 20)
 
 [node name="exit_platform" type="Polygon2D" parent="objects/body3"]
 texture = ExtResource("3_244gm")
