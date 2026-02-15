@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://1m1lnddoy520"]
+
+[ext_resource type="FontFile" uid="uid://c2fck10de53iy" path="res://addons/whitecell/sprites/fonts/chakra_petch/chakra_petch_semibold.ttf" id="1_2dnf3"]
+[ext_resource type="Script" uid="uid://badjgjdfq16vy" path="res://addons/whitecell/scripts/ui/listing.gd" id="2_bym4p"]
+[ext_resource type="PackedScene" uid="uid://cfc5xh024ml0b" path="res://addons/whitecell/scenes/list.tscn" id="2_wu7x4"]
+[ext_resource type="Script" uid="uid://blpi4u7ilak7q" path="res://addons/whitecell/scripts/ui/saveload.gd" id="3_jdkwl"]
+[ext_resource type="FontFile" uid="uid://but47y6v5ypuf" path="res://addons/whitecell/sprites/fonts/chakra_petch/chakra_petch_regular.ttf" id="5_8bldc"]
+
+[node name="whitecell" type="CenterContainer" unique_id=1058578926]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="bg" type="ColorRect" parent="." unique_id=2138014770]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="main" type="VBoxContainer" parent="." unique_id=968436427]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="header" type="Label" parent="main" unique_id=854210355]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2dnf3")
+theme_override_font_sizes/font_size = 48
+text = "whitecell // 1.1.0"
+horizontal_alignment = 1
+
+[node name="listscroll" type="ScrollContainer" parent="main" unique_id=1582687799]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+
+[node name="lists" type="HBoxContainer" parent="main/listscroll" unique_id=1296148107]
+layout_mode = 2
+theme_override_constants/separation = 50
+script = ExtResource("2_bym4p")
+
+[node name="s1" parent="main/listscroll/lists" unique_id=471753238 instance=ExtResource("2_wu7x4")]
+layout_mode = 2
+
+[node name="add" type="Button" parent="main/listscroll/lists" unique_id=1026079204]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = " + "
+
+[node name="saveload" type="HBoxContainer" parent="main" unique_id=344061195]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("3_jdkwl")
+
+[node name="save" type="Button" parent="main/saveload" unique_id=60844162]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2dnf3")
+theme_override_font_sizes/font_size = 36
+text = " save "
+
+[node name="load" type="Button" parent="main/saveload" unique_id=1435671375]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2dnf3")
+theme_override_font_sizes/font_size = 36
+text = " load "
+
+[node name="savepath" type="LineEdit" parent="main/saveload" unique_id=1847899950]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8bldc")
+theme_override_font_sizes/font_size = 24
+text = "res://whitecell.tres"
+placeholder_text = "[path]"
+expand_to_text_length = true
+
+[connection signal="button_down" from="main/listscroll/lists/add" to="main/listscroll/lists" method="new_list"]
+[connection signal="button_down" from="main/saveload/save" to="main/saveload" method="save_lists"]
+[connection signal="button_down" from="main/saveload/load" to="main/saveload" method="load_lists"]

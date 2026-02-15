@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://uiuy4f78i2w3"]
+[gd_scene format=3 uid="uid://uiuy4f78i2w3"]
 
-[ext_resource type="Script" path="res://scripts/menu/menu.gd" id="1_dxd3e"]
-[ext_resource type="Shader" path="res://scripts/shaders/bg.gdshader" id="1_xou5v"]
+[ext_resource type="Script" uid="uid://bptykvdtlgen3" path="res://scripts/menu/menu.gd" id="1_dxd3e"]
+[ext_resource type="Shader" uid="uid://ye5wj12mgo4" path="res://scripts/shaders/bg.gdshader" id="1_xou5v"]
 [ext_resource type="Texture2D" uid="uid://dtiktu0cw4aa4" path="res://images/logo.png" id="2_sbe3d"]
 [ext_resource type="FontFile" uid="uid://bj7td0jp4d0rh" path="res://images/rb1/kronika.ttf" id="3_0n56u"]
-[ext_resource type="Shader" path="res://scripts/shaders/modlist.gdshader" id="4_2j84y"]
-[ext_resource type="Shader" path="res://scripts/shaders/ui.gdshader" id="5_il6rp"]
+[ext_resource type="Shader" uid="uid://fwcjylme5dx3" path="res://scripts/shaders/modlist.gdshader" id="4_2j84y"]
+[ext_resource type="Shader" uid="uid://bxnuddjir8bl0" path="res://scripts/shaders/ui.gdshader" id="5_il6rp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fdggy"]
 shader = ExtResource("1_xou5v")
@@ -40,7 +40,7 @@ shader = ExtResource("5_il6rp")
 shader_parameter/rwidth = 8.0
 shader_parameter/rheight = 1.0
 
-[node name="menu" type="Control"]
+[node name="menu" type="Control" unique_id=1576687044]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,18 +49,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dxd3e")
 
-[node name="bg" type="ColorRect" parent="."]
+[node name="bg" type="ColorRect" parent="." unique_id=186572591]
 material = SubResource("ShaderMaterial_fdggy")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="header" type="Sprite2D" parent="."]
+[node name="header" type="Sprite2D" parent="." unique_id=1639902203]
 position = Vector2(240, 160)
 scale = Vector2(0.415394, 0.402672)
 texture = ExtResource("2_sbe3d")
 
-[node name="title" type="Label" parent="header"]
+[node name="title" type="Label" parent="header" unique_id=136046042]
 offset_left = 192.588
 offset_top = -198.673
 offset_right = 2695.59
@@ -73,7 +73,7 @@ text = "Red Ball Modarchy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="version" type="Label" parent="header"]
+[node name="version" type="Label" parent="header" unique_id=1129324903]
 offset_left = -216.662
 offset_top = 198.673
 offset_right = 168.338
@@ -86,7 +86,7 @@ text = "v.1.0007"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="mods" type="ColorRect" parent="."]
+[node name="mods" type="ColorRect" parent="." unique_id=1616247248]
 material = SubResource("ShaderMaterial_1odrj")
 layout_mode = 0
 offset_left = 160.0
@@ -95,26 +95,26 @@ offset_right = 1760.0
 offset_bottom = 800.0
 color = Color(0, 0, 0.25098, 1)
 
-[node name="scroll" type="ScrollContainer" parent="mods"]
+[node name="scroll" type="ScrollContainer" parent="mods" unique_id=67550916]
 layout_mode = 0
 offset_right = 1600.0
 offset_bottom = 400.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="modlist" type="VBoxContainer" parent="mods/scroll"]
+[node name="modlist" type="VBoxContainer" parent="mods/scroll" unique_id=1001293317]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 80
 
-[node name="search" type="Panel" parent="mods"]
+[node name="search" type="Panel" parent="mods" unique_id=1410109994]
 material = SubResource("ShaderMaterial_7fhow")
-layout_mode = 2
+layout_mode = 0
 offset_top = 400.0
 offset_right = 960.0
 offset_bottom = 480.0
 
-[node name="lineedit" type="LineEdit" parent="mods/search"]
+[node name="lineedit" type="LineEdit" parent="mods/search" unique_id=791684079]
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 80.0
@@ -124,7 +124,7 @@ placeholder_text = "< search mods >"
 alignment = 1
 flat = true
 
-[node name="checkall" type="Button" parent="mods"]
+[node name="checkall" type="Button" parent="mods" unique_id=1639169415]
 material = SubResource("ShaderMaterial_1djsb")
 layout_mode = 0
 offset_left = 960.0
@@ -133,7 +133,7 @@ offset_right = 1280.0
 offset_bottom = 480.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="mods/checkall"]
+[node name="label" type="Label" parent="mods/checkall" unique_id=1018438258]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 80.0
@@ -143,7 +143,7 @@ text = "check all"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="uncheckall" type="Button" parent="mods"]
+[node name="uncheckall" type="Button" parent="mods" unique_id=1055530694]
 material = SubResource("ShaderMaterial_1djsb")
 layout_mode = 0
 offset_left = 1280.0
@@ -152,7 +152,7 @@ offset_right = 1600.0
 offset_bottom = 480.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="mods/uncheckall"]
+[node name="label" type="Label" parent="mods/uncheckall" unique_id=109654218]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 80.0
@@ -162,7 +162,7 @@ text = "uncheck all"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="reload" type="Button" parent="."]
+[node name="reload" type="Button" parent="." unique_id=536018619]
 material = SubResource("ShaderMaterial_1djsb")
 layout_mode = 0
 offset_left = 1440.0
@@ -171,7 +171,7 @@ offset_right = 1760.0
 offset_bottom = 280.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="reload"]
+[node name="label" type="Label" parent="reload" unique_id=126964029]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 80.0
@@ -181,7 +181,7 @@ text = "reload"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="redball1" type="Button" parent="."]
+[node name="redball1" type="Button" parent="." unique_id=1443654940]
 material = SubResource("ShaderMaterial_srgux")
 layout_mode = 0
 offset_left = 160.0
@@ -190,7 +190,7 @@ offset_right = 640.0
 offset_bottom = 920.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="redball1"]
+[node name="label" type="Label" parent="redball1" unique_id=913536070]
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 80.0
@@ -200,7 +200,7 @@ text = "Red Ball 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="comingsoon" type="Button" parent="."]
+[node name="comingsoon" type="Button" parent="." unique_id=1745731783]
 material = SubResource("ShaderMaterial_srgux")
 layout_mode = 0
 offset_left = 720.0
@@ -209,7 +209,7 @@ offset_right = 1200.0
 offset_bottom = 920.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="comingsoon"]
+[node name="label" type="Label" parent="comingsoon" unique_id=1227943457]
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 80.0
@@ -219,7 +219,7 @@ text = "coming soon!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="modsfolder" type="Button" parent="."]
+[node name="modsfolder" type="Button" parent="." unique_id=1118992624]
 material = SubResource("ShaderMaterial_3rjvg")
 layout_mode = 0
 offset_left = 1440.0
@@ -228,7 +228,7 @@ offset_right = 1760.0
 offset_bottom = 160.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="modsfolder"]
+[node name="label" type="Label" parent="modsfolder" unique_id=595318505]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 80.0
@@ -238,7 +238,7 @@ text = "set mods folder"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="filedialog" type="FileDialog" parent="modsfolder"]
+[node name="filedialog" type="FileDialog" parent="modsfolder" unique_id=803699563]
 auto_translate_mode = 1
 title = "Open a Directory"
 initial_position = 1
@@ -248,14 +248,14 @@ cancel_button_text = "cancel"
 file_mode = 2
 access = 2
 
-[node name="mods_folder_popup" type="CanvasLayer" parent="."]
+[node name="mods_folder_popup" type="CanvasLayer" parent="." unique_id=1235585580]
 visible = false
 
-[node name="bg" type="Panel" parent="mods_folder_popup"]
+[node name="bg" type="Panel" parent="mods_folder_popup" unique_id=444136330]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="header" type="Label" parent="mods_folder_popup"]
+[node name="header" type="Label" parent="mods_folder_popup" unique_id=732138198]
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -267,7 +267,7 @@ text = "please set a mods folder:
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="modsfolder" type="Button" parent="mods_folder_popup"]
+[node name="modsfolder" type="Button" parent="mods_folder_popup" unique_id=855839319]
 material = SubResource("ShaderMaterial_tb8lp")
 offset_left = 640.0
 offset_top = 600.0
@@ -275,7 +275,7 @@ offset_right = 1280.0
 offset_bottom = 680.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="mods_folder_popup/modsfolder"]
+[node name="label" type="Label" parent="mods_folder_popup/modsfolder" unique_id=292802346]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 80.0
@@ -285,7 +285,7 @@ text = "set mods folder"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="filedialog" type="FileDialog" parent="mods_folder_popup/modsfolder"]
+[node name="filedialog" type="FileDialog" parent="mods_folder_popup/modsfolder" unique_id=978730263]
 title = "Open a Directory"
 initial_position = 1
 size = Vector2i(1000, 600)
@@ -294,14 +294,14 @@ cancel_button_text = "cancel"
 file_mode = 2
 access = 2
 
-[node name="web_popup" type="CanvasLayer" parent="."]
+[node name="web_popup" type="CanvasLayer" parent="." unique_id=2062945669]
 visible = false
 
-[node name="bg" type="Panel" parent="web_popup"]
+[node name="bg" type="Panel" parent="web_popup" unique_id=163866265]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="header" type="Label" parent="web_popup"]
+[node name="header" type="Label" parent="web_popup" unique_id=144419464]
 offset_left = 240.0
 offset_right = 1680.0
 offset_bottom = 960.0
@@ -315,7 +315,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="modsfolder" type="Button" parent="web_popup"]
+[node name="modsfolder" type="Button" parent="web_popup" unique_id=1909808271]
 material = SubResource("ShaderMaterial_tb8lp")
 offset_left = 640.0
 offset_top = 600.0
@@ -323,7 +323,7 @@ offset_right = 1280.0
 offset_bottom = 680.0
 metadata/_edit_group_ = true
 
-[node name="label" type="Label" parent="web_popup/modsfolder"]
+[node name="label" type="Label" parent="web_popup/modsfolder" unique_id=1193151392]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 80.0

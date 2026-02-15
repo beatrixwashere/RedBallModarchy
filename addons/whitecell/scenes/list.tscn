@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://cfc5xh024ml0b"]
+
+[ext_resource type="Shader" uid="uid://c7kcvln13lqga" path="res://addons/whitecell/scripts/shaders/list.gdshader" id="1_1wum3"]
+[ext_resource type="Script" uid="uid://b15ryp4u5kat7" path="res://addons/whitecell/scripts/ui/list.gd" id="2_jpii3"]
+[ext_resource type="FontFile" uid="uid://c2fck10de53iy" path="res://addons/whitecell/sprites/fonts/chakra_petch/chakra_petch_semibold.ttf" id="2_o8xha"]
+[ext_resource type="PackedScene" uid="uid://bw4n48fdwcy3y" path="res://addons/whitecell/scenes/task.tscn" id="4_n72qn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdkwl"]
+shader = ExtResource("1_1wum3")
+shader_parameter/rwidth = 3.0
+shader_parameter/rheight = 5.0
+
+[node name="list" type="ColorRect" unique_id=1306001923]
+material = SubResource("ShaderMaterial_jdkwl")
+custom_minimum_size = Vector2(300, 500)
+color = Color(0.8, 0, 0, 1)
+script = ExtResource("2_jpii3")
+
+[node name="header" type="LineEdit" parent="." unique_id=1897649012]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 10.0
+offset_right = 264.0
+offset_bottom = 66.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_o8xha")
+theme_override_font_sizes/font_size = 36
+text = "list"
+alignment = 1
+flat = true
+
+[node name="scroll" type="ScrollContainer" parent="." unique_id=915304742]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 300.0
+offset_bottom = 448.0
+
+[node name="todo" type="VBoxContainer" parent="scroll" unique_id=605331869]
+layout_mode = 2
+
+[node name="task" parent="scroll/todo" unique_id=620040598 instance=ExtResource("4_n72qn")]
+layout_mode = 2
+
+[node name="new_task" type="ColorRect" parent="." unique_id=1837239720]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 448.0
+offset_right = 252.0
+offset_bottom = 500.0
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="button" type="Button" parent="new_task" unique_id=761062161]
+layout_mode = 0
+offset_right = 204.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("2_o8xha")
+theme_override_font_sizes/font_size = 32
+text = "+"
+flat = true
+
+[node name="move_left" type="ColorRect" parent="." unique_id=1278395172]
+layout_mode = 0
+offset_top = 448.0
+offset_right = 48.0
+offset_bottom = 500.0
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="button" type="Button" parent="move_left" unique_id=646210878]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("2_o8xha")
+theme_override_font_sizes/font_size = 32
+text = "<"
+flat = true
+
+[node name="move_right" type="ColorRect" parent="." unique_id=1101916653]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 448.0
+offset_right = 300.0
+offset_bottom = 500.0
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="button" type="Button" parent="move_right" unique_id=1665062941]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("2_o8xha")
+theme_override_font_sizes/font_size = 32
+text = ">"
+flat = true
+
+[node name="delete" type="ColorRect" parent="." unique_id=456462187]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(1, 1, 1, 0.2509804)
+
+[node name="button" type="Button" parent="delete" unique_id=1212947526]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+flat = true
+
+[node name="icon" type="Label" parent="delete" unique_id=1717461303]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="color" type="ColorRect" parent="." unique_id=654264527]
+layout_mode = 0
+offset_left = 268.0
+offset_right = 300.0
+offset_bottom = 32.0
+color = Color(1, 1, 1, 0.2509804)
+
+[node name="button" type="Button" parent="color" unique_id=1096001631]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+flat = true
+
+[node name="icon" type="Label" parent="color" unique_id=1971739645]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="picker" type="ColorRect" parent="color" unique_id=1577204993]
+visible = false
+layout_mode = 0
+offset_left = -268.0
+offset_right = 32.0
+offset_bottom = 500.0
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="dialog" type="ColorPicker" parent="color/picker" unique_id=1601033988]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.00001
+offset_right = 330.0
+offset_bottom = 391.0
+scale = Vector2(0.8, 0.8)
+color = Color(1, 0, 0, 1)
+edit_alpha = false
+edit_intensity = false
+color_modes_visible = false
+sliders_visible = false
+presets_visible = false
+
+[node name="close" type="Button" parent="color/picker" unique_id=911890776]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 336.0
+offset_right = 264.0
+offset_bottom = 368.0
+text = "x"
+
+[connection signal="button_down" from="new_task/button" to="." method="new_task"]
+[connection signal="button_down" from="move_left/button" to="." method="move_list" binds= [-1]]
+[connection signal="button_down" from="move_right/button" to="." method="move_list" binds= [1]]
+[connection signal="button_down" from="delete/button" to="." method="delete_list"]
+[connection signal="button_down" from="color/button" to="." method="toggle_color_picker" binds= [true]]
+[connection signal="color_changed" from="color/picker/dialog" to="." method="change_color"]
+[connection signal="button_down" from="color/picker/close" to="." method="toggle_color_picker" binds= [false]]

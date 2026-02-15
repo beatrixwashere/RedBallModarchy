@@ -1,11 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://leu06y3shvxs"]
+[gd_scene format=3 uid="uid://leu06y3shvxs"]
 
-[ext_resource type="Script" path="res://scripts/rb1/rb1_level.gd" id="1_khhe6"]
+[ext_resource type="Script" uid="uid://rj2olelwcv54" path="res://scripts/rb1/rb1_level.gd" id="1_khhe6"]
 [ext_resource type="Texture2D" uid="uid://88iya5idhe3l" path="res://images/rb1/sprites/sky.svg" id="2_t3ql8"]
 [ext_resource type="Texture2D" uid="uid://cikh2c375qqqa" path="res://images/rb1/textures/groundtexture.png" id="3_244gm"]
 [ext_resource type="Texture2D" uid="uid://dkjsvplpfx6a4" path="res://images/rb1/sprites/cloud1.png" id="3_o02jj"]
 [ext_resource type="Texture2D" uid="uid://b4dd008gptmq8" path="res://images/rb1/sprites/cloud2.png" id="4_dmhrw"]
-[ext_resource type="Script" path="res://scripts/assets/texture_polygon.gd" id="4_ln8ki"]
+[ext_resource type="Script" uid="uid://bj81dtyhbb8tt" path="res://scripts/assets/texture_polygon.gd" id="4_ln8ki"]
 [ext_resource type="Texture2D" uid="uid://b02peed4sywgq" path="res://images/rb1/sprites/grasssprite.svg" id="5_spxai"]
 [ext_resource type="Texture2D" uid="uid://mcukk377e0ge" path="res://images/rb1/textures/stonetexture.png" id="6_twifn"]
 [ext_resource type="PackedScene" uid="uid://b21x76ypama6i" path="res://scenes/rb1/assets/checkpoint.tscn" id="7_l0w1m"]
@@ -166,117 +166,116 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7xog"]
 size = Vector2(61.6, 163.8)
 
-[node name="level_1" type="Node2D"]
+[node name="level_1" type="Node2D" unique_id=1619447289]
 script = ExtResource("1_khhe6")
-load_next = "res://scenes/rb1/levels/level_2.tscn"
 
-[node name="modules" type="Node" parent="."]
+[node name="modules" type="Node" parent="." unique_id=546637466]
 
-[node name="bg" type="ParallaxBackground" parent="."]
+[node name="bg" type="ParallaxBackground" parent="." unique_id=165273417]
 
-[node name="sky" type="ParallaxLayer" parent="bg"]
+[node name="sky" type="ParallaxLayer" parent="bg" unique_id=406439625]
 scale = Vector2(0.38, 0.38)
 motion_scale = Vector2(0, 0)
 metadata/_edit_group_ = true
 
-[node name="sprite" type="Sprite2D" parent="bg/sky"]
+[node name="sprite" type="Sprite2D" parent="bg/sky" unique_id=2127144573]
 scale = Vector2(2.56, 1.8)
 texture = ExtResource("2_t3ql8")
 centered = false
 
-[node name="clouds" type="ParallaxLayer" parent="bg"]
+[node name="clouds" type="ParallaxLayer" parent="bg" unique_id=2101685277]
 motion_scale = Vector2(0.6, 0.6)
 motion_mirroring = Vector2(1920, 1080)
 metadata/_edit_group_ = true
 
-[node name="sprite_0" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_0" type="Sprite2D" parent="bg/clouds" unique_id=1909851051]
 position = Vector2(105.263, 78.9474)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_o02jj")
 centered = false
 
-[node name="sprite_1" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_1" type="Sprite2D" parent="bg/clouds" unique_id=1402634813]
 position = Vector2(290, 350)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_o02jj")
 centered = false
 
-[node name="sprite_2" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_2" type="Sprite2D" parent="bg/clouds" unique_id=1741177512]
 position = Vector2(160, 730)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_o02jj")
 centered = false
 
-[node name="sprite_3" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_3" type="Sprite2D" parent="bg/clouds" unique_id=1944066908]
 position = Vector2(1000, 610)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_o02jj")
 centered = false
 
-[node name="sprite_4" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_4" type="Sprite2D" parent="bg/clouds" unique_id=1572004812]
 position = Vector2(1210, 140)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_o02jj")
 centered = false
 
-[node name="sprite_5" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_5" type="Sprite2D" parent="bg/clouds" unique_id=1492539947]
 position = Vector2(1610, 210)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_o02jj")
 centered = false
 
-[node name="sprite_6" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_6" type="Sprite2D" parent="bg/clouds" unique_id=1746415625]
 position = Vector2(1370, 800)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_o02jj")
 centered = false
 
-[node name="sprite_7" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_7" type="Sprite2D" parent="bg/clouds" unique_id=2140739322]
 position = Vector2(530, 130)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_dmhrw")
 centered = false
 
-[node name="sprite_8" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_8" type="Sprite2D" parent="bg/clouds" unique_id=930005308]
 position = Vector2(920, 350)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_dmhrw")
 centered = false
 
-[node name="sprite_9" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_9" type="Sprite2D" parent="bg/clouds" unique_id=852254509]
 position = Vector2(400, 560)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_dmhrw")
 centered = false
 
-[node name="sprite_10" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_10" type="Sprite2D" parent="bg/clouds" unique_id=331842205]
 position = Vector2(670, 890)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_dmhrw")
 centered = false
 
-[node name="sprite_11" type="Sprite2D" parent="bg/clouds"]
+[node name="sprite_11" type="Sprite2D" parent="bg/clouds" unique_id=278913295]
 position = Vector2(1570, 590)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_dmhrw")
 centered = false
 
-[node name="ui" type="CanvasLayer" parent="."]
+[node name="ui" type="CanvasLayer" parent="." unique_id=469319570]
 
-[node name="music" type="Sprite2D" parent="ui"]
+[node name="music" type="Sprite2D" parent="ui" unique_id=193799018]
 position = Vector2(40, 40)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("13_kyst1")
 metadata/_edit_group_ = true
 
-[node name="button" type="Button" parent="ui/music"]
+[node name="button" type="Button" parent="ui/music" unique_id=1720766040]
 offset_left = -31.0
 offset_top = -27.0
 offset_right = 31.0
 offset_bottom = 27.0
 flat = true
 
-[node name="label" type="Label" parent="ui/music"]
+[node name="label" type="Label" parent="ui/music" unique_id=1157619052]
 offset_left = -31.0
 offset_top = -27.0
 offset_right = 7.0
@@ -288,20 +287,20 @@ text = "M"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="sfx" type="Sprite2D" parent="ui"]
+[node name="sfx" type="Sprite2D" parent="ui" unique_id=1705636325]
 position = Vector2(100, 40)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("13_kyst1")
 metadata/_edit_group_ = true
 
-[node name="button" type="Button" parent="ui/sfx"]
+[node name="button" type="Button" parent="ui/sfx" unique_id=1293982402]
 offset_left = -31.0
 offset_top = -27.0
 offset_right = 31.0
 offset_bottom = 27.0
 flat = true
 
-[node name="label" type="Label" parent="ui/sfx"]
+[node name="label" type="Label" parent="ui/sfx" unique_id=279517367]
 offset_left = -31.0
 offset_top = -27.0
 offset_right = 7.0
@@ -313,7 +312,7 @@ text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="menu" type="Label" parent="ui"]
+[node name="menu" type="Label" parent="ui" unique_id=1140704371]
 offset_left = 138.0
 offset_top = 14.0
 offset_right = 618.0
@@ -325,16 +324,16 @@ theme_override_font_sizes/font_size = 150
 text = "Menu"
 metadata/_edit_group_ = true
 
-[node name="button" type="Button" parent="ui/menu"]
+[node name="button" type="Button" parent="ui/menu" unique_id=965221593]
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 220.0
 flat = true
 
-[node name="pause" type="CanvasLayer" parent="ui"]
+[node name="pause" type="CanvasLayer" parent="ui" unique_id=1312638891]
 visible = false
 
-[node name="bg" type="ColorRect" parent="ui/pause"]
+[node name="bg" type="ColorRect" parent="ui/pause" unique_id=534683252]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -342,12 +341,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.376471)
 
-[node name="base" type="Sprite2D" parent="ui/pause"]
+[node name="base" type="Sprite2D" parent="ui/pause" unique_id=1562048180]
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("7_yg86v")
 
-[node name="pause" type="Label" parent="ui/pause/base"]
+[node name="pause" type="Label" parent="ui/pause/base" unique_id=2118022391]
 offset_left = -150.0
 offset_top = -63.3333
 offset_right = 1050.0
@@ -359,7 +358,7 @@ theme_override_font_sizes/font_size = 60
 text = "PAUSE"
 horizontal_alignment = 1
 
-[node name="return" type="Label" parent="ui/pause/base"]
+[node name="return" type="Label" parent="ui/pause/base" unique_id=1327228067]
 offset_left = -150.0
 offset_top = -36.6667
 offset_right = 1050.0
@@ -371,7 +370,7 @@ theme_override_font_sizes/font_size = 40
 text = "Return to the game"
 horizontal_alignment = 1
 
-[node name="menu" type="Label" parent="ui/pause/base"]
+[node name="menu" type="Label" parent="ui/pause/base" unique_id=739592592]
 offset_left = -150.0
 offset_top = -20.0
 offset_right = 1050.0
@@ -383,7 +382,7 @@ theme_override_font_sizes/font_size = 40
 text = "Back to Main menu"
 horizontal_alignment = 1
 
-[node name="modmenu" type="Label" parent="ui/pause/base"]
+[node name="modmenu" type="Label" parent="ui/pause/base" unique_id=1865800447]
 offset_left = -150.0
 offset_top = -3.33333
 offset_right = 1050.0
@@ -395,7 +394,7 @@ theme_override_font_sizes/font_size = 40
 text = "Back to Mod menu"
 horizontal_alignment = 1
 
-[node name="music" type="Label" parent="ui/pause/base"]
+[node name="music" type="Label" parent="ui/pause/base" unique_id=473794095]
 offset_left = -150.0
 offset_top = 13.3333
 offset_right = 1050.0
@@ -407,7 +406,7 @@ theme_override_font_sizes/font_size = 40
 text = "Music volume: -- 100% ++"
 horizontal_alignment = 1
 
-[node name="sfx" type="Label" parent="ui/pause/base"]
+[node name="sfx" type="Label" parent="ui/pause/base" unique_id=1088302499]
 offset_left = -150.0
 offset_top = 30.0
 offset_right = 1050.0
@@ -419,7 +418,7 @@ theme_override_font_sizes/font_size = 40
 text = "Sfx volume: -- 100% ++"
 horizontal_alignment = 1
 
-[node name="window" type="Label" parent="ui/pause/base"]
+[node name="window" type="Label" parent="ui/pause/base" unique_id=624031883]
 offset_left = -150.0
 offset_top = 46.6667
 offset_right = 1050.0
@@ -431,14 +430,14 @@ theme_override_font_sizes/font_size = 40
 text = "Window mode: Windowed"
 horizontal_alignment = 1
 
-[node name="buttons" type="Control" parent="ui/pause"]
+[node name="buttons" type="Control" parent="ui/pause" unique_id=626932650]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="return" type="Button" parent="ui/pause/buttons"]
+[node name="return" type="Button" parent="ui/pause/buttons" unique_id=2120063415]
 layout_mode = 0
 offset_left = 810.0
 offset_top = 430.0
@@ -446,7 +445,7 @@ offset_right = 1110.0
 offset_bottom = 480.0
 flat = true
 
-[node name="menu" type="Button" parent="ui/pause/buttons"]
+[node name="menu" type="Button" parent="ui/pause/buttons" unique_id=424608871]
 layout_mode = 0
 offset_left = 810.0
 offset_top = 480.0
@@ -454,7 +453,7 @@ offset_right = 1110.0
 offset_bottom = 530.0
 flat = true
 
-[node name="modmenu" type="Button" parent="ui/pause/buttons"]
+[node name="modmenu" type="Button" parent="ui/pause/buttons" unique_id=1728565527]
 layout_mode = 0
 offset_left = 810.0
 offset_top = 530.0
@@ -462,7 +461,7 @@ offset_right = 1110.0
 offset_bottom = 580.0
 flat = true
 
-[node name="music_minus" type="Button" parent="ui/pause/buttons"]
+[node name="music_minus" type="Button" parent="ui/pause/buttons" unique_id=1405506241]
 layout_mode = 0
 offset_left = 970.0
 offset_top = 580.0
@@ -470,7 +469,7 @@ offset_right = 1030.0
 offset_bottom = 630.0
 flat = true
 
-[node name="music_plus" type="Button" parent="ui/pause/buttons"]
+[node name="music_plus" type="Button" parent="ui/pause/buttons" unique_id=1218103458]
 layout_mode = 0
 offset_left = 1100.0
 offset_top = 580.0
@@ -478,7 +477,7 @@ offset_right = 1160.0
 offset_bottom = 630.0
 flat = true
 
-[node name="sfx_minus" type="Button" parent="ui/pause/buttons"]
+[node name="sfx_minus" type="Button" parent="ui/pause/buttons" unique_id=1412042620]
 layout_mode = 0
 offset_left = 950.0
 offset_top = 630.0
@@ -486,7 +485,7 @@ offset_right = 1010.0
 offset_bottom = 680.0
 flat = true
 
-[node name="sfx_plus" type="Button" parent="ui/pause/buttons"]
+[node name="sfx_plus" type="Button" parent="ui/pause/buttons" unique_id=1860370223]
 layout_mode = 0
 offset_left = 1080.0
 offset_top = 630.0
@@ -494,7 +493,7 @@ offset_right = 1140.0
 offset_bottom = 680.0
 flat = true
 
-[node name="window" type="Button" parent="ui/pause/buttons"]
+[node name="window" type="Button" parent="ui/pause/buttons" unique_id=733224579]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 680.0
@@ -502,13 +501,13 @@ offset_right = 1160.0
 offset_bottom = 730.0
 flat = true
 
-[node name="objects" type="Node2D" parent="."]
+[node name="objects" type="Node2D" parent="." unique_id=1133267737]
 
-[node name="body" type="b2iBody" parent="objects"]
+[node name="body" type="b2iBody" parent="objects" unique_id=1901501705]
 density = 0.0
 position = Vector2(-20, 270)
 
-[node name="start_platform" type="Polygon2D" parent="objects/body"]
+[node name="start_platform" type="Polygon2D" parent="objects/body" unique_id=136534096]
 texture = ExtResource("3_244gm")
 texture_scale = Vector2(2.495, 2.495)
 polygon = PackedVector2Array(0, 0, 200, 0, 200, 20, 0, 20)
@@ -516,21 +515,21 @@ script = ExtResource("4_ln8ki")
 texture_shortcut = ExtResource("3_244gm")
 baked = true
 
-[node name="outline" type="Line2D" parent="objects/body/start_platform"]
+[node name="outline" type="Line2D" parent="objects/body/start_platform" unique_id=1786316511]
 points = PackedVector2Array(0, 0, 200, 0, 200, 20, 0, 20, 0, 0)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="grass" type="Sprite2D" parent="objects/body/start_platform"]
+[node name="grass" type="Sprite2D" parent="objects/body/start_platform" unique_id=704894978]
 position = Vector2(100, -4)
 scale = Vector2(0.34, 0.34)
 texture = ExtResource("5_spxai")
 
-[node name="body2" type="b2iBody" parent="objects"]
+[node name="body2" type="b2iBody" parent="objects" unique_id=591757128]
 density = 0.0
 position = Vector2(334, 221)
 
-[node name="barier" type="Polygon2D" parent="objects/body2"]
+[node name="barier" type="Polygon2D" parent="objects/body2" unique_id=971785469]
 texture = ExtResource("6_twifn")
 texture_scale = Vector2(5.98, 5.98)
 polygon = PackedVector2Array(0, 0, 20, 0, 20, 50, 0, 50)
@@ -538,16 +537,16 @@ script = ExtResource("4_ln8ki")
 texture_shortcut = ExtResource("6_twifn")
 baked = true
 
-[node name="outline" type="Line2D" parent="objects/body2/barier"]
+[node name="outline" type="Line2D" parent="objects/body2/barier" unique_id=93612587]
 points = PackedVector2Array(0, 0, 20, 0, 20, 50, 0, 50, 0, 0)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="body3" type="b2iBody" parent="objects"]
+[node name="body3" type="b2iBody" parent="objects" unique_id=1973670661]
 density = 0.0
 position = Vector2(240, 270)
 
-[node name="exit_platform" type="Polygon2D" parent="objects/body3"]
+[node name="exit_platform" type="Polygon2D" parent="objects/body3" unique_id=435345200]
 texture = ExtResource("3_244gm")
 texture_scale = Vector2(1.66333, 1.66333)
 polygon = PackedVector2Array(0, 0, 300, 0, 300, 20, 0, 20)
@@ -555,49 +554,49 @@ script = ExtResource("4_ln8ki")
 texture_shortcut = ExtResource("3_244gm")
 baked = true
 
-[node name="outline" type="Line2D" parent="objects/body3/exit_platform"]
+[node name="outline" type="Line2D" parent="objects/body3/exit_platform" unique_id=2123207918]
 points = PackedVector2Array(0, 0, 300, 0, 300, 20, 0, 20, 0, 0)
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="grass" type="Sprite2D" parent="objects/body3/exit_platform"]
+[node name="grass" type="Sprite2D" parent="objects/body3/exit_platform" unique_id=2105193833]
 position = Vector2(82, -4)
 scale = Vector2(0.28, 0.28)
 texture = ExtResource("5_spxai")
 
-[node name="grass2" type="Sprite2D" parent="objects/body3/exit_platform"]
+[node name="grass2" type="Sprite2D" parent="objects/body3/exit_platform" unique_id=432029544]
 position = Vector2(230.37, -4)
 scale = Vector2(0.238139, 0.28)
 texture = ExtResource("5_spxai")
 
-[node name="entities" type="Node2D" parent="."]
+[node name="entities" type="Node2D" parent="." unique_id=87121718]
 
-[node name="checkpoints" type="Node2D" parent="entities"]
+[node name="checkpoints" type="Node2D" parent="entities" unique_id=1265406141]
 
-[node name="checkpoint_0" parent="entities/checkpoints" instance=ExtResource("7_l0w1m")]
+[node name="checkpoint_0" parent="entities/checkpoints" unique_id=541944930 instance=ExtResource("7_l0w1m")]
 position = Vector2(16.9, 249.3)
 
-[node name="flags" type="Node2D" parent="entities"]
+[node name="flags" type="Node2D" parent="entities" unique_id=520771095]
 
-[node name="flag" type="AnimatedSprite2D" parent="entities/flags"]
+[node name="flag" type="AnimatedSprite2D" parent="entities/flags" unique_id=503819672]
 position = Vector2(495.1, 246.7)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_h4ocn")
 animation = &"raise"
 
-[node name="hitbox" type="Area2D" parent="entities/flags/flag"]
+[node name="hitbox" type="Area2D" parent="entities/flags/flag" unique_id=1091348671]
 
-[node name="collision" type="CollisionShape2D" parent="entities/flags/flag/hitbox"]
+[node name="collision" type="CollisionShape2D" parent="entities/flags/flag/hitbox" unique_id=1129943873]
 position = Vector2(-19.2001, 11.1)
 shape = SubResource("RectangleShape2D_p7xog")
 
-[node name="labels" type="Control" parent="."]
+[node name="labels" type="Control" parent="." unique_id=614931057]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="level" type="Label" parent="labels"]
+[node name="level" type="Label" parent="labels" unique_id=30373567]
 layout_mode = 0
 offset_left = -10.0
 offset_top = 100.0
@@ -609,7 +608,7 @@ theme_override_fonts/font = ExtResource("9_b66ly")
 theme_override_font_sizes/font_size = 60
 text = "Level 1: Move and jump"
 
-[node name="move" type="Label" parent="labels"]
+[node name="move" type="Label" parent="labels" unique_id=1894901922]
 layout_mode = 0
 offset_left = -10.0
 offset_top = 190.0
@@ -622,7 +621,7 @@ theme_override_font_sizes/font_size = 48
 text = "Use Left/Right or A/D
 keys to move"
 
-[node name="jump" type="Label" parent="labels"]
+[node name="jump" type="Label" parent="labels" unique_id=927054829]
 layout_mode = 0
 offset_left = 160.0
 offset_top = 190.0
@@ -636,7 +635,7 @@ text = "Use Up or W keys
 to jump"
 horizontal_alignment = 1
 
-[node name="goal" type="Label" parent="labels"]
+[node name="goal" type="Label" parent="labels" unique_id=1867273309]
 layout_mode = 0
 offset_left = 440.0
 offset_top = 190.0
@@ -649,7 +648,7 @@ theme_override_font_sizes/font_size = 48
 text = "This is the level goal"
 horizontal_alignment = 1
 
-[node name="camera" type="Camera2D" parent="."]
+[node name="camera" type="Camera2D" parent="." unique_id=213633023]
 zoom = Vector2(2.7, 2.7)
 
-[node name="redball" parent="." instance=ExtResource("9_kkydj")]
+[node name="redball" parent="." unique_id=1116651565 instance=ExtResource("9_kkydj")]

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WhitecellData" format=3 uid="uid://6m1yuhg0htdc"]
+
+[ext_resource type="Script" uid="uid://dsebbya538iqt" path="res://addons/whitecell/scripts/resources/savedata.gd" id="1_srshb"]
+
+[resource]
+script = ExtResource("1_srshb")
+list_names = ["levels", "bias", "patches", "features"]
+list_colors = [Color(1, 0.24414086, 0.24414086, 1), Color(0.53450674, 0.27308437, 0.67382824, 1), Color(0.79101574, 0.48273432, 0.14677049, 1), Color(0.10585752, 0.72265637, 0.5130407, 1)]
+list_items = [[["level 2 (bias patch)", "fix funny ball", "fix moving platform"], ["level 4 (bias patch)", "fix solid ground", "fiix physics objs"], ["level 6 (bias patch)", "fix big rotator", "fix small rotators"], ["level 7", "layout", "physics", "decoration"], ["level 8", "layout", "physics", "decoration"], ["level 9", "layout", "physics", "decoration"], ["level 10", "layout", "physics", "decoration"], ["level 11", "layout", "physics", "decoration"], ["level 12", "layout", "physics", "decoration"]], [["macos support"], ["web support"], ["android support"]], [["death parts all spawn in the same place and stack vertically"], ["properly unload mods when returning to mod menu"]], [["mod settings window + settingshelper for storage"]]]

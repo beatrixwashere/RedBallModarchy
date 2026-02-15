@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://dgdj2lajurmj7"]
+
+[ext_resource type="Shader" uid="uid://dsvqa3bpw1r5c" path="res://addons/whitecell/scripts/shaders/error.gdshader" id="1_8gt84"]
+[ext_resource type="Script" uid="uid://bc8fularo4hwr" path="res://addons/whitecell/scripts/ui/subtask.gd" id="2_8gt84"]
+[ext_resource type="FontFile" uid="uid://but47y6v5ypuf" path="res://addons/whitecell/sprites/fonts/chakra_petch/chakra_petch_regular.ttf" id="3_o2vl6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtnc3"]
+shader = ExtResource("1_8gt84")
+shader_parameter/rwidth = 3.0
+shader_parameter/rheight = 2.0
+
+[node name="subtask" type="ColorRect" unique_id=1560723769]
+material = SubResource("ShaderMaterial_xtnc3")
+custom_minimum_size = Vector2(300, 32)
+offset_right = 300.0
+offset_bottom = 32.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_8gt84")
+
+[node name="label_edit" type="LineEdit" parent="." unique_id=556053994]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 416.0
+offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("3_o2vl6")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "todo"
+flat = true
+
+[node name="complete" type="ColorRect" parent="." unique_id=2046965153]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 280.0
+offset_bottom = 24.0
+color = Color(1, 1, 1, 0.3764706)
+
+[node name="button" type="Button" parent="complete" unique_id=99757126]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 16.0
+flat = true
+
+[node name="icon" type="Label" parent="complete" unique_id=1516702226]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("3_o2vl6")
+theme_override_font_sizes/font_size = 10
+text = "✓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_up" type="ColorRect" parent="." unique_id=1227448564]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 24.0
+color = Color(1, 1, 1, 0.2509804)
+
+[node name="button" type="Button" parent="move_up" unique_id=1062391644]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+flat = true
+
+[node name="icon" type="Label" parent="move_up" unique_id=488990844]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("3_o2vl6")
+theme_override_font_sizes/font_size = 10
+text = "↑"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="move_down" type="ColorRect" parent="." unique_id=1076899697]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 24.0
+color = Color(1, 1, 1, 0.2509804)
+
+[node name="button" type="Button" parent="move_down" unique_id=1860110278]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+flat = true
+
+[node name="icon" type="Label" parent="move_down" unique_id=1426549608]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("3_o2vl6")
+theme_override_font_sizes/font_size = 10
+text = "↓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="complete/button" to="." method="complete_subtask"]
+[connection signal="button_down" from="move_up/button" to="." method="move_subtask" binds= [-1]]
+[connection signal="button_down" from="move_down/button" to="." method="move_subtask" binds= [1]]
