@@ -246,9 +246,6 @@ func _redball_die(_area: Area2D = null) -> void:
 	# stop red ball
 	AudioHelper.play("rb1_death")
 	_is_alive = false
-	#redball.freeze = true
-	redball.destroy() #redball.contact_monitor = false
-	#redball.get_node("collision").disabled = true
 	redball.get_node("sprite").visible = false
 	redball.get_node("hitbox").set_deferred("monitoring", false)
 	
@@ -257,13 +254,16 @@ func _redball_die(_area: Area2D = null) -> void:
 	for i in 8:
 		var dpart: b2iBody = deathpartscene.instantiate()
 		redball.add_child(dpart)
+		dpart.init()
 		dpart.position = Vector2(10 * rng.randf(), 10 * rng.randf())
-		print(dpart.position)
 		dpart.linear_velocity = redball.linear_velocity / 3
+		dpart.reparent(get_parent())
 	redball.linear_velocity = Vector2(0, 0)
+	redball.linear_damping = 1000000
 	
 	# wait and respawn player
 	await get_tree().create_timer(1.0).timeout
+	redball.destroy()
 	if is_inside_tree():
 		get_tree().paused = false
 		get_tree().reload_current_scene()
