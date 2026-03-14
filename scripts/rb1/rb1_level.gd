@@ -152,8 +152,9 @@ func _physics_process(_delta: float) -> void:
 	# check for kill objects
 	if _is_alive:
 		for i in contact_list:
-			if "-kill" in i.get_parent().name:
-				funcs["redball_die"].call()
+			if i:
+				if "-kill" in i.get_parent().name:
+					funcs["redball_die"].call()
 	
 	# reset function
 	if InputHelper.pressed[KEY_R]:
