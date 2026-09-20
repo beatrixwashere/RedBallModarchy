@@ -252,6 +252,7 @@ func _redball_die(_area: Area2D = null) -> void:
 	
 	# generate death parts
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	var dpartlist: Array[b2iBody] = []
 	for i in 8:
 		var dpart: b2iBody = deathpartscene.instantiate()
 		redball.add_child(dpart)
@@ -259,11 +260,15 @@ func _redball_die(_area: Area2D = null) -> void:
 		dpart.position = Vector2(10 * rng.randf(), 10 * rng.randf())
 		dpart.linear_velocity = redball.linear_velocity / 3
 		dpart.reparent(get_parent())
+		dpartlist.append(dpart)
 	redball.linear_velocity = Vector2(0, 0)
 	redball.linear_damping = 1000000
 	
 	# wait and respawn player
 	await get_tree().create_timer(1.0).timeout
+	for i in dpartlist:
+		i.destroy()
+		i.queue_free()
 	redball.destroy()
 	if is_inside_tree():
 		get_tree().paused = false

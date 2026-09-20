@@ -543,8 +543,7 @@ points = PackedVector2Array(27, 0, 26, -7, 23, -14, 19, -19, 13, -24, 7, -26, 0,
 width = 0.75
 default_color = Color(0, 0, 0, 1)
 
-[node name="b2iRevoluteJoint" type="b2iRevoluteJoint" parent="objects/kick_ball" unique_id=460774134]
-auto_init = false
+[node name="b2iDistanceJoint" type="b2iDistanceJoint" parent="objects/kick_ball" unique_id=300140099]
 position = Vector2(87, 209)
 
 [node name="first_platform" type="b2iBody" parent="objects" unique_id=616276258]
@@ -658,7 +657,6 @@ scale = Vector2(0.17, 0.287647)
 texture = ExtResource("10_aqjho")
 
 [node name="move_platform" type="b2iBody" parent="objects" unique_id=33603732]
-density = 0.0
 
 [node name="move_platform" type="Polygon2D" parent="objects/move_platform" unique_id=27821051]
 position = Vector2(390, 390)
@@ -676,6 +674,7 @@ width = 0.75
 default_color = Color(0, 0, 0, 1)
 
 [node name="b2iPrismaticJoint" type="b2iPrismaticJoint" parent="objects/move_platform" unique_id=1407208023]
+global_direction = true
 
 [node name="exit_platform" type="b2iBody" parent="objects" unique_id=1830402132]
 density = 0.0
